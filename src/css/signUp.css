@@ -1,0 +1,109 @@
+/* .container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.container p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.label-text {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type='text']:focus,
+input[type='password']:focus,
+input[type='email']:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 0;
+  padding-left: 25px;
+  color: #888;
+  font-size: 14px;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+ul li.valid {
+  color: #4caf50;
+}
+
+#passwordRequirements {
+  margin-bottom: 20px;
+}
+
+#passwordMismatch,
+#emailInvalid,
+#mobileNumberInvalid {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #ccc;
+} */
