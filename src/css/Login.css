@@ -1,0 +1,99 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', sans-serif;
+}
+
+.container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.label-text {
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: left;
+  color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  width: calc(100% - 10px);
+  font-family: 'Roboto', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.forgot-password {
+  font-size: 14px;
+  color: #ccc;
+  cursor: pointer;
+  text-decoration: none;
+  align-self: flex-end;
+  transition: color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.forgot-password:hover {
+  color: #999;
+}
+
+button {
+  background-color: blueviolet;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+  align-self: center;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+  background-color: rgb(101, 61, 137);
+}
+
+button:focus {
+  background-color: #3416f6;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: 'Roboto', sans-serif;
+} */

@@ -1,0 +1,71 @@
+/* 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pdf {
+  text-align: center;
+}
+
+.pdf-header {
+  background-color: #bf34ea;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  transition: box-shadow 0.3s;
+}
+
+.button-item:hover {
+  box-shadow: 0 4px 8px rgba(173, 45, 145, 0.447);
+}
+
+span {
+  margin-top: 5px;
+  margin-right: 55px;
+}
+
+button {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  position: relative;
+}
+
+button:disabled {
+  background-color: #9898989e;
+  cursor: not-allowed;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  transition: box-shadow 0.3s;
+}
+
+button:enabled {
+  background-color: #bc57db;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+  transition: box-shadow 0.3s;
+  border-radius: 10px;
+}
+
+.button:hover {
+  box-shadow: 0 4px 8px rgba(173, 45, 145, 0.447);
+} */
