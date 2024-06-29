@@ -4,7 +4,7 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 
-const Document = require('./models/Document');
+const Document = require('./models/document');
 
 const app = express();
 const port = 5000;
