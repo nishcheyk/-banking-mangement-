@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary"
+      className="navbar navbar-expand-lg bg-body-tertiary mb-5"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
