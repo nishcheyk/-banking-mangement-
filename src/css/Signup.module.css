@@ -1,4 +1,3 @@
-
 .containe {
   max-width: 400px;
   margin: 0 auto;
@@ -36,7 +35,8 @@
 }
 
 .containe input[type="text"],
-.containe input[type="password"] {
+.containe input[type="password"],
+.containe input[type="email"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -46,7 +46,8 @@
 }
 
 .containe input[type="text"]:focus,
-.containe input[type="password"]:focus {
+.containe input[type="password"]:focus,
+.containe input[type="email"]:focus {
   outline: none;
   border-color: #4caf50;
 }
@@ -57,40 +58,65 @@
   cursor: pointer;
   text-decoration: none;
   align-self: flex-end;
-  transition: color 0.3s ease;
-  font-family: 'Roboto', sans-serif;
+  transition: color 0.3s;
 }
 
 .containe .forgot-password:hover {
-  color: #999;
+  color: #4caf50;
 }
 
-.containe button {
-  background-color: blueviolet;
+.containe .button {
+  background-color: #4caf50;
   color: white;
-  padding: 15px;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
-  font-size: 16px;
-  width: 100%;
-  margin-top: 20px;
-  align-self: center;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
   font-family: 'Roboto', sans-serif;
 }
 
-.containe button:hover {
-  background-color: rgb(101, 61, 137);
+.containe .button:hover {
+  background-color: #45a049;
 }
 
-.containe button:focus {
-  background-color: #3416f6;
-}
-
-.containe .error-message {
+.containe #passwordMismatch,
+.containe #emailInvalid,
+.containe #mobileNumberInvalid {
   color: red;
   font-size: 14px;
-  margin-top: 5px;
-  font-family: 'Roboto', sans-serif;
+}
+
+.containe .success-message {
+  color: green;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.containe ul {
+  list-style: none;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.containe ul .valid {
+  color: green;
+  display: flex;
+  align-items: center;
+}
+
+.containe ul .valid::before {
+  content: '✔';
+  color: green;
+  margin-right: 5px;
+}
+
+.containe button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.containe .valid-input {
+  border-color: green;
 }
