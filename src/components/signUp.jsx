@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/signUp.css";
+import "../css/Signup.module.css";
 
 const Signup = ({ onRegister }) => {
   const [username, setUsername] = useState("");
@@ -81,7 +81,7 @@ const Signup = ({ onRegister }) => {
 
   // Render signup form if not registered, otherwise render message and login form
   return (
-    <div className="container">
+    <div className="containe">
       {!isRegistered ? (
         <>
           <h2>Create your login details</h2>

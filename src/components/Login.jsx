@@ -39,7 +39,7 @@ const Login = ({ onLogin, onForgotPassword }) => {
   };
 
   return (
-    <div className="container">
+    <div className="containe">
       <h2>Login to your account</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-group">
