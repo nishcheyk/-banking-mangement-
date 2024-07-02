@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../App.css";
+
 import Signup from "../components/signUp";
 import Login from "../components/Login";
 import PdfValidation from "../components/pdfValidation"; // Ensure correct import path and casing
@@ -20,21 +20,7 @@ function LoginPage() {
     setIsLoggedIn2(true);
     setIsRegistered2(false);
   };
-  //   const [isRegistered, setIsRegistered] = useState(false);
-  //   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  //   const handleRegister = () => {
-  //     setIsRegistered2(true);
-  //   };
-
-  //   const handleLogout = () => {
-  //     setIsLoggedIn2(false);
-  //   };
-
-  //   const handleSuccessfulLogin = () => {
-  //     setIsLoggedIn2(true);
-  //     setIsRegistered2(false);
-  //   };
   return (
     <div>
       <div className="App">
