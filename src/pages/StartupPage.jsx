@@ -10,11 +10,14 @@ import StartApplication from '../components/StartApplicationButton';
 import Form from '../components/Form';
 import ProgressBar from '../components/ProgressBar';
 import "../css/startup.css"
+import Dashboard from "./Dashboard";
 function HomePage() {
   return (
     <div>
       <div className="App">
+
         <Navbar />
+        <Dashboard/>
         <AboutUs />
         <SomeText />
         <ApplyNow />
