@@ -1,0 +1,84 @@
+.transaction-history {
+    width: 80%;
+
+    height: 750px;
+    min-height: 50%;
+    margin-left:10px;
+    margin-right: 10px ;
+    background-color: #7295CA;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+.head_text{
+ font-size: 90px;
+ font-weight: bold;
+ font: 1em nexa;
+ color: #f1f1f1;
+  }
+  .transaction-history h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .head, .transaction-history li {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .head {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+
+  .transaction-history ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .transaction-history li:hover {
+    background-color: #f0f0f0;
+  }
+
+  .head serial-number, .head amount, .head date, .head time-tran, .head status {
+    flex: 1;
+    align-items: center;
+    align-content: center;
+    margin-right: 10px;
+    min-width: fit-content;
+  }
+
+  .serial-number {
+    margin-right: 10px;
+  }
+
+  .amount {
+    margin-right: 10px;
+  }
+
+  .date {
+    margin-right: 10px;
+    min-width: fit-content;
+  }
+
+  .time-tran {
+    margin-right: 10px;
+    min-width: fit-content;
+  }
+
+  .status {
+    margin-right: 10px;
+  }
+
+  .amount.positive {
+    color: green;
+  }
+
+  .amount.negative {
+    color: red;
+  }
