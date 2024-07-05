@@ -1,40 +1,48 @@
 const mongoose = require('mongoose');
+
 const customerSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+    unique: true
+  },
   name: {
     type: String,
-    required: true
+     required: true,
   },
   email: {
     type: String,
-    required: true,
+ required: true,
     unique: true,
     match: [/^.+@.+\..+$/, 'Please enter a valid email address']
   },
   address: {
+   
     street: {
-      type: String,
-      required: true
+      type: String
+
     },
     city: {
-      type: String,
-      required: true
+      type: String
+
     },
     state: {
-      type: String,
-      required: true
+      type: String
+
     },
     postalCode: {
-      type: String,
-      required: true
+      type: String
+
     }
   },
   contactNumber: {
     type: String,
-    required: true
+    required: true,
   },
   dateOfBirth: {
     type: Date,
-    required: true
+     required: true,
   }
 });
 

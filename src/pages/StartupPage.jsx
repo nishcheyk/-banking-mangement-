@@ -1,28 +1,26 @@
 import React from "react";
-import Navbar from "../components/Navbar";import AboutUs from '../components/AboutUs'; 
-import ApplyNow from '../components/ApplyNow';
-import ReadDocText from '../components/ReadDocText';
+import Navbar from "../components/Navbar";
+import AboutUs from '../components/AboutUsCard';
+import ApplyNow from '../components/ApplyNowButton';
+import ReadDocText from '../components/DocumentsToReview';
 import DocsToRead from '../components/DocsToRead';
 import NeedHelp from '../components/NeedHelp';
 import SomeText from '../components/SomeText';
-import StartApplication from '../components/StartApplication';
+import StartApplication from '../components/StartApplicationButton';
 import Form from '../components/Form';
 import ProgressBar from '../components/ProgressBar';
-
+import "../css/startup.css"
+import Dashboard from "./Dashboard";
 function HomePage() {
   return (
     <div>
       <div className="App">
+
         <Navbar />
-        <br />
-        <br />
-        <h2>Welcome. Namaste. Grüezi. Bonjour. Buongiorno. Allegra.</h2>
-        <br />
-        <br />
+        <Dashboard/>
         <AboutUs />
         <SomeText />
         <ApplyNow />
-        <br />
         <ReadDocText />
         <DocsToRead />
         <StartApplication />

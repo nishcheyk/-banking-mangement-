@@ -1,9 +1,12 @@
 import React from 'react'
 
-function AboutUs() {
+function AboutUsCard() {
   return (
     <div>
         <div className="container">
+            <div className="container mb-5">
+            <h2>Welcome. Namaste. Grüezi. Bonjour. Buongiorno. Allegra.</h2>
+            </div>
             <div class="card-group">
             <div class="card">
                 <div class="card-body">
@@ -44,4 +47,4 @@ function AboutUs() {
   )
 }
 
-export default AboutUs
+export default AboutUsCard
