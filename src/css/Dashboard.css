@@ -1,6 +1,7 @@
 .dashboard {
   max-width:1400px;
   margin: 0 auto;
+  margin-top: 0PX;
   padding: 20px;
   font-family: Arial, sans-serif;
   display: flex;
@@ -13,6 +14,7 @@
 .username {
   font-size: 40px;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 
@@ -359,12 +361,13 @@
 }
 .balance {
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 25px;
   color: #ffffff;
 }
 .label {
   font-weight: bold;
-  margin-right: 8px;
+  margin-right: 2px;
+
 }
 .balance-label {
   font-weight: bold;
@@ -377,7 +380,7 @@
 
 
 .card {
-  margin-top: 80px;
+  margin-top: 60px;
   position: relative;
   display: flex;
   align-items: center;
@@ -450,14 +453,14 @@
 }
 
 .card:hover .content::before {
-  rotate: -3deg;
+  rotate: 2deg;
   top: 0;
   width: 100%;
   height: 100%;
 }
 
 .card:hover .content::after {
-  rotate: 5deg;
+  rotate:-2deg;
   top: 0;
   width: 100%;
   height: 100%;

@@ -7,6 +7,7 @@ const authRoutes = require("./Routes/auth");
 const transactionRoutes = require("./Routes/transactions");
 const customerRoutes = require("./Routes/customer");
 const accountRoutes = require("./Routes/accounts");
+const download = require("./Routes/download-statement.js");
 
 const PORT = 5050;
 
@@ -19,12 +20,13 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
+app.use("/api", download);
 app.use("/api/auth", authRoutes);
 app.use("/api/customers", customerRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/accounts", accountRoutes);
-app.get('/test', (req, res) => {
-  res.send('Server is working!');
+app.get("/test", (req, res) => {
+  res.send("Server is working!");
 });
 
 app.listen(PORT, () => {

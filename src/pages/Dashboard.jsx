@@ -51,10 +51,30 @@ const Dashboard = () => {
 
   function formatDateTime(date) {
     const formattedDate = date.toLocaleDateString();
-    const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const formattedTime = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
     return `${formattedDate} ${formattedTime}`;
   }
+
+  const handleDownloadStatement = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5050/api/download-statement",
+        {
+          // Ensure customerId and email are correctly passed
+          customerId,
+          email: "nishcheycapture2014@gmail.com",
+        }
+      );
+      alert(response.data.message);
+    } catch (error) {
+      console.error("Error downloading statement:", error);
+      alert("Failed to download statement.");
+    }
+  };
 
   return (
     <div className="dashboard">
@@ -87,44 +107,43 @@ const Dashboard = () => {
                     {/* SVG content */}
                   </svg>
                   <div className="username">Welcome {userName}</div>
-                  <div className="balance">
-                    <span className="balance-label">Available Balance:</span>{" "}
-                    {Balance}
-                  </div>
                   <div className="customer-id">
                     <span className="label">Customer ID:</span> {customerId}
                   </div>
+                  <div className="balance">
+                    <span className="balance-label">Available Balance: ₹ </span>{" "}
+                    {Balance}
+                  </div>
+
                   <div className="time">{formatDateTime(currentTime)}</div>
                 </div>
               </div>
             </div>
-            </div>
-
-
-            <div className=" bottom">
-            <div className="right-nav">
-            <ul>
-              <div className="side_menu">
-                <button className="side_button">Transaction</button>
-                <button className="side_button">Withdraw your funds</button>
-                <button className="side_button">Transfer funds</button>
-                <button className="side_button">Deposit fund</button>
-                <button className="side_button">Insurance</button>
-                <button className="side_button">Investments</button>
-                <button className="side_button">Loans</button>
-                <button className="side_button">Download Your Statement</button>
-              </div>
-            </ul>
           </div>
 
-
-
-            <TransactionHistory transactions={transactions} />
-
+          <div className=" bottom">
+            <div className="right-nav">
+              <ul>
+                <div className="side_menu">
+                  <button className="side_button">Transaction</button>
+                  <button className="side_button">Withdraw your funds</button>
+                  <button className="side_button">Transfer funds</button>
+                  <button className="side_button">Deposit fund</button>
+                  <button className="side_button">Insurance</button>
+                  <button className="side_button">Investments</button>
+                  <button className="side_button">Loans</button>
+                  <button
+                    className="side_button"
+                    onClick={handleDownloadStatement}
+                  >
+                    Download Your Statement
+                  </button>
+                </div>
+              </ul>
             </div>
 
-
-
+            <TransactionHistory transactions={transactions} />
+          </div>
         </div>
       )}
     </div>
