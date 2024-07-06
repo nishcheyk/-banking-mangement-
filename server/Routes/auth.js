@@ -66,17 +66,20 @@ router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    // Validate input
+    if (!username || !password) {
+      return res.status(400).json({ message: "Username and password are required" });
+    }
+
     const user = await User.findOne({ username });
     if (!user) {
-      const message = "User not found";
-      console.log("Error: ", message);
-      return res.status(404).json({ message });
+      console.log("Error: User not found for username:", username);
+      return res.status(404).json({ message: "User not found" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      const message = "Invalid credentials";
-      console.log("Error: ", message);
+      console.log("Error: Invalid credentials for username:", username);
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
@@ -89,5 +92,6 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Error logging in" });
   }
 });
+
 
 module.exports = router;
