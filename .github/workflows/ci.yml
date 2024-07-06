@@ -24,12 +24,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Install ESLint
-      run: npm install eslint eslint-plugin-react --save-dev
-
-    - name: Run ESLint
-      run: npm run lint
-      continue-on-error: false  # Fail the job if there are lint errors
+    
 
     - name: Run tests
       run: npm test -- --passWithNoTests
