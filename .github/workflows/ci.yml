@@ -14,12 +14,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3  # Use the latest version
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3  # Use the latest version
       with:
-        node-version: '14'
+        node-version: '16'  # Update to the latest stable version
 
     - name: Install dependencies
       run: npm install
@@ -29,7 +29,7 @@ jobs:
 
     - name: Run ESLint
       run: npm run lint
-      continue-on-error: false # Fail the job if there are lint errors or warnings
+      continue-on-error: false  # Fail the job if there are lint errors
 
     - name: Run tests
       run: npm test -- --passWithNoTests
