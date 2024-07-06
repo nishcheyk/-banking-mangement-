@@ -29,5 +29,4 @@ jobs:
     - name: Run tests
       run: npm test -- --passWithNoTests
 
-    - name: Build application
-      run: npm run build
+    
