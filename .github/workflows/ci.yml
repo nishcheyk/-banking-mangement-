@@ -1,0 +1,38 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install ESLint
+      run: npm install eslint eslint-plugin-react --save-dev
+
+    - name: Run ESLint
+      run: npm run lint
+      continue-on-error: false # Fail the job if there are lint errors or warnings
+
+    - name: Run tests
+      run: npm test -- --passWithNoTests
+
+    - name: Build application
+      run: npm run build
