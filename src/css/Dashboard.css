@@ -12,7 +12,7 @@
 }
 
 .username {
-  font-size: 40px;
+  font-size: 25px;
   font-weight: bold;
   margin-top: 0px;
 }
@@ -23,6 +23,7 @@
   margin-top: 40px;
   display: flex;
   flex: 1;
+  width: 1000px;
 }
 
 .right-nav {
@@ -32,7 +33,8 @@
     border-radius: 5px;
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    min-width: 10px;
+    max-width: 150px;
+    max-width: 200px;
     margin-left: 20px;
 }
 
@@ -47,20 +49,10 @@
   flex: 2; /* Adjust width as necessary */
   margin-left: 20px; /* Add margin or adjust as per your design */
   padding: 20px;
-  min-width:fit-content;
-}
-.account-summary h2,
-.transaction-history h2,
-.right-nav h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333;
+  width: 100%;
 }
 
-.transaction-history ul {
-  list-style-type: none;
-  padding: 0;
-}
+
 
 .transaction-history li {
   margin-bottom: 10px;
@@ -80,13 +72,6 @@
   padding: 0 10px;
 }
 
-.amount.positive {
-  color: green;
-}
-
-.amount.negative {
-  color: red;
-}
 
 .right-nav ul {
   list-style-type: none;
@@ -94,14 +79,12 @@
 }
 
 .right-nav li {
-  margin-bottom: 10px;
+  margin: 10px;
   cursor: pointer;
   transition: color 0.3s;
 }
 
-.right-nav li:hover {
-  color: #4caf50;
-}
+
 
 /* General styles for buttons */
 .side_button {
@@ -113,14 +96,13 @@
   overflow: hidden;
   text-align: center;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 12px;
   transition: 0.3s;
   z-index: 1;
   font-family: inherit;
   color: #f0f2f5;
-  margin: 10px;
+  margin: 7px;
   display: inline-block;
-
   background-color:#063269 ; /* Adjust background color */
   border-color: #0D57A2; /* Adjust border color */
 }
@@ -353,7 +335,7 @@
   }
 }
 .header{
-  border-radius: 51px;
+  border-radius: px;
   background: #6259e3;
   padding-left: 30px;
   height: 200px;
@@ -361,7 +343,7 @@
 }
 .balance {
   font-family: Arial, sans-serif;
-  font-size: 25px;
+  font-size: 15px;
   color: #ffffff;
 }
 .label {
@@ -373,24 +355,24 @@
   font-weight: bold;
 }
 .time{
-  font-size: 40px;
+  font-size: 20px;
   font-weight: lighter;
   align-items: right;
 }
 
 
 .card {
-  margin-top: 60px;
+  font-size: 12px;
+ width: 1000px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
+  min-width: 350px;
   max-width: 100%;
-  max-height: 350px;
-  min-height: 300px;
-  border-radius: 24px;
-  line-height: 1.6;
+  height: 250px;
+border-radius: 70px;
+  line-height: 1.4;
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -399,9 +381,10 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
-  gap: 24px;
-  padding: 36px;
-  border-radius: 22px;
+  gap: 20px;
+  padding-left: 40px;
+  padding-bottom: 40px;
+  border-radius: 70px;
   color: #ffffff;
   overflow: hidden;
   background: #063269;

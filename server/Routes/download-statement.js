@@ -1,9 +1,12 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const nodemailer = require('nodemailer');
-const PDFDocument = require('pdfkit');
-const path = require('path');
-const fs = require('fs');
+const express = require("express");
+const mongoose = require("mongoose");
+const nodemailer = require("nodemailer");
+const PDFDocument = require("pdfkit");
+const path = require("path");
+const fs = require("fs");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -11,111 +14,96 @@ const Transaction = require("../models/Transaction");
 
 async function generatePDF(customerId) {
     try {
-        // Fetch transactions for the customer
         const transactions = await Transaction.find({ customerId });
 
-        // Create a PDF document
         const doc = new PDFDocument();
-
-        // Pipe its output to a file
         const filePath = path.join(__dirname, 'transaction_report.pdf');
         const writeStream = fs.createWriteStream(filePath);
         doc.pipe(writeStream);
 
-        // Add content to the PDF
-        doc.fontSize(25).text('Transaction Report', { align: 'center' });
+        doc.fontSize(25).text('Transaction Report', { align: 'center' }).moveDown();
 
-        transactions.forEach(transaction => {
-            doc
-                .fontSize(12)
-                .text(`Transaction ID: ${transaction._id}`, { continued: true })
-                .text(`Amount: ${transaction.amount}`, { continued: true })
-                .text(`Type: ${transaction.type}`, { continued: true })
-                .text(`Date: ${transaction.createdAt}`, { continued: false });
+        doc.fontSize(14).text('Index', 50, doc.y, { continued: true })
+            .text('Transaction ID', 100, doc.y, { continued: true })
+            .text('Amount', 250, doc.y, { continued: true })
+            .text('Type', 350, doc.y, { continued: true })
+            .text('Date', 450, doc.y);
+
+        doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke().moveDown();
+
+        transactions.forEach((transaction, index) => {
+            doc.fontSize(12)
+                .text(index + 1, 50, doc.y, { continued: true })
+                .text(transaction._id, 100, doc.y, { continued: true });
+
+            if (transaction.amount > 0) {
+                doc.fillColor('green');
+            } else {
+                doc.fillColor('red');
+            }
+            doc.text(transaction.amount, 250, doc.y, { continued: true });
+
+            doc.fillColor('black')
+                .text(transaction.type, 350, doc.y, { continued: true })
+                .text(transaction.createdAt.toLocaleString(), 450, doc.y);
+
+            doc.moveDown();
+            doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke().moveDown();
         });
 
-        // Finalize the PDF and end the stream
         doc.end();
 
-        // Return the file path once PDF is generated
         return filePath;
     } catch (error) {
         console.error('Error generating PDF:', error);
-        throw error; // Propagate the error to handle it in the calling function
+        throw error;
     }
 }
 
 async function sendEmailWithAttachment(toEmail, attachmentPath) {
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            service: process.env.EMAIL_SERVICE,
             auth: {
-              user: "thaparbankingsolutions@gmail.com",
-              pass: "blsfjufhejrhszba",
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASS,
             },
-          });
+        });
 
-          // Email options
-
-
-
-
-        // Email options
         const mailOptions = {
-            from: 'thaparbankingsolutions@gmail.com',
+            from: process.env.EMAIL_USER,
             to: toEmail,
-            subject: 'Your Transaction Report',
-            text: 'Please find attached your transaction report.',
+            subject: "Your Transaction Report",
+            text: "Dear Customer, Greetings from Thapar Bank! Kindly find attached the monthly statement of your accounts.",
             attachments: [
                 {
                     filename: path.basename(attachmentPath),
-                    path: attachmentPath
-                }
-            ]
+                    path: attachmentPath,
+                },
+            ],
         };
 
-        // Send the email
         await transporter.sendMail(mailOptions);
     } catch (error) {
-        console.error('Error sending email:', error);
-        throw error; // Propagate the error to handle it in the calling function
+        console.error("Error sending email:", error);
+        throw error;
     }
 }
 
-router.post('/download-statement', async (req, res) => {
+router.post("/download-statement", async (req, res) => {
     const { customerId, email } = req.body;
 
     try {
         const filePath = await generatePDF(customerId);
         await sendEmailWithAttachment(email, filePath);
 
-        // Optionally, clean up the generated PDF file
         fs.unlinkSync(filePath);
 
-        res.status(200).send({ message: 'Statement sent to your email.' });
+        res.status(200).send({ message: "Statement sent to your email." });
     } catch (error) {
-        console.error('Error downloading statement:', error);
-        res.status(500).send({ error: 'Failed to send statement.' });
+        console.error("Error downloading statement:", error);
+        res.status(500).send({ error: "Failed to send statement." });
     }
 });
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

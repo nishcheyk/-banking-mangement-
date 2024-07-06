@@ -1,6 +1,7 @@
 .transaction-history {
-    width: 80%;
-
+    width: 800px;
+    max-width: 500px;
+    max-width: 800px;
     height: 750px;
     min-height: 50%;
     margin-left:10px;
