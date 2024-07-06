@@ -8,7 +8,7 @@ const transactionRoutes = require("./Routes/transactions");
 const customerRoutes = require("./Routes/customer");
 const accountRoutes = require("./Routes/accounts");
 const download = require("./Routes/download-statement.js");
-require("dotenv").config();
+
 const PORT = 5050;
 
 const app = express();
