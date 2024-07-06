@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import StartupPage from './pages/StartupPage';
 import LoginPage from './pages/LoginPage';
