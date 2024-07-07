@@ -1,108 +1,262 @@
-/* Login.css */
+.loginWrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111010;
+}
+
+.backgroundEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  width: 540px;
+  height: 700px;
+  opacity: 0.6;
+  left: 0;
+  top: 0;
+  margin-right: -50%;
+  margin-top: -70%;
+  background: linear-gradient(744deg, #af40ff, #5b42f3 60%, #00ddeb);
+}
+
+.infotop {
+  position: relative;
+  align-items: center;
+}
+
+
+
 .loginContainer {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Roboto', sans-serif;
-}
+  position: relative;
+  background-color:transparent;
+  width: 250px;
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: center;
+  font-size: 18px;
 
-.back-button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.back-button i {
-  margin-right: 5px;
 }
 
 .loginContainer h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.loginContainer form {
-  display: flex;
-  flex-direction: column;
-}
-
-.loginContainer .input-group {
-  display: flex;
-  flex-direction: column;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 36px;
+  color: #ffffff;
   margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
 }
 
-.loginContainer .label-text {
-  font-size: 16px;
-  margin-bottom: 5px;
-  text-align: left;
-  color: #333;
+.group {
+  margin-bottom: 20px;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
 }
 
-.loginContainer input[type="text"],
-.loginContainer input[type="password"] {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 16px;
-  width: calc(100% - 20px);
-  font-family: 'Roboto', sans-serif;
-}
-
-.loginContainer input[type="text"]:focus,
-.loginContainer input[type="password"]:focus {
-  outline: none;
-  border-color: blueviolet;
-}
-
-.loginContainer .forgot-password {
-  font-size: 14px;
-  color: #ccc;
-  cursor: pointer;
-  text-decoration: none;
-  align-self: flex-end;
-  transition: color 0.3s ease;
-  font-family: 'Roboto', sans-serif;
-}
-
-.loginContainer .forgot-password:hover {
-  color: #999;
-}
-
-.loginContainer button {
-  background-color: blueviolet;
-  color: white;
-  padding: 15px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 16px;
+.input {
   width: 100%;
-  margin-top: 20px;
-  align-self: center;
-  transition: background-color 0.3s ease;
-  font-family: 'Roboto', sans-serif;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
 }
 
-.loginContainer button:hover {
-  background-color: rgb(101, 61, 137);
+
+
+
+button {
+  font-size: 16px;
+  background-color: #53cae4;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  padding: 12.5px 30px;
+  border: 0;
+  border-radius: 100px;
+  background-color: #2ba8fb;
+  color: #ffffff;
+  font-weight: Bold;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
 }
 
-.loginContainer button:focus {
-  background-color: #3416f6;
+button:hover {
+  background-color: #6fc5ff;
+  box-shadow: 0 0 20px #6fc5ff50;
+  transform: scale(1.1);
 }
 
-.loginContainer .error-message {
-  color: red;
+button:active {
+  background-color: #3d94cf;
+  transition: all 0.25s;
+  -webkit-transition: all 0.25s;
+  box-shadow: none;
+  transform: scale(0.98);
+}
+
+
+.forgotPassword {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 17px;
+  color: #e0dddd;
+  cursor: pointer;
+}
+
+.error {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+.resetPassword {
+  position: relative;
+  background-color:transparent;
+  width: 250px;
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  padding-left: 20%;
+  padding-right: 20%;
+  text-align: center;
+  font-size: 18px;
+}
+
+.resetPassword h2 {
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 15px;
+  justify-content: center;
+  align-items: center;
+}
+.e-card .playing{
+
+    background: transparent;
+    box-shadow: 0px 10px 60px -9px rgba(0,0,0,0.45);
+    position: absolute;
+
+  top: 50%;
+  width: 100%;
+  text-align: center;
+}
+.e-card {
+
+  background: transparent;
+  box-shadow: 0px 8px 28px -9px rgba(0,0,0,0.45);
+  position: relative;
+  min-width: 400px;
+  width: 400px;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.wave {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 99%;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
+}
+
+.icon {
+  width: 1em;
+  margin-top: 1em;
+  padding-bottom: -1em;
+}
+
+.infotop {
+  position:absolute;
+  width: 400px;
+  height: 500px;
+  font-size: 10px;
+  color: rgb(7, 0, 0);
+  align-content: center;
+  justify-content: center;
+}
+
+.name {
   font-size: 14px;
-  margin-top: 5px;
-  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  position: relative;
+  text-transform: lowercase;
+}
+
+.wave:nth-child(1){
+top: 10px;
+}
+.wave:nth-child(2)
+ {
+top:250px;
+left:10px
+}
+.wave:nth-child(3)
+ {
+top:300px;
+left:50px
+}
+
+.playing .wave {
+  border-radius: 40%;
+  animation: wave 2s linear infinite;
+  animation: wave 3000ms infinite linear;
+}
+
+.wave {
+  border-radius: 40%;
+  animation: wave 60s infinite linear;
+}
+
+.playing .wave:nth-child(2) {
+  animation-duration: 6000ms;
+}
+
+.wave:nth-child(2) {
+  animation-duration: 8000ms;
+}
+
+.playing .wave:nth-child(3) {
+  animation-duration: 5000ms;
+}
+
+.wave:nth-child(3) {
+  animation-duration: 90s;
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

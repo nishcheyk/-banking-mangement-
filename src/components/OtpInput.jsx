@@ -1,13 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios";
 import "../css/OtpInput.css";
 
-const OtpInput = ({ length = 4, onOtpSubmit }) => {
+const OtpInput = ({ length = 4, onOtpChange }) => {
   const [otp, setOtp] = useState(new Array(length).fill(""));
-  const [isValidating, setIsValidating] = useState(false);
-  const [isVerified, setIsVerified] = useState(false); // State to manage OTP verification
-  const [password, setPassword] = useState(""); // State to capture new password
-  const [errorMessage, setErrorMessage] = useState("");
   const inputRefs = useRef([]);
 
   useEffect(() => {
@@ -23,9 +18,8 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
     setOtp(newOtp);
 
     const combinedOtp = newOtp.join("");
-    if (combinedOtp.length === length) {
-      setIsValidating(true);
-      verifyOtp(combinedOtp); // Call backend to verify OTP
+    if (combinedOtp.length === length && onOtpChange) {
+      onOtpChange(combinedOtp); // Pass OTP back to parent component
     }
 
     if (value && index < length - 1 && inputRefs.current[index + 1]) {
@@ -52,47 +46,9 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
     }
   };
 
-  const verifyOtp = async (otp) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5050/api/emailOtp/verify-otp",
-        { email: "nishcheycapture2014@gmail.com", otp }
-      );
-      setIsVerified(true); // Mark OTP as verified
-      console.log(response.data); // Handle successful verification
-    } catch (error) {
-      setErrorMessage("Error verifying OTP: " + (error.response?.data || error.message));
-      console.error("Error verifying OTP:", error.response.data); // Handle error
-    } finally {
-      setIsValidating(false);
-    }
-  };
-
-  const handleOtpSubmit = async () => {
-    try {
-      await onOtpSubmit(password); // Pass newPassword to parent component
-    } catch (error) {
-      setErrorMessage("Error submitting OTP: " + (error.response?.data?.message || error.message));
-      console.error("Error submitting OTP:", error.response.data); // Handle error
-    }
-  };
-
-  const handleResend = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:5050/api/emailOtp/send-otp",
-        { email: "nishcheycapture2014@gmail.com" }
-      );
-      console.log(response.data); // Handle successful OTP resend
-    } catch (error) {
-      setErrorMessage("Error sending OTP: " + (error.response?.data || error.message));
-      console.error("Error sending OTP:", error.response.data); // Handle error
-    }
-  };
-
   return (
-    <div>
-      <div className="otpContainer">
+    <div className="otpContainer">
+      <div className="otpInputs">
         {otp.map((value, index) => (
           <input
             key={index}
@@ -103,35 +59,10 @@ const OtpInput = ({ length = 4, onOtpSubmit }) => {
             onClick={() => handleClick(index)}
             onKeyDown={(e) => handleKeyDown(index, e)}
             className="otpInput"
-            disabled={isVerified} // Disable inputs once OTP is verified
+            maxLength={1}
           />
         ))}
-        {!isValidating && !isVerified && (
-          <button onClick={handleResend} className="resendButton">
-            Resend OTP
-          </button>
-        )}
-        {isValidating && <span>Validating OTP...</span>}
-        {isVerified && (
-          <div className="verifiedContainer">
-            <span className="greenTick">✓</span>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="New Password"
-              className="passwordInput"
-            />
-            <button
-              className="continueButton"
-              onClick={handleOtpSubmit}
-            >
-              Continue
-            </button>
-          </div>
-        )}
       </div>
-      {errorMessage && <div className="error-message">{errorMessage}</div>}
     </div>
   );
 };
