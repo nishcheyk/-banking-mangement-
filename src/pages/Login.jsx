@@ -16,12 +16,14 @@ const Login = () => {
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [otp, setOtp] = useState("");
+  const [isOtpVerified, setIsOtpVerified] = useState(false);
 
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const validateUsername = (username) => {
-    setIsUsernameValid(username.length >= 8 && username.length <= 20);
+    const isValid = username.length >= 8 && username.length <= 20;
+    setIsUsernameValid(isValid);
   };
 
   const validatePassword = (password) => {
@@ -46,7 +48,7 @@ const Login = () => {
       } catch (error) {
         setErrorMessage(
           "Error logging in: " +
-          (error.response?.data?.message || error.message)
+            (error.response?.data?.message || error.message)
         );
       }
     } else {
@@ -64,123 +66,182 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:5050/api/emailOtp/send-otp",
-        { email: "nishcheycapture2014@gmail.com" }
+        { username: resetUsername }
       );
       setShowOtpInput(true);
       setErrorMessage("");
     } catch (error) {
       setErrorMessage(
-        "Error resetting password: " +
-        (error.response?.data?.message || error.message)
+        "Error sending OTP: " +
+          (error.response?.data?.message || error.message)
       );
     }
   };
 
-  const handleOtpSubmit = async (newPassword) => {
+  const handleOtpChange = (otp) => {
+    if (otp.length === 4) {
+      verifyOtp(otp);
+    }
+    setOtp(otp);
+  };
+
+  const verifyOtp = async (otp) => {
     try {
       const response = await axios.post(
+        "http://localhost:5050/api/emailOtp/verify-otp",
+        {
+          username: resetUsername,
+          otp,
+        }
+      );
+      setIsOtpVerified(true);
+      setErrorMessage("");
+    } catch (error) {
+      setIsOtpVerified(false);
+      setErrorMessage(
+        "Error verifying OTP: " +
+          (error.response?.data?.message || error.message)
+      );
+    }
+  };
+
+  const handleNewPasswordSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axios.post(
         "http://localhost:5050/api/emailOtp/reset-password",
         {
-          email: "nishcheycapture2014@gmail.com",
-          otp,
+          username: resetUsername,
           newPassword,
         }
       );
-      setShowOtpInput(false);
+
+      setIsOtpVerified(false);
+      setErrorMessage("");
       login();
       navigate("/");
     } catch (error) {
       setErrorMessage(
         "Error resetting password: " +
-        (error.response?.data?.message || error.message)
+          (error.response?.data?.message || error.message)
       );
     }
   };
 
-  if (forgotPassword) {
-    return (
-      <div className="loginContainer">
-        {!showOtpInput ? (
+  return (
+    <div className="loginWrapper">
+      <div className="e-card playing">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="infotop">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            className="icon"
+          >
+
+          </svg>
+
+
+      <div className={`loginContainer ${isOtpVerified ? "hide" : ""}`}>
+        {forgotPassword ? (
           <>
-            <h2>Forgot Password</h2>
-            <form onSubmit={handleResetPassword}>
-              <div className="input-group">
-                <label htmlFor="resetUsername" className="label-text">
-                  Username
-                </label>
-                <input
-                  id="resetUsername"
-                  type="text"
-                  autoComplete="username"
-                  value={resetUsername}
-                  onChange={(e) => setResetUsername(e.target.value)}
-                  required
-                  placeholder="Enter your Username"
-                />
-              </div>
-              <button type="submit">Submit</button>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
-            </form>
+            <h2>
+              {showOtpInput
+                ? <h2>Verify OTP </h2>
+                : <h2>Forgot Password</h2>}
+            </h2>
+            {!showOtpInput ? (
+              <form onSubmit={handleResetPassword}>
+                <div className="group">
+                  <input
+                    className="input"
+                    id="resetUsername"
+                    type="text"
+                    autoComplete="username"
+                    value={resetUsername}
+                    onChange={(e) => setResetUsername(e.target.value)}
+                    required
+                    placeholder="Enter your Username"
+                  />
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            ) : (
+              <>
+                <OtpInput length={4} onOtpChange={handleOtpChange} />
+              </>
+            )}
           </>
         ) : (
           <>
-            <h2>Verify OTP to Reset Password</h2>
-            <OtpInput length={4} onOtpSubmit={handleOtpSubmit} />
-            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="group">
+                <input
+                  className="input"
+                  id="username"
+                  type="text"
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    validateUsername(e.target.value);
+                  }}
+                  required
+                  placeholder="Username"
+                />
+              </div>
+              <div className="group">
+                <input
+                  className="input"
+                  id="password"
+                  type="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    validatePassword(e.target.value);
+                  }}
+                  required
+                  placeholder="Password"
+                />
+              </div>
+              <button type="submit">Login</button>
+            </form>
+            <div className="forgotPassword" onClick={handleForgotPassword}>
+              Forgot Password?
+            </div>
           </>
         )}
+        {errorMessage && <div className="error">{errorMessage}</div>}
       </div>
-    );
-  }
-
-  return (
-    <div className="loginContainer">
-      <h2>Login to your account</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="username" className="label-text">
-            Username
-          </label>
-          <input
-            id="username"
-            type="text"
-            autoComplete="username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-              validateUsername(e.target.value);
-            }}
-            required
-            placeholder="Enter your Username"
-          />
+      {isOtpVerified && (
+        <div className="resetPassword">
+          <h2>Reset Password</h2>
+          <form onSubmit={handleNewPasswordSubmit}>
+            <div className="group">
+              <input
+                className="input"
+                id="newPassword"
+                type="password"
+                autoComplete="new-password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+                placeholder="New Password"
+              />
+            </div>
+            <button type="submit">Reset Password</button>
+          </form>
         </div>
-
-        <div className="input-group">
-          <label htmlFor="password" className="label-text">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            autoComplete="current-password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              validatePassword(e.target.value);
-            }}
-            required
-            placeholder="Enter your Password"
-          />
-        </div>
-        <span className="forgot-password" onClick={handleForgotPassword}>
-          Forgot Password?
-        </span>
-
-        <button type="submit">Login</button>
-
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
-      </form>
+      )}
     </div>
+    </div>
+      </div>
   );
 };
 

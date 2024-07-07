@@ -11,7 +11,6 @@ import Form from '../components/Form';
 import ProgressBar from '../components/ProgressBar';
 import '../css/startup.css';
 import Dashboard from './Dashboard';
-import OtpInput from '../components/OtpInput';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,30 +19,28 @@ function HomePage() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <div className="appContainer">
-        <Navbar />
-        {isLoggedIn ? (
+    <div className="appContainer">
+      <Navbar />
+      {isLoggedIn ? (
+        <>
           <Dashboard />
-        ) : (
-          <>
-            <button onClick={() => navigate('/')} className="back-button">
-              <i className="fas fa-arrow-left"></i> Back
-            </button>
-            <OtpInput />
-            <AboutUs />
-            <SomeText />
-            <ApplyNow />
-            <ReadDocText />
-            <DocsToRead />
-            <StartApplication />
-            <NeedHelp />
-            <br />
-            <ProgressBar />
-            <Form />
-          </>
-        )}
-      </div>
+          <AboutUs />
+          <ProgressBar />
+        </>
+      ) : (
+        <>
+          <AboutUs />
+          <SomeText />
+          <ApplyNow />
+          <ReadDocText />
+          <DocsToRead />
+          <StartApplication />
+          <NeedHelp />
+          <br />
+          <ProgressBar />
+          <Form />
+        </>
+      )}
     </div>
   );
 }
