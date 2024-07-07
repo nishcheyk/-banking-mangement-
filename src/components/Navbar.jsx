@@ -12,7 +12,7 @@ function Navbar() {
 
   const handleLogoutClick = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
@@ -30,7 +30,11 @@ function Navbar() {
             </li>
             {!isLoggedIn ? (
               <li className="nav-item mx-5">
-                <a className="nav-link" href="/login" onClick={handleLoginClick}>
+                <a
+                  className="nav-link"
+                  href="/login"
+                  onClick={handleLoginClick}
+                >
                   Login
                 </a>
               </li>
@@ -41,11 +45,7 @@ function Navbar() {
                 </a>
               </li>
             )}
-            <li className="nav-item mx-5">
-              <a href="/" className="nav-link">
-                Sign-Up
-              </a>
-            </li>
+         
             <li className="nav-item dropdown mx-5">
               <a
                 className="nav-link dropdown-toggle"
