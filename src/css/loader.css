@@ -1,0 +1,71 @@
+.load {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    height: 220px;
+    width: 220px;
+    animation: rotate_3922 1.2s linear infinite;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+
+.main-load{
+    position: fixed; /* Ensure loader covers the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; /* Main background color */
+    z-index: 1000; /* Ensure loader is above other elements */
+  }
+  .load span {
+    position: absolute;
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    background-color: #9b59b6;
+    background-image: linear-gradient(#9b59b6, #84cdfa, #5ad1cd);
+  }
+
+  .load span:nth-of-type(1) {
+    filter: blur(5px);
+  }
+
+  .load span:nth-of-type(2) {
+    filter: blur(10px);
+  }
+
+  .load span:nth-of-type(3) {
+    filter: blur(25px);
+  }
+
+  .load span:nth-of-type(4) {
+    filter: blur(50px);
+  }
+
+  .load::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background-color:black;
+    border: solid 5px #ffffff;
+    filter: blur(20px);
+    border-radius: 50%;
+  }
+
+  @keyframes rotate_3922 {
+    from {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }

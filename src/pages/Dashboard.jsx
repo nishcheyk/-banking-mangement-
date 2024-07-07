@@ -7,9 +7,10 @@ const Dashboard = () => {
   const [userName, setUserName] = useState("nishchey");
   const [transactions, setTransactions] = useState([]);
   const [customerId, setCustomerId] = useState("66848876161a6b786f251692");
-  const [Balance, setBalance] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [activeButton, setActiveButton] = useState("transaction");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -22,10 +23,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const balance = await axios.get(
+        const balanceResponse = await axios.get(
           `http://localhost:5050/api/accounts/${customerId}`
         );
-        setBalance(balance.data.balance);
+        setBalance(balanceResponse.data.balance);
         const transactionResponse = await axios.get(
           `http://localhost:5050/api/transactions/${customerId}`
         );
@@ -64,7 +65,6 @@ const Dashboard = () => {
       const response = await axios.post(
         "http://localhost:5050/api/download-statement",
         {
-          // Ensure customerId and email are correctly passed
           customerId,
           email: "nishcheycapture2014@gmail.com",
         }
@@ -74,6 +74,10 @@ const Dashboard = () => {
       console.error("Error downloading statement:", error);
       alert("Failed to download statement.");
     }
+  };
+
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
   };
 
   return (
@@ -99,50 +103,70 @@ const Dashboard = () => {
             <div className="account-summary">
               <div className="card">
                 <div className="content">
-                  <svg
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    {/* SVG content */}
-                  </svg>
                   <div className="username">Welcome {userName}</div>
                   <div className="customer-id">
                     <span className="label">Customer ID:</span> {customerId}
                   </div>
                   <div className="balance">
                     <span className="balance-label">Available Balance: ₹ </span>{" "}
-                    {Balance}
+                    {balance}
                   </div>
-
                   <div className="time">{formatDateTime(currentTime)}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className=" bottom">
+          <div className="bottom">
             <div className="right-nav">
               <ul>
                 <div className="side_menu">
-                  <button className="side_button">Transaction</button>
-                  <button className="side_button">Withdraw your funds</button>
-                  <button className="side_button">Transfer funds</button>
-                  <button className="side_button">Deposit fund</button>
-                  <button className="side_button">Insurance</button>
-                  <button className="side_button">Investments</button>
-                  <button className="side_button">Loans</button>
                   <button
-                    className="side_button"
-                    onClick={handleDownloadStatement}
+                    className={`side_button ${
+                      activeButton === "transaction" ? "active" : ""
+                    }`}
+                    onClick={() => handleButtonClick("transaction")}
+                  >
+                    Transaction
+                  </button>
+               
+                  <button
+                    className={`side_button ${
+                      activeButton === "transfer" ? "active" : ""
+                    }`}
+                    onClick={() => handleButtonClick("transfer")}
+                  >
+                    Transfer funds
+                  </button>
+                  <button
+                    className={`side_button ${
+                      activeButton === "deposit" ? "active" : ""
+                    }`}
+                    onClick={() => handleButtonClick("deposit")}
+                  >
+                    Deposit fund
+                  </button>
+
+
+                  <button
+                    className={`side_button ${
+                      activeButton === "statement" ? "active" : ""
+                    }`}
+                    onClick={() => {
+                      handleButtonClick("statement");
+                      handleDownloadStatement();
+                    }}
                   >
                     Download Your Statement
                   </button>
                 </div>
               </ul>
             </div>
-
-            <TransactionHistory transactions={transactions} />
+            <div className="main-content">
+            {activeButton === "transaction" && (
+              <TransactionHistory transactions={transactions} />
+            )}
+          </div>
           </div>
         </div>
       )}
