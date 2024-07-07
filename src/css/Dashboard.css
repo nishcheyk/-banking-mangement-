@@ -1,23 +1,24 @@
 .dashboard {
-  max-width:1400px;
-  margin: 0 auto;
-  margin-top: 0PX;
-  padding: 20px;
+  max-width: 1400px;
+  margin:  auto;
+  padding: auto;
+  padding-left: 100px;
+  padding-right: 100px;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #f0f2f5;
+  background-color: #0D0E0E;
 }
-
+.left-content {
+  background-color: #0D0E0E;
+}
 .username {
   font-size: 40px;
   font-weight: bold;
   margin-top: 0px;
 }
-
-
 
 .bottom {
   margin-top: 40px;
@@ -26,59 +27,28 @@
 }
 
 .right-nav {
-    flex: 1;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    min-width: 10px;
-    margin-left: 20px;
+  overflow: hidden;
+  position: relative;
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #0D0E0E;
+  border-radius: 5px;
+  background-color: #010101;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  margin-left: 20px;
 }
 
-.account-summary,
-.transaction-history {
-  margin-bottom: 20px;
-  background-color: #f1f1f1;
-  padding: 20px;
-  border-radius: 10px;
-}
-.transaction-history {
-  flex: 2; /* Adjust width as necessary */
-  margin-left: 20px; /* Add margin or adjust as per your design */
-  padding: 20px;
-  min-width:fit-content;
-}
-.account-summary h2,
-.transaction-history h2,
+
+
+
 .right-nav h2 {
-  font-size: 20px;
+  font-size: 30px;
   margin-bottom: 10px;
   color: #333;
 }
 
-.transaction-history ul {
-  list-style-type: none;
-  padding: 0;
-}
 
-.transaction-history li {
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.transaction-history .date,
-.transaction-history .description,
-.transaction-history .amount,
-.transaction-history .status {
-  flex: 1;
-  padding: 0 10px;
-}
 
 .amount.positive {
   color: green;
@@ -108,6 +78,7 @@
   border-radius: 20px;
   padding: 0.8em 1.8em;
   width: 100%;
+  min-width :100%;
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
@@ -120,13 +91,12 @@
   color: #f0f2f5;
   margin: 10px;
   display: inline-block;
+  background-color: #063269; /* Adjust background color */
 
-  background-color:#063269 ; /* Adjust background color */
-  border-color: #0D57A2; /* Adjust border color */
 }
 
 .side_button::before {
-  content: '';
+  content: "";
   width: 0;
   height: 300%;
   position: absolute;
@@ -136,8 +106,8 @@
   transition: 0.5s ease;
   display: block;
   z-index: -1;
-  background: #7295CA;
-  border: #7295CA; /* Adjust hover background color */
+  background: #7295ca;
+  border: #7295ca;
 }
 
 .side_button:hover::before {
@@ -145,9 +115,9 @@
 }
 
 .side_button:hover {
-  background: #7295CA;
-  border: #7295CA;
-  color: black;
+  background: #7295ca;
+  border: #7295ca;
+  color: #0D0E0E;
   transition: background-color 0.5s, color 0.5s;
 }
 
@@ -168,26 +138,6 @@
   }
 }
 
-/* Left-side dropdown menu for small screens */
-@media (max-width: 576px) {
-  .side_button {
-    display: block;
-    width: 100%;
-    margin: 5px 0;
-  }
-
-  .side_menu {
-    display: block;
-    width: 200px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #f8f9fa;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    padding: 1em;
-    z-index: 1000;
-  }
-}
 
 /* Loader animation */
 .loader {
@@ -197,7 +147,8 @@
   margin: 0 auto;
 }
 
-.loader:before, .loader:after {
+.loader:before,
+.loader:after {
   content: "";
   position: absolute;
   bottom: 8px;
@@ -297,10 +248,12 @@
   20% {
     opacity: 1;
   }
-  35%, 100% {
+  35%,
+  100% {
     opacity: 0;
   }
-  50%, 100% {
+  50%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -313,10 +266,12 @@
   35% {
     opacity: 1;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 0;
   }
-  65%, 100% {
+  65%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -329,10 +284,12 @@
   50% {
     opacity: 1;
   }
-  65%, 100% {
+  65%,
+  100% {
     opacity: 0;
   }
-  80%, 100% {
+  80%,
+  100% {
     transform: rotateY(0deg);
   }
 }
@@ -345,14 +302,16 @@
   65% {
     opacity: 1;
   }
-  80%, 100% {
+  80%,
+  100% {
     opacity: 0;
   }
-  95%, 100% {
+  95%,
+  100% {
     transform: rotateY(0deg);
   }
 }
-.header{
+.header {
   border-radius: 51px;
   background: #6259e3;
   padding-left: 30px;
@@ -367,17 +326,15 @@
 .label {
   font-weight: bold;
   margin-right: 2px;
-
 }
 .balance-label {
   font-weight: bold;
 }
-.time{
-  font-size: 40px;
+.time {
+  font-size: 30px;
   font-weight: lighter;
   align-items: right;
 }
-
 
 .card {
   margin-top: 60px;
@@ -385,12 +342,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 300px;
+  min-width: 200px;
   max-width: 100%;
   max-height: 350px;
   min-height: 300px;
   border-radius: 24px;
   line-height: 1.6;
+  background-color: #0D0E0E;
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -403,11 +361,19 @@
   padding: 36px;
   border-radius: 22px;
   color: #ffffff;
+  background-color: #010101;
   overflow: hidden;
-  background: #063269;
+
+  background: linear-gradient(
+    744deg,
+    #5b42f3 30%,
+    #c4a6da,
+    #c4a6da,
+    #00ddeb,
+    #ba85df
+  );
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 
 .content::before {
   position: absolute;
@@ -446,8 +412,6 @@
   background-color: #063269;
 }
 
-
-
 .card:hover {
   transform: translate(0px, -16px);
 }
@@ -460,8 +424,21 @@
 }
 
 .card:hover .content::after {
-  rotate:-2deg;
+  rotate: -2deg;
   top: 0;
   width: 100%;
   height: 100%;
 }
+.main-content{
+  width: 900px;
+  min-width: auto;
+  height: 750px;
+  min-height: 50%;
+  margin-left:10px;
+  margin-right: 10px ;
+  background: linear-gradient(744deg, #af40ff, #5b42f3 60%, #00ddeb);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+

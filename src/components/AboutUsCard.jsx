@@ -5,7 +5,7 @@ function AboutUsCard() {
     <div>
         <div className="container">
             <div className="container mb-5">
-            <h2>Welcome. Namaste. Grüezi. Bonjour. Buongiorno. Allegra.</h2>
+            <h2>Welcome</h2>
             </div>
             <div className="card-group">
             <div className="card">

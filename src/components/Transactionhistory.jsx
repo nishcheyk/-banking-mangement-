@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Loader from '../components/Loader';
 import "../css/TransactionHistory.css";
 
 const TransactionHistory = ({ transactions }) => {
-  const getAmountClass = (amount) => {
-    return amount >= 0 ? "amount positive" : "amount negative";
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => setLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const getAmountClass = (amount, type) => {
+    return type === "credit" ? "amount positive credit" : "amount negative debit";
+  };
+
+  const getStatusClass = (type) => {
+    return type === "credit" ? "status positive" : "status negative";
   };
 
   const formatDate = (dateString) => {
@@ -24,29 +37,47 @@ const TransactionHistory = ({ transactions }) => {
     return new Date(dateString).toLocaleTimeString(undefined, options);
   };
 
+  const formatAmount = (amount) => {
+    return Math.abs(amount).toLocaleString('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2,
+    });
+  };
+
   return (
     <div className="transaction-history">
       <h2 className="head_text">Transaction History</h2>
-      <div className="head">
-        <span className="head serial-number">#</span>
-        <span className="head amount">Amount</span>
-        <span className="head date">Date</span>
-        <span className="head time-tran">Time</span>
-        <span className="head status">Status</span>
-      </div>
-      <ul>
-        {transactions.map((transaction, index) => (
-          <li key={transaction.id}>
-            <span className="serial-number">{index + 1}</span>
-            <span className={getAmountClass(transaction.amount)}>
-              ₹{transaction.amount}
-            </span>
-            <span className="date">{formatDate(transaction.updatedAt)}</span>
-            <span className="time-tran">{formatTime(transaction.updatedAt)}</span>
-            <span className="status">{transaction.type}</span>
-          </li>
-        ))}
-      </ul>
+      {loading ? (
+        <div className="loadermain">
+        <div className="loade">
+  <div className="eye"></div>
+</div>
+</div>
+      ) : (
+        <>
+          <div className="head">
+            <span className="serial-number">#</span>
+            <span className="amo">Amount</span>
+            <span className="date">Date</span>
+            <span className="time-tran">Time</span>
+            <span className="status">Status</span>
+          </div>
+          <ul>
+            {transactions.map((transaction, index) => (
+              <li key={transaction.id}>
+                <span className="serial-number">{index + 1}</span>
+                <span className={getAmountClass(transaction.amount, transaction.type)}>
+                  {formatAmount(transaction.amount)}
+                </span>
+                <span className="date">{formatDate(transaction.updatedAt)}</span>
+                <span className="time-tran">{formatTime(transaction.updatedAt)}</span>
+                <span className={getStatusClass(transaction.type)}>{transaction.type}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 };
