@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/my-changes
 .containe {
   max-width: 400px;
   margin: 0 auto;
@@ -35,8 +39,12 @@
 }
 
 .containe input[type="text"],
+<<<<<<< HEAD
+.containe input[type="password"] {
+=======
 .containe input[type="password"],
 .containe input[type="email"] {
+>>>>>>> origin/my-changes
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -46,8 +54,12 @@
 }
 
 .containe input[type="text"]:focus,
+<<<<<<< HEAD
+.containe input[type="password"]:focus {
+=======
 .containe input[type="password"]:focus,
 .containe input[type="email"]:focus {
+>>>>>>> origin/my-changes
   outline: none;
   border-color: #4caf50;
 }
@@ -58,6 +70,44 @@
   cursor: pointer;
   text-decoration: none;
   align-self: flex-end;
+<<<<<<< HEAD
+  transition: color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.containe .forgot-password:hover {
+  color: #999;
+}
+
+.containe button {
+  background-color: blueviolet;
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+  align-self: center;
+  transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+}
+
+.containe button:hover {
+  background-color: rgb(101, 61, 137);
+}
+
+.containe button:focus {
+  background-color: #3416f6;
+}
+
+.containe .error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: 'Roboto', sans-serif;
+=======
   transition: color 0.3s;
 }
 
@@ -119,4 +169,5 @@
 
 .containe .valid-input {
   border-color: green;
+>>>>>>> origin/my-changes
 }

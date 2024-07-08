@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function DocumentsToReview() {
   return (
@@ -10,7 +10,7 @@ function DocumentsToReview() {
         </div>
         
     </div>
-  )
+  );
 }
 
 export default DocumentsToReview;
