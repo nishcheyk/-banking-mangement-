@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/Dashboard.css"; // Make sure to import your CSS file for styling
 import TransactionHistory from "../components/Transactionhistory";
+import { useAuth } from "../contexts/AuthContext";
 
 const Dashboard = () => {
-  const [userName, setUserName] = useState("nishchey");
+  const { email, customerId, userId } = useAuth();
+  const [userName, setUserName] = useState(email);
   const [transactions, setTransactions] = useState([]);
-  const [customerId, setCustomerId] = useState("66848876161a6b786f251692");
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -66,7 +67,7 @@ const Dashboard = () => {
         "http://localhost:5050/api/download-statement",
         {
           customerId,
-          email: "nishcheycapture2014@gmail.com",
+          email,
         }
       );
       alert(response.data.message);
@@ -129,7 +130,6 @@ const Dashboard = () => {
                   >
                     Transaction
                   </button>
-               
                   <button
                     className={`side_button ${
                       activeButton === "transfer" ? "active" : ""
@@ -146,8 +146,6 @@ const Dashboard = () => {
                   >
                     Deposit fund
                   </button>
-
-
                   <button
                     className={`side_button ${
                       activeButton === "statement" ? "active" : ""
@@ -163,10 +161,10 @@ const Dashboard = () => {
               </ul>
             </div>
             <div className="main-content">
-            {activeButton === "transaction" && (
-              <TransactionHistory transactions={transactions} />
-            )}
-          </div>
+              {activeButton === "transaction" && (
+                <TransactionHistory transactions={transactions} />
+              )}
+            </div>
           </div>
         </div>
       )}

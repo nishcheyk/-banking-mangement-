@@ -6,13 +6,13 @@ import OtpInput from "../components/OtpInput";
 import "../css/Login.css";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
-  const [resetUsername, setResetUsername] = useState("");
+  const [resetEmail, setResetEmail] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [otp, setOtp] = useState("");
@@ -21,9 +21,9 @@ const Login = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const validateUsername = (username) => {
-    const isValid = username.length >= 8 && username.length <= 20;
-    setIsUsernameValid(isValid);
+  const validateEmail = (email) => {
+    const isValid = email.includes("@") && email.includes(".");
+    setIsEmailValid(isValid);
   };
 
   const validatePassword = (password) => {
@@ -33,14 +33,18 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (isUsernameValid && isPasswordValid) {
+    if (isEmailValid && isPasswordValid) {
       try {
         const response = await axios.post(
           "http://localhost:5050/api/auth/login",
-          { username, password }
+          { email, password }
         );
         if (response.status === 200) {
-          login();
+          const { userId, customerId, email } = response.data;
+          login(email, customerId, userId);
+          localStorage.setItem("userEmail", email);
+          localStorage.setItem("customerId", customerId);
+          localStorage.setItem("userId", userId);
           navigate("/");
         } else {
           setErrorMessage("Login failed");
@@ -52,7 +56,7 @@ const Login = () => {
         );
       }
     } else {
-      setErrorMessage("Invalid username or password");
+      setErrorMessage("Invalid email or password");
     }
   };
 
@@ -66,14 +70,13 @@ const Login = () => {
     try {
       const response = await axios.post(
         "http://localhost:5050/api/emailOtp/send-otp",
-        { username: resetUsername }
+        { email: resetEmail }
       );
       setShowOtpInput(true);
       setErrorMessage("");
     } catch (error) {
       setErrorMessage(
-        "Error sending OTP: " +
-          (error.response?.data?.message || error.message)
+        "Error sending OTP: " + (error.response?.data?.message || error.message)
       );
     }
   };
@@ -90,7 +93,7 @@ const Login = () => {
       const response = await axios.post(
         "http://localhost:5050/api/emailOtp/verify-otp",
         {
-          username: resetUsername,
+          email: resetEmail,
           otp,
         }
       );
@@ -109,13 +112,10 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      await axios.post(
-        "http://localhost:5050/api/emailOtp/reset-password",
-        {
-          username: resetUsername,
-          newPassword,
-        }
-      );
+      await axios.post("http://localhost:5050/api/emailOtp/reset-password", {
+        email: resetEmail,
+        newPassword,
+      });
 
       setIsOtpVerified(false);
       setErrorMessage("");
@@ -141,107 +141,105 @@ const Login = () => {
             fill="none"
             viewBox="0 0 24 24"
             className="icon"
-          >
-
-          </svg>
-
-
-      <div className={`loginContainer ${isOtpVerified ? "hide" : ""}`}>
-        {forgotPassword ? (
-          <>
-            <h2>
-              {showOtpInput
-                ? <h2>Verify OTP </h2>
-                : <h2>Forgot Password</h2>}
-            </h2>
-            {!showOtpInput ? (
-              <form onSubmit={handleResetPassword}>
+          ></svg>
+          <div className={`loginContainer ${isOtpVerified ? "hide" : ""}`}>
+            {forgotPassword ? (
+              <>
+                <h2>
+                  {showOtpInput ? (
+                    <h2>Verify OTP</h2>
+                  ) : (
+                    <h2>Forgot Password</h2>
+                  )}
+                </h2>
+                {!showOtpInput ? (
+                  <form onSubmit={handleResetPassword}>
+                    <div className="group">
+                      <input
+                        className="input"
+                        id="resetEmail"
+                        type="email"
+                        autoComplete="email"
+                        value={resetEmail}
+                        onChange={(e) => setResetEmail(e.target.value)}
+                        required
+                        placeholder="Enter your Email"
+                      />
+                    </div>
+                    <button type="submit">Submit</button>
+                  </form>
+                ) : (
+                  <>
+                    <OtpInput length={4} onOtpChange={handleOtpChange} />
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit}>
+                  <div className="group">
+                    <input
+                      className="input"
+                      id="email"
+                      type="email"
+                      autoComplete="email"
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        validateEmail(e.target.value);
+                      }}
+                      required
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div className="group">
+                    <input
+                      className="input"
+                      id="password"
+                      type="password"
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        validatePassword(e.target.value);
+                      }}
+                      required
+                      placeholder="Password"
+                    />
+                  </div>
+                  <button type="submit">Login</button>
+                </form>
+                <div className="forgotPassword" onClick={handleForgotPassword}>
+                  Forgot Password?
+                </div>
+              </>
+            )}
+            {errorMessage && <div className="error">{errorMessage}</div>}
+          </div>
+          {isOtpVerified && (
+            <div className="resetPassword">
+              <h2>Reset Password</h2>
+              <form onSubmit={handleNewPasswordSubmit}>
                 <div className="group">
                   <input
                     className="input"
-                    id="resetUsername"
-                    type="text"
-                    autoComplete="username"
-                    value={resetUsername}
-                    onChange={(e) => setResetUsername(e.target.value)}
+                    id="newPassword"
+                    type="password"
+                    autoComplete="new-password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
                     required
-                    placeholder="Enter your Username"
+                    placeholder="New Password"
                   />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Reset Password</button>
               </form>
-            ) : (
-              <>
-                <OtpInput length={4} onOtpChange={handleOtpChange} />
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="group">
-                <input
-                  className="input"
-                  id="username"
-                  type="text"
-                  autoComplete="username"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    validateUsername(e.target.value);
-                  }}
-                  required
-                  placeholder="Username"
-                />
-              </div>
-              <div className="group">
-                <input
-                  className="input"
-                  id="password"
-                  type="password"
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    validatePassword(e.target.value);
-                  }}
-                  required
-                  placeholder="Password"
-                />
-              </div>
-              <button type="submit">Login</button>
-            </form>
-            <div className="forgotPassword" onClick={handleForgotPassword}>
-              Forgot Password?
             </div>
-          </>
-        )}
-        {errorMessage && <div className="error">{errorMessage}</div>}
-      </div>
-      {isOtpVerified && (
-        <div className="resetPassword">
-          <h2>Reset Password</h2>
-          <form onSubmit={handleNewPasswordSubmit}>
-            <div className="group">
-              <input
-                className="input"
-                id="newPassword"
-                type="password"
-                autoComplete="new-password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                required
-                placeholder="New Password"
-              />
-            </div>
-            <button type="submit">Reset Password</button>
-          </form>
+          )}
         </div>
-      )}
-    </div>
-    </div>
       </div>
+    </div>
   );
 };
 

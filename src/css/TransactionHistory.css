@@ -12,12 +12,12 @@
 }
 
 .head_text {
-  font-size: 90px;
-  font-weight: bold;
-  font: 1em nexa;
+  font-size: 80px;
+  font-weight:bolder;
   color: #f1f1f1;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 .head,
