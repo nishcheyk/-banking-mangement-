@@ -1,5 +1,7 @@
 <<<<<<< HEAD
 
+=======
+>>>>>>> origin/my-changes
 .containe {
   max-width: 400px;
   margin: 0 auto;
@@ -37,7 +39,12 @@
 }
 
 .containe input[type="text"],
+<<<<<<< HEAD
 .containe input[type="password"] {
+=======
+.containe input[type="password"],
+.containe input[type="email"] {
+>>>>>>> origin/my-changes
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -47,7 +54,12 @@
 }
 
 .containe input[type="text"]:focus,
+<<<<<<< HEAD
 .containe input[type="password"]:focus {
+=======
+.containe input[type="password"]:focus,
+.containe input[type="email"]:focus {
+>>>>>>> origin/my-changes
   outline: none;
   border-color: #4caf50;
 }
@@ -58,6 +70,7 @@
   cursor: pointer;
   text-decoration: none;
   align-self: flex-end;
+<<<<<<< HEAD
   transition: color 0.3s ease;
   font-family: 'Roboto', sans-serif;
 }
@@ -94,4 +107,67 @@
   font-size: 14px;
   margin-top: 5px;
   font-family: 'Roboto', sans-serif;
+=======
+  transition: color 0.3s;
+}
+
+.containe .forgot-password:hover {
+  color: #4caf50;
+}
+
+.containe .button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Roboto', sans-serif;
+}
+
+.containe .button:hover {
+  background-color: #45a049;
+}
+
+.containe #passwordMismatch,
+.containe #emailInvalid,
+.containe #mobileNumberInvalid {
+  color: red;
+  font-size: 14px;
+}
+
+.containe .success-message {
+  color: green;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.containe ul {
+  list-style: none;
+  padding-left: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.containe ul .valid {
+  color: green;
+  display: flex;
+  align-items: center;
+}
+
+.containe ul .valid::before {
+  content: '✔';
+  color: green;
+  margin-right: 5px;
+}
+
+.containe button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.containe .valid-input {
+  border-color: green;
+>>>>>>> origin/my-changes
 }
