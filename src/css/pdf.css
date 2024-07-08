@@ -1,0 +1,37 @@
+.pdf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pdf-header {
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .button-item {
+    flex: 1;
+  }
+
+  .pdf button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .pdf button:hover {
+    background-color: #0056b3;
+  }
+
+  .pdf button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
