@@ -63,35 +63,34 @@ router.post("/signup", async (req, res) => {
 // Login Route
 router.post("/login", async (req, res) => {
   console.log("API Call: /api/auth/login");
+  const { email, password } = req.body;
   try {
-    const { username, password } = req.body;
+    const user = await User.findOne({ email });
 
-    // Validate input
-    if (!username || !password) {
-      return res.status(400).json({ message: "Username and password are required" });
-    }
-
-    const user = await User.findOne({ username });
     if (!user) {
-      console.log("Error: User not found for username:", username);
       return res.status(404).json({ message: "User not found" });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      console.log("Error: Invalid credentials for username:", username);
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
     const customer = await Customer.findOne({ userId: user._id });
-    const account = await Account.findOne({ customerId: customer._id });
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
 
-    res.status(200).json({ message: "Login successful", user, customer, account });
+    res.status(200).json({
+      message: "Login successful",
+      userId: user._id,
+      customerId: customer._id,
+      email: user.email
+    });
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ message: "Error logging in" });
   }
 });
-
 
 module.exports = router;

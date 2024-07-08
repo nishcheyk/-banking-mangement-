@@ -19,24 +19,22 @@ const generateOtp = () => Math.floor(1000 + Math.random() * 9000).toString();
 
 // Send OTP
 router.post("/send-otp", async (req, res) => {
-  const { username } = req.body;
-  if (!username) {
-    return res.status(400).send("Username is required");
+  const { email } = req.body;
+  if (!email) {
+    return res.status(400).send("Email is required");
   }
 
   try {
-    // Find user by username
-    const user = await User.findOne({ username });
+    // Find user by email
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(404).send("User not found");
     }
 
-    const email = user.email; // Get the user's email
-
     const otp = generateOtp();
     const hashedOtp = await bcrypt.hash(otp, 10);
 
-    otpStore[username] = { hashedOtp, email };
+    otpStore[email] = { hashedOtp, email };
 
     const mailOptions = {
       from: "thaparbankingsolutions@gmail.com",
@@ -55,22 +53,22 @@ router.post("/send-otp", async (req, res) => {
 
 // Verify OTP
 router.post("/verify-otp", async (req, res) => {
-  const { username, otp } = req.body;
-  if (!username || !otp) {
-    return res.status(400).send("Username and OTP are required");
+  const { email, otp } = req.body;
+  if (!email || !otp) {
+    return res.status(400).send("Email and OTP are required");
   }
 
-  console.log(`Verifying OTP for user: ${username}, OTP: ${otp}`);
+  console.log(`Verifying OTP for email: ${email}, OTP: ${otp}`);
 
   try {
-    const otpData = otpStore[username];
+    const otpData = otpStore[email];
     if (!otpData) {
-      return res.status(400).send("OTP not found for this username");
+      return res.status(400).send("OTP not found for this email");
     }
 
     const isMatch = await bcrypt.compare(otp, otpData.hashedOtp);
     if (isMatch) {
-      delete otpStore[username];
+      delete otpStore[email];
       res.status(200).send("OTP verified successfully");
     } else {
       res.status(400).send("Invalid OTP");
@@ -83,15 +81,15 @@ router.post("/verify-otp", async (req, res) => {
 
 // Reset Password
 router.post("/reset-password", async (req, res) => {
-  const { username, newPassword } = req.body;
+  const { email, newPassword } = req.body;
 
-  if (!username || !newPassword) {
-    return res.status(400).send("Username and new password are required");
+  if (!email || !newPassword) {
+    return res.status(400).send("Email and new password are required");
   }
 
   try {
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await User.updateOne({ username }, { password: hashedPassword });
+    await User.updateOne({ email }, { password: hashedPassword });
     res.status(200).send("Password reset successfully");
   } catch (error) {
     console.error("Error resetting password:", error);

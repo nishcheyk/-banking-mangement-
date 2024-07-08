@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Loader from '../components/Loader';
 import "../css/TransactionHistory.css";
 
 const TransactionHistory = ({ transactions }) => {
@@ -50,10 +49,10 @@ const TransactionHistory = ({ transactions }) => {
       <h2 className="head_text">Transaction History</h2>
       {loading ? (
         <div className="loadermain">
-        <div className="loade">
-  <div className="eye"></div>
-</div>
-</div>
+          <div className="loade">
+            <div className="eye"></div>
+          </div>
+        </div>
       ) : (
         <>
           <div className="head">
