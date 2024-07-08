@@ -1,20 +1,17 @@
-// src/pages/HomePage.js
-import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import AboutUs from '../components/AboutUsCard';
-import ApplyNow from '../components/ApplyNowButton';
-import ReadDocText from '../components/DocumentsToReview';
-import DocsToRead from '../components/DocsToRead';
-import NeedHelp from '../components/NeedHelp';
-import SomeText from '../components/SomeText';
-import StartApplication from '../components/StartApplicationButton';
-import Form from '../components/Form';
-import ProgressBar from '../components/ProgressBar';
-import Dashboard from './Dashboard';
-import Loader from '../components/Loader';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import '../css/startup.css';
+import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
+import Banner from "../components/Banner";
+import AboutUs from "../components/AboutUsCard";
+import SomeText from "../components/SomeText";
+import ReadDocText from "../components/DocumentsToReview";
+import DocsToRead from "../components/DocsToRead";
+import Footer from "../components/Footer";
+import Form from "../components/Form";
+import Dashboard from "./Dashboard";
+import Loader from "../components/Loader";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import "../css/startup.css";
 
 function HomePage() {
   const { isLoggedIn } = useAuth();
@@ -36,21 +33,18 @@ function HomePage() {
       <Navbar />
       {isLoggedIn ? (
         <>
+          <Banner />
           <Dashboard />
           <br />
         </>
       ) : (
         <>
+          <Banner />
           <AboutUs />
           <SomeText />
-          <ApplyNow />
-          <ReadDocText />
           <DocsToRead />
-          <StartApplication />
-          <NeedHelp />
-
-          <ProgressBar />
           <Form />
+            <Footer/>
         </>
       )}
     </div>

@@ -5,7 +5,7 @@ import TransactionHistory from "../components/Transactionhistory";
 import { useAuth } from "../contexts/AuthContext";
 
 const Dashboard = () => {
-  const { email, customerId, userId } = useAuth();
+  const { email, customerId } = useAuth();
   const [userName, setUserName] = useState(email);
   const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(0);
@@ -82,7 +82,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container">
       {loading ? (
         <div className="loader">
           <div>
@@ -102,7 +102,7 @@ const Dashboard = () => {
         <div className="dashboard-content">
           <div className="left-content">
             <div className="account-summary">
-              <div className="card">
+              <div className="dashboard-card">
                 <div className="content">
                   <div className="username">Welcome {userName}</div>
                   <div className="customer-id">

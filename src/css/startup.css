@@ -1,11 +1,10 @@
 .appContainer{
     background-color: #0D0E0E;
     color:white;
+    max-height: 4000px;
+    padding: 20px;
 }
 
-.container{
-    color: azure;
-}
 .card{
     color: white;
     padding: 20px;
@@ -17,7 +16,6 @@
     background: transparent; /* Transparent background */
     z-index: 1; /* Position above the pseudo-element */
 }
-
 .card-body::before {
     content: '';
     position: absolute;
