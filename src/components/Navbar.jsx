@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import "../css/navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -16,10 +17,7 @@ function Navbar() {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg bg-body-tertiary mb-5"
-      data-bs-theme="dark"
-    >
+    <nav className="navbar navbar-expand-lg bg-body-tertiary mb-5" data-bs-theme="dark">
       <div className="container-fluid">
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -30,11 +28,7 @@ function Navbar() {
             </li>
             {!isLoggedIn ? (
               <li className="nav-item mx-5">
-                <a
-                  className="nav-link"
-                  href="/login"
-                  onClick={handleLoginClick}
-                >
+                <a className="nav-link" href="/login" onClick={handleLoginClick}>
                   Login
                 </a>
               </li>
@@ -45,11 +39,10 @@ function Navbar() {
                 </a>
               </li>
             )}
-         
             <li className="nav-item dropdown mx-5">
               <a
                 className="nav-link dropdown-toggle"
-                href="/"
+
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -58,12 +51,12 @@ function Navbar() {
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" >
                     Action
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" >
                     Another action
                   </a>
                 </li>
@@ -71,24 +64,23 @@ function Navbar() {
                   <hr className="dropdown-divider" />
                 </li>
                 <li>
-                  <a className="dropdown-item" href="/">
+                  <a className="dropdown-item" >
                     Something else here
                   </a>
                 </li>
               </ul>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+
+          <div className="InputContainer">
             <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+              placeholder="Search.."
+              id="input"
+              className="input"
+              name="text"
+              type="text"
             />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
+          </div>
         </div>
       </div>
     </nav>

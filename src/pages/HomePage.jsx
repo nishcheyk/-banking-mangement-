@@ -37,11 +37,10 @@ function HomePage() {
       {isLoggedIn ? (
         <>
           <Dashboard />
-          <AboutUs />
+          <br />
         </>
       ) : (
         <>
-          <Dashboard />
           <AboutUs />
           <SomeText />
           <ApplyNow />
@@ -49,7 +48,7 @@ function HomePage() {
           <DocsToRead />
           <StartApplication />
           <NeedHelp />
-          <br />
+
           <ProgressBar />
           <Form />
         </>
