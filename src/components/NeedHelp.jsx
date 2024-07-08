@@ -5,14 +5,14 @@ function NeedHelp() {
     <div>
       <div className="container">
         {/* <div className="row"> */}
-        <div class="card col-5 mx-auto my-5">
+        <div className="card col-5 mx-auto my-5">
           {/* style={{width: "18rem"}} */}
-          <div class="card-body">
-            <h5 class="card-title">Need Help?</h5>
-            <p class="card-text">
+          <div className="card-body">
+            <h5 className="card-title">Need Help?</h5>
+            <p className="card-text">
               Reach out to us. We are committed to your security and help
             </p>
-            <a href="/" class="btn btn-primary">
+            <a href="/" className="btn btn-primary">
               Contact Us
             </a>
           </div>

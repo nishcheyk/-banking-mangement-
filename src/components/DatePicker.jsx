@@ -34,7 +34,7 @@ function DatePicker() {
   return (
     <div className="container">
       <div className="row mb-3 mx-auto">
-        <label for="dateOfBirth" className="col-sm-2 col-form-label">
+        <label htmlFor="dateOfBirth" className="col-sm-2 col-form-label">
           Date of Birth
         </label>
         <div className="col-sm-6">
@@ -56,7 +56,7 @@ function DatePicker() {
         </div>
       </div>
       {!isEighteenOrOlder ? null : (
-        <button type="submit" class="btn btn-primary btn-lg my-2">
+        <button type="submit" className="btn btn-primary btn-lg my-2">
           go
         </button>
       )}

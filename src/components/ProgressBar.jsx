@@ -4,9 +4,9 @@ function ProgressBar() {
   return (
     <div>
       <div className="container mb-5">
-          <div class="progress">
+          <div className="progress">
             <div
-              class="progress-bar"
+              className="progress-bar"
               role="progressbar"
               aria-valuenow="0"
               aria-valuemin="0"
