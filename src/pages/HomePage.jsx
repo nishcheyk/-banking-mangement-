@@ -33,9 +33,9 @@ function HomePage() {
       <Navbar />
       {isLoggedIn ? (
         <>
-          <Banner />
           <Dashboard />
           <br />
+          <Footer/>
         </>
       ) : (
         <>
