@@ -2,105 +2,38 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
-const User = require("./models/User"); // Assuming you have this model
-const Customer = require("./models/Data"); // Assuming you have this model
-const PORT = 5050;
+const auth = require("./routes/auth");
+const transaction = require("./routes/transactions");
+const customer = require("./routes/customer");
+const account = require("./routes/accounts");
+const emailOtp = require("./routes/email-otp");
+const download = require("./routes/download-statement");
 
 const app = express();
+const PORT = 5050;
+
+// Middleware
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/Bank-Management");
+// MongoDB Connection
+mongoose
+  .connect("mongodb://localhost:27017/Bank-Management", {})
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
-// Signup Route
-// Signup Route
-app.post("/api/signup", async (req, res) => {
-  try {
-    const { username, password, email, mobileNumber } = req.body;
+// Routes
+app.use("/api/auth", auth);
+app.use("/api/customers", customer);
+app.use("/api/transactions", transaction);
+app.use("/api/accounts", account);
+app.use("/api/emailOtp", emailOtp);
+app.use("/api", download);
 
-    // Check if the username, email, or mobile number already exists
-    const existingUser = await User.findOne({
-      $or: [{ username }, { email }, { mobileNumber }],
-    });
-    if (existingUser) {
-      let message = "Username";
-      if (existingUser.email === email) message += " and email";
-      if (existingUser.mobileNumber === mobileNumber)
-        message += " and mobile number";
-      message += " already exists";
-      return res.status(400).json({ message });
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
-    const newUser = new User({
-      username,
-      password: hashedPassword,
-      email,
-      mobileNumber,
-    });
-    const savedUser = await newUser.save();
-
-    res
-      .status(201)
-      .json({ message: "User registered successfully", user: savedUser });
-  } catch (error) {
-    console.error("Error creating user:", error);
-    res.status(500).json({ message: "Error creating user" });
-  }
+app.get("/", (req, res) => {
+  res.send("Server is working!");
 });
 
-//login
-app.post("/api/login", async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    // Check if the user exists
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Validate the password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    console.log(isPasswordValid);
-    if (!isPasswordValid) {
-      return res.status(401).json({ message: "Invalid credentials" });
-    }
-
-    res.status(200).json({ message: "Login successful", user });
-  } catch (error) {
-    console.error("Error logging in:", error);
-    res.status(500).json({ message: "Error logging in" });
-  }
-});
-
-// Customer API Route
-app.post("/api/customer", async (req, res) => {
-  try {
-    const { name, email, address, contactNumber, dateOfBirth } = req.body;
-
-    // Create a new customer
-    const newCustomer = new Customer({
-      name,
-      email,
-      address,
-      contactNumber,
-      dateOfBirth,
-    });
-
-    const savedCustomer = await newCustomer.save();
-    res.status(201).json(savedCustomer);
-  } catch (error) {
-    console.error("Error creating customer:", error);
-    res.status(500).json({ message: "Error creating customer" });
-  }
-});
-
-// Start the Express server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

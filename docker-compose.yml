@@ -1,0 +1,32 @@
+# This file will contain common properties for dev and prod
+version: '3'
+services:
+  
+    ports:
+      - "3000:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+  node-app:
+    build: .
+    image: ravisqb/crud-docker
+    # ports:
+    #   - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongo
+
+# adding new service for mongo DB
+  mongo:
+  # we don't need to build custom image. we will use pre-defined mongo image from docker hub
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    # new volume will be created named as mongo-db
+    volumes:
+      - mongo-db:/data/db
+
+# creating this volume because the volume we created in volumes of mongodb service needs to be declared
+volumes:
+  mongo-db:

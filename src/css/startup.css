@@ -1,0 +1,39 @@
+.appContainer{
+    background-color: #0D0E0E;
+    color:white;
+}
+
+.container{
+    color: azure;
+}
+.card{
+    color: white;
+    padding: 20px;
+}
+.card-body {
+    position: relative; /* Ensure that pseudo-elements are positioned correctly */
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 10px; /* Adjust border radius as needed */
+    background: transparent; /* Transparent background */
+    z-index: 1; /* Position above the pseudo-element */
+}
+
+.card-body::before {
+    content: '';
+    position: absolute;
+    top: -1px; /* Adjust based on border width */
+    left: -1px; /* Adjust based on border width */
+    right: -1px; /* Adjust based on border width */
+    bottom: -1px; /* Adjust based on border width */
+    border-radius: inherit; /* Inherit the border radius from the card */
+    background: linear-gradient(135deg, #23c4f8, #275efe); /* Gradient border */
+    z-index: -1; /* Position behind the card */
+    pointer-events: none; /* Make sure the pseudo-element doesn't interfere with clicks */
+}
+
+.card-body-inner {
+    position: relative;
+    background: transparent; /* Transparent background */
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: inherit; /* Inherit the border radius from the card */
+}

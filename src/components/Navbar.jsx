@@ -1,10 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
 function Navbar() {
-  let navigate = useNavigate();
-  const handleClick = () => {
+  const navigate = useNavigate();
+  const { isLoggedIn, logout } = useAuth();
+
+  const handleLoginClick = () => {
     navigate("/login");
+  };
+
+  const handleLogoutClick = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -20,16 +28,24 @@ function Navbar() {
                 Home
               </a>
             </li>
-            <li className="nav-item mx-5">
-              <a className="nav-link" href="/login" onClick={handleClick}>
-                Login
-              </a>
-            </li>
-            <li className="nav-item mx-5">
-              <a href="/" className="nav-link">
-                Sign-Up
-              </a>
-            </li>
+            {!isLoggedIn ? (
+              <li className="nav-item mx-5">
+                <a
+                  className="nav-link"
+                  href="/login"
+                  onClick={handleLoginClick}
+                >
+                  Login
+                </a>
+              </li>
+            ) : (
+              <li className="nav-item mx-5">
+                <a className="nav-link" href="/" onClick={handleLogoutClick}>
+                  Logout
+                </a>
+              </li>
+            )}
+         
             <li className="nav-item dropdown mx-5">
               <a
                 className="nav-link dropdown-toggle"
