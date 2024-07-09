@@ -32,10 +32,11 @@
 .dashboard-container .right-nav {
   overflow: hidden;
   position: relative;
+  max-width: fit-content;
   flex: 1;
   padding: 20px;
   border: 1px solid #0d0e0e;
-  border-radius: 5px;
+  border-radius: 50px;
   background-color: #010101;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-left: 20px;
@@ -147,18 +148,6 @@
   width: 100%;
 }
 
-.dashboard-container .main-content {
-  width: 900px;
-  min-width: auto;
-  height: 750px;
-  min-height: 50%;
-  margin-left: 10px;
-  margin-right: 10px;
-  background: linear-gradient(744deg, #af40ff, #5b42f3 60%, #00ddeb);
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
 .dashboard-container .side_menu {
   display: flex;
@@ -302,7 +291,7 @@
 }
 
 .dashboard-container .main-content {
-  width: 900px;
+  width: 68%;
   min-width: auto;
   height: 750px;
   min-height: 50%;

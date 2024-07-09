@@ -1,21 +1,19 @@
 import React from 'react';
-
+import '../css/Footer.css';
 
 function Footer() {
   return (
-    <div className="container my-5">
-      <footer className="text-white text-center text-lg-start" style={{ backgroundColor: 'black' }}>
-        <div className="container p-4">
+    <div className="footer-container">
+      <footer className="footer text-white text-center text-lg-start">
+        <div className="footer-content container">
           <div className="row mt-4">
             <div className="col-lg-4 col-md-12 mb-4 mb-md-0">
-              <h5 className="text-uppercase mb-4">About company</h5>
-              <p>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                voluptatum deleniti atque corrupti.
+              <h5 className="text-uppercase mb-4 text-center">About Company</h5>
+              <p >
+              Our mission: delivering excellence, one satisfied customer at a time.
               </p>
               <p>
-                Blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas
-                molestias.
+              If we have not exceeded your expectations, we have not finished our job.
               </p>
               <div className="mt-4">
                 <a type="button" className="btn btn-floating btn-warning btn-lg"><i className="fab fa-facebook-f"></i></a>
@@ -25,53 +23,34 @@ function Footer() {
               </div>
             </div>
             <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 className="text-uppercase mb-4 pb-1">Search something</h5>
+              <h5 className="text-uppercase mb-4 pb-1 text-center">Contact Us</h5>
               <div className="form-outline form-white mb-4">
-                <input type="text" id="formControlLg" className="form-control form-control-lg"/>
-                <label className="form-label" htmlFor="formControlLg" style={{ marginLeft: '0px' }}>Search</label>
-                <div className="form-notch">
-                  <div className="form-notch-leading" style={{ width: '9px' }}></div>
-                  <div className="form-notch-middle" style={{ width: '48.8px' }}></div>
-                  <div className="form-notch-trailing"></div>
-                </div>
               </div>
-              <ul className="fa-ul" style={{ marginLeft: '1.65em' }}>
+              <ul className="fa-ul">
                 <li className="mb-3">
-                  <span className="fa-li"><i className="fas fa-home"></i></span><span className="ms-2">New York, NY 10012, US</span>
+                  <span className="fa-li"><i className="fas fa-home"></i></span><span className="ms-2">JS banking solution ,TIET,149007,India</span>
                 </li>
                 <li className="mb-3">
-                  <span className="fa-li"><i className="fas fa-envelope"></i></span><span className="ms-2">info@example.com</span>
+                  <span className="fa-li"><i className="fas fa-envelope"></i></span><span className="ms-2">jsbankingsolution@gmail.com</span>
                 </li>
                 <li className="mb-3">
-                  <span className="fa-li"><i className="fas fa-phone"></i></span><span className="ms-2">+ 01 234 567 88</span>
+                  <span className="fa-li"><i className="fas fa-phone"></i></span><span className="ms-2">+ 91 123456789</span>
                 </li>
                 <li className="mb-3">
-                  <span className="fa-li"><i className="fas fa-print"></i></span><span className="ms-2">+ 01 234 567 89</span>
+                  <span className="fa-li"><i className="fas fa-print"></i></span><span className="ms-2">+ 91 0987654321</span>
                 </li>
               </ul>
             </div>
             <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 className="text-uppercase mb-4">Opening hours</h5>
-              <table className="table text-center text-white">
-                <tbody className="font-weight-normal">
-                  <tr>
-                    <td>Mon - Thu:</td>
-                    <td>8am - 9pm</td>
-                  </tr>
-                  <tr>
-                    <td>Fri - Sat:</td>
-                    <td>8am - 1am</td>
-                  </tr>
-                  <tr>
-                    <td>Sunday:</td>
-                    <td>9am - 10pm</td>
-                  </tr>
-                </tbody>
-              </table>
+              <h5 className="text-uppercase mb-4 text-center">Customer Care Hours</h5>
+              <div className="opening-hours">
+                <p><span>Mon - Thu:</span> 8am - 9pm</p>
+                <p><span>Fri - Sat:</span> 8am - 1am</p>
+                <p><span> Sunday:</span> 9am - 10pm</p>
+              </div>
             </div>
           </div>
         </div>
-
       </footer>
     </div>
   );

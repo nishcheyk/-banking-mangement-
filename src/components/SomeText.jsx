@@ -2,7 +2,7 @@ import React from "react";
 
 function SomeText() {
   return (
-    <div className="container">
+    <div className="container" style={{ color: 'white' }}>
       <br />
       <br />
       <h3>

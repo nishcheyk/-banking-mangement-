@@ -1,6 +1,7 @@
 .transaction-history {
   background: transparent;
   color: #000;
+  height: fit-content;
 }
 
 .amount.positive, .status.positive {
@@ -33,6 +34,7 @@
 }
 
 .head {
+  width:100%;
   background-color: #f1f1f1;
   font-weight: 200;
   padding: 10px 20px;

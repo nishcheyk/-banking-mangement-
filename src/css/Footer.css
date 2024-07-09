@@ -1,0 +1,77 @@
+/* Footer.css */
+
+.footer-container {
+    margin-top: 200px;
+    width: 100%;
+  }
+  .body{
+    filter: blur(10px);
+  }
+.footer p{
+   text-align: center;
+}
+  .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 1.125rem; /* text-lg */
+    height: 400px; /* Adjust the height as needed */
+  }
+
+  .footer .footer-content {
+    padding: 16px; /* p-4 */
+  }
+
+  .footer .row {
+    margin-top: 16px; /* mt-4 */
+  }
+
+  .footer .col-lg-4,
+  .footer .col-md-12,
+  .footer .col-md-6 {
+    margin-bottom: 16px; /* mb-4 mb-md-0 */
+  }
+
+  .footer .col-md-6:last-child {
+    margin-bottom: 0; /* Remove bottom margin for last column */
+  }
+
+  .footer h5 {
+    text-transform: uppercase;
+    margin-bottom: 16px; /* mb-4 */
+  }
+
+  .footer p {
+    margin-bottom: 16px;
+  }
+
+  .footer .btn-floating {
+    margin: 0 4px;
+    font-size: 1.5rem; /* btn-lg */
+  }
+
+  .footer .form-outline {
+    margin-bottom: 16px; /* mb-4 */
+  }
+
+  .footer .fa-ul {
+    margin-left: 1.65em;
+  }
+
+  .footer .fa-li {
+    margin-right: 8px;
+  }
+
+  .footer .contact-info p,
+  .footer .opening-hours  {
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .footer .contact-info span,
+  .footer .opening-hours span {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+
+  }
