@@ -1,0 +1,31 @@
+.hist-container {
+  padding: 20px;
+  background-color: transparent;
+  font-family: Arial, sans-serif;
+  margin: 10%;
+  text-align: center;
+}
+
+.hist-section {
+  margin-bottom: 20px;
+}
+
+.hist-heading {
+  color: #7597fe;
+  font-size: 24px;
+  text-align: justify;
+  margin-bottom: 10px;
+}
+.hist-headin {
+  color: #7597fe;
+  font-style:oblique;
+  font-size: 34px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.hist-paragraph {
+  color: white;
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.6;
+}
