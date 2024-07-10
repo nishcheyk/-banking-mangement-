@@ -3,12 +3,9 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
-
 const Document = require('./models/document');
-
 const app = express();
 const port = 5000;
-
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/mern_file_upload')
     .then(() => {
@@ -31,7 +28,6 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname)); // Append extension
     }
 });
-
 const fileFilter = (req, file, cb) => {
     const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png'];
     if (allowedTypes.includes(file.mimetype)) {
@@ -63,7 +59,7 @@ app.post('/upload', (req, res) => {
         if (!req.file) {
             return res.status(400).send('No file uploaded.');
         }
-        
+
         const { documentType } = req.body;
 
         // Save document info to MongoDB

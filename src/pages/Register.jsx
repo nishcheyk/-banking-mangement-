@@ -7,7 +7,6 @@ import Document_upload from "../components/Document_upload";
 function Registration() {
   return (
     <div className=" bg-black">
-
       <SignUp/>
       <EmploymentForm/>
       <Homeadress />
