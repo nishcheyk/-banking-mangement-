@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/HomeAddress.css";
 
-function MainForm() {
+const MainForm = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [savedAddress, setSavedAddress] = useState("");
   const [houseName, setHouseName] = useState("");
@@ -32,7 +32,7 @@ function MainForm() {
             },
           }
         );
-        setData(response.data); // Set the fetched data into state
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -131,224 +131,242 @@ function MainForm() {
   };
 
   return (
-    <div className="address-container">
-      <h2 className="address-heading">02 Home address</h2>
-      <p className="address-paragraph">
-        Please provide your current Indian residence address
-      </p>
-
-      {savedAddress && (
-        <div id="savedAddress" className="address-saved-address">
-          <p className="address-paragraph">{savedAddress}</p>
-          <a
-            className="address-manual-entry-link"
-            onClick={handleRemoveAddress}
-          >
-            Remove address
-          </a>
-          <a className="address-manual-entry-link" onClick={handleEditAddress}>
-            Change address
-          </a>
-        </div>
-      )}
-
-      {!savedAddress && (
-        <div className="address-form-group" id="searchAddressGroup">
-          <label htmlFor="address" className="address-label">
-            SEARCH FOR YOUR ADDRESS
-          </label>
-          <input
-            type="text"
-            placeholder="Type an address..."
-            className="address-input"
-            value={query}
-            onChange={handleInputChange}
-          />
-          <p className="address-hint">
-            Please enter an address or enter manually using the link below
+    <div className="container">
+      <div className="card mx-auto">
+        <div className="card-body">
+          <h2 className="card-title">02 Home address</h2>
+          <p className="card-subtitle mb-2 text-body-secondary">
+            Please provide your current Indian residence address
           </p>
-          <a
-            className="address-manual-entry-link"
-            onClick={() => setShowAddressForm(true)}
-          >
-            Prefer to enter address manually
-          </a>
-          <p id="addressError" className="address-error-message">
-            {errors.addressError}
-          </p>
-          {data && (
-            <div className="address-suggestions-container">
-              {data.output.map((address, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleAddressClick(address)}
-                  className="address-suggestion"
-                >
-                  {address}
-                </div>
-              ))}
+
+          {savedAddress && (
+            <div id="savedAddress" className="mb-3">
+              <p className="card-text">{savedAddress}</p>
+              <a className="btn btn-link" onClick={handleRemoveAddress}>
+                Remove address
+              </a>
+              <a className="btn btn-link" onClick={handleEditAddress}>
+                Change address
+              </a>
             </div>
           )}
-        </div>
-      )}
 
-      <div className="address-form-group">
-        <p className="address-paragraph">
-          HOW LONG HAVE YOU LIVED AT THIS ADDRESS?
-        </p>
-        <p className="address-paragraph">
-          If less than 6 months, we&apos ll also need details of your previous
-          address.
-        </p>
-        <div className="address-duration-buttons">
+          {!savedAddress && (
+            <div id="searchAddressGroup" className="mb-3">
+              <label htmlFor="address" className="form-label">
+                SEARCH FOR YOUR ADDRESS
+              </label>
+              <input
+                type="text"
+                placeholder="Type an address..."
+                className="form-control"
+                value={query}
+                onChange={handleInputChange}
+              />
+              <p className="form-text">
+                Please enter an address or enter manually using the link below
+              </p>
+              <a
+                className="btn btn-link"
+                onClick={() => setShowAddressForm(true)}
+              >
+                Prefer to enter address manually
+              </a>
+              <p id="addressError" className="text-danger">
+                {errors.addressError}
+              </p>
+              {data && (
+                <div className="list-group">
+                  {data.output.map((address, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleAddressClick(address)}
+                      className="list-group-item list-group-item-action"
+                    >
+                      {address}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className="mb-3">
+            <p className="card-text">
+              HOW LONG HAVE YOU LIVED AT THIS ADDRESS?
+            </p>
+            <p className="card-text">
+              If less than 6 months, we&apos;ll also need details of your
+              previous address.
+            </p>
+            <div className="btn-group" role="group">
+              <button
+                className={`btn ${
+                  duration === "6 months or more"
+                    ? "btn-primary"
+                    : "btn-outline-primary"
+                }`}
+                onClick={() => handleSelectDuration("6 months or more")}
+              >
+                6 months or more
+              </button>
+              <button
+                className={`btn ${
+                  duration === "Less than 6 months"
+                    ? "btn-primary"
+                    : "btn-outline-primary"
+                }`}
+                onClick={() => handleSelectDuration("Less than 6 months")}
+              >
+                Less than 6 months
+              </button>
+            </div>
+            <p id="durationError" className="text-danger">
+              {errors.durationError}
+            </p>
+          </div>
+
+          <p className="text-warning">
+            Please check your details above. You won&apos;t be able to change
+            them once you click continue.
+          </p>
+
           <button
-            className={`address-duration-button ${
-              duration === "6 months or more" ? "address-selected" : ""
-            }`}
-            onClick={() => handleSelectDuration("6 months or more")}
+            className="btn btn-primary"
+            onClick={handleValidateAndContinue}
           >
-            6 months or more
-          </button>
-          <button
-            className={`address-duration-button ${
-              duration === "Less than 6 months" ? "address-selected" : ""
-            }`}
-            onClick={() => handleSelectDuration("Less than 6 months")}
-          >
-            Less than 6 months
+            Continue
           </button>
         </div>
-        <p id="durationError" className="address-error-message">
-          {errors.durationError}
-        </p>
       </div>
-
-      <p className="address-warning">
-        Please check your details above. You won &apos t be able to change them
-        once you click continue.
-      </p>
-
-      <button
-        className="address-continue-button"
-        onClick={handleValidateAndContinue}
-      >
-        Continue
-      </button>
 
       {showAddressForm && (
         <>
-          <div className="address-overlay"></div>
-          <div className="address-address-form">
-            <h2 className="address-heading">Manual Address Entry</h2>
-            <div className="address-form-group">
-              <label htmlFor="houseName" className="address-label">
-                House Name
-              </label>
-              <input
-                type="text"
-                id="houseName"
-                value={houseName}
-                onChange={(e) => {
-                  setHouseName(e.target.value);
-                  clearError("houseNameError");
-                }}
-                className="address-input"
-              />
-              <p id="houseNameError" className="address-error-message">
-                {errors.houseNameError}
-              </p>
-            </div>
-            <div className="address-form-group">
-              <label htmlFor="houseNumber" className="address-label">
-                House Number
-              </label>
-              <input
-                type="text"
-                id="houseNumber"
-                value={houseNumber}
-                onChange={(e) => {
-                  setHouseNumber(e.target.value);
-                  clearError("houseNumberError");
-                }}
-                className="address-input"
-              />
-              <p id="houseNumberError" className="address-error-message">
-                {errors.houseNumberError}
-              </p>
-            </div>
-            <div className="address-form-group">
-              <label htmlFor="street" className="address-label">
-                Street
-              </label>
-              <input
-                type="text"
-                id="street"
-                value={street}
-                onChange={(e) => {
-                  setStreet(e.target.value);
-                  clearError("streetError");
-                }}
-                className="address-input"
-              />
-              <p id="streetError" className="address-error-message">
-                {errors.streetError}
-              </p>
-            </div>
-            <div className="address-form-group">
-              <label htmlFor="townCity" className="address-label">
-                Town/City
-              </label>
-              <input
-                type="text"
-                id="townCity"
-                value={townCity}
-                onChange={(e) => {
-                  setTownCity(e.target.value);
-                  clearError("townCityError");
-                }}
-                className="address-input"
-              />
-              <p id="townCityError" className="address-error-message">
-                {errors.townCityError}
-              </p>
-            </div>
-            <div className="address-form-group">
-              <label htmlFor="postcode" className="address-label">
-                Postcode
-              </label>
-              <input
-                type="text"
-                id="postcode"
-                value={postcode}
-                onChange={(e) => {
-                  setPostcode(e.target.value);
-                  clearError("postcodeError");
-                }}
-                className="address-input"
-              />
-              <p id="postcodeError" className="address-error-message">
-                {errors.postcodeError}
-              </p>
-            </div>
-            <div className="address-button-group">
-              <button
-                className="address-close-button"
-                onClick={() => setShowAddressForm(false)}
-              >
-                Close
-              </button>
-              <button
-                className="address-submit-button"
-                onClick={handleSaveAddress}
-              >
-                Save Address
-              </button>
+          <div className="modal-backdrop fade show"></div>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Manual Address Entry</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setShowAddressForm(false)}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label htmlFor="houseName" className="form-label">
+                    House Name
+                  </label>
+                  <input
+                    type="text"
+                    id="houseName"
+                    value={houseName}
+                    onChange={(e) => {
+                      setHouseName(e.target.value);
+                      clearError("houseNameError");
+                    }}
+                    className="form-control"
+                  />
+                  <p id="houseNameError" className="text-danger">
+                    {errors.houseNameError}
+                  </p>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="houseNumber" className="form-label">
+                    House Number
+                  </label>
+                  <input
+                    type="text"
+                    id="houseNumber"
+                    value={houseNumber}
+                    onChange={(e) => {
+                      setHouseNumber(e.target.value);
+                      clearError("houseNumberError");
+                    }}
+                    className="form-control"
+                  />
+                  <p id="houseNumberError" className="text-danger">
+                    {errors.houseNumberError}
+                  </p>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="street" className="form-label">
+                    Street
+                  </label>
+                  <input
+                    type="text"
+                    id="street"
+                    value={street}
+                    onChange={(e) => {
+                      setStreet(e.target.value);
+                      clearError("streetError");
+                    }}
+                    className="form-control"
+                  />
+                  <p id="streetError" className="text-danger">
+                    {errors.streetError}
+                  </p>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="townCity" className="form-label">
+                    Town/City
+                  </label>
+                  <input
+                    type="text"
+                    id="townCity"
+                    value={townCity}
+                    onChange={(e) => {
+                      setTownCity(e.target.value);
+                      clearError("townCityError");
+                    }}
+                    className="form-control"
+                  />
+                  <p id="townCityError" className="text-danger">
+                    {errors.townCityError}
+                  </p>
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="postcode" className="form-label">
+                    Postcode
+                  </label>
+                  <input
+                    type="text"
+                    id="postcode"
+                    value={postcode}
+                    onChange={(e) => {
+                      setPostcode(e.target.value);
+                      clearError("postcodeError");
+                    }}
+                    className="form-control"
+                  />
+                  <p id="postcodeError" className="text-danger">
+                    {errors.postcodeError}
+                  </p>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setShowAddressForm(false)}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleSaveAddress}
+                >
+                  Save Address
+                </button>
+              </div>
             </div>
           </div>
         </>
       )}
     </div>
   );
-}
+};
 
 export default MainForm;
