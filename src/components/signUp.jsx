@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/signUp.css"; // Import your external CSS file
+
+import DatePicker from "./DatePicker";
+
 
 const Signup = ({ onRegister }) => {
+
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -69,9 +73,42 @@ const Signup = ({ onRegister }) => {
 
   // Render signup form if not registered, otherwise render message and login form
   return (
+
     <div className="containe">
+
       {!isRegistered ? (
         <>
+        <div className="container" >
+      <div className="card col-8 mx-auto" >
+        <div className="card-body">
+          <h5 className="card-title">PersonalASDFGHJK Details</h5>
+          <h6 className="card-subtitle mb-2 text-body-secondary">
+            Tell us about yourself
+          </h6>
+          <hr />
+          <form>
+            <div className="input-group mb-3" >
+              <span className="input-group-text">First and last name</span>
+              <input
+                type="text"
+                aria-label="First name"
+                className="form-control"
+                required
+
+              />
+              <input
+                type="text"
+                aria-label="Last name"
+                className="form-control"
+                required
+
+              />
+            </div>
+            <DatePicker />
+          </form>
+        </div>
+      </div>
+    </div>
           <h2>Create your login details</h2>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
