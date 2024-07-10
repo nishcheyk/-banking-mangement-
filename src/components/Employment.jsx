@@ -7,6 +7,7 @@ const EmploymentForm = () => {
   const [showCitizenship, setShowCitizenship] = useState(false);
   const [selectedCitizenship, setSelectedCitizenship] = useState("");
   const [formData, setFormData] = useState({});
+  const [isFinalStep, setIsFinalStep] = useState(false);
 
   const employmentStatuses = [
     "Full-time employed",
@@ -103,6 +104,17 @@ const EmploymentForm = () => {
     setSelectedCitizenship(event.target.value);
   };
 
+  const handleFinalContinueClick = () => {
+    if (selectedCitizenship) {
+      // Save form data
+      console.log("Form data:", { ...formData, selectedStatus, selectedSalary, selectedCitizenship });
+      alert("Form submitted successfully!");
+      setIsFinalStep(true);
+    } else {
+      alert("Please select your citizenship.");
+    }
+  };
+
   return (
     <div className="employment-form">
       <h2>Employment details</h2>
@@ -156,31 +168,36 @@ const EmploymentForm = () => {
           Continue
         </button>
       ) : (
-        <div className="citizenship">
-          <label>Citizenship/Nationality:</label>
-          <div>
-            <input
-              type="radio"
-              id="citizenship-indian"
-              name="citizenship"
-              value="Indian"
-              checked={selectedCitizenship === "Indian"}
-              onChange={handleCitizenshipChange}
-            />
-            <label htmlFor="citizenship-indian">Indian</label>
+        !isFinalStep && (
+          <div className="citizenship">
+            <label>Citizenship/Nationality:</label>
+            <div>
+              <input
+                type="radio"
+                id="citizenship-indian"
+                name="citizenship"
+                value="Indian"
+                checked={selectedCitizenship === "Indian"}
+                onChange={handleCitizenshipChange}
+              />
+              <label htmlFor="citizenship-indian">Indian</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="citizenship-others"
+                name="citizenship"
+                value="Others"
+                checked={selectedCitizenship === "Others"}
+                onChange={handleCitizenshipChange}
+              />
+              <label htmlFor="citizenship-others">Others</label>
+            </div>
+            <button className="submit-btn" onClick={handleFinalContinueClick}>
+              Continue
+            </button>
           </div>
-          <div>
-            <input
-              type="radio"
-              id="citizenship-others"
-              name="citizenship"
-              value="Others"
-              checked={selectedCitizenship === "Others"}
-              onChange={handleCitizenshipChange}
-            />
-            <label htmlFor="citizenship-others">Others</label>
-          </div>
-        </div>
+        )
       )}
     </div>
   );
