@@ -1,4 +1,4 @@
-.container {
+.dcontainer {
     font-family: Arial, sans-serif;
     padding: 20px;
     max-width: 500px;
@@ -20,20 +20,4 @@
     cursor: pointer;
     margin-bottom: 20px;
     text-align: center;
-  }
-  button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  button[type="button"] {
-    background-color: red;
-    margin-left: 10px;
-  }
-  div {
-    margin-top: 10px;
-    color: red;
   }

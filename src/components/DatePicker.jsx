@@ -55,11 +55,7 @@ function DatePicker() {
           )}
         </div>
       </div>
-      {!isEighteenOrOlder ? null : (
-        <button type="submit" className="btn btn-primary btn-lg my-2">
-          go
-        </button>
-      )}
+   
     </div>
   );
 }

@@ -44,7 +44,7 @@ router.post("/signup", async (req, res) => {
       name,
       email,
       address,
-      contactNumber,
+      mobileNumber,
       dateOfBirth,
     });
 
