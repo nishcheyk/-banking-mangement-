@@ -9,6 +9,7 @@ const Signup = ({ onRegister }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -66,13 +67,13 @@ const Signup = ({ onRegister }) => {
         console.log("API Call: /api/auth/signup");
         await axios.post("http://localhost:5050/api/auth/signup", {
           username,
+          name,
           password,
           email,
           mobileNumber,
         });
         setMessage("User registered successfully!");
         setIsRegistered(true);
-        onRegister();
       } catch (error) {
         console.error("Error registering user:", error);
         setMessage(
@@ -105,6 +106,10 @@ const Signup = ({ onRegister }) => {
                     aria-label="First name"
                     className="form-control"
                     required
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
                   />
                   <input
                     type="text"
@@ -114,7 +119,7 @@ const Signup = ({ onRegister }) => {
                   />
                 </div>
                 {/* Assuming DatePicker is correctly imported and used */}
-                {/* <DatePicker /> */}
+                <DatePicker />
                 <div className="mb-3">
                   <label className="form-label">Username</label>
                   <input
@@ -200,7 +205,7 @@ const Signup = ({ onRegister }) => {
                 !isMobileNumberValid
               }
             >
-              Register
+              Continue
             </button>
           </form>
           {message && <p className="mt-3">{message}</p>}

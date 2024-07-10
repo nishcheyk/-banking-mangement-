@@ -33,11 +33,11 @@ const customerSchema = new mongoose.Schema({
   },
   contactNumber: {
     type: String,
-    required: true,
+
   },
   dateOfBirth: {
     type: Date,
-    required: true,
+  
   }
 });
 
