@@ -52,7 +52,7 @@ function App() {
     };
 
     return (
-        <div className="container">
+        <div className="dcontainer">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="document-type">Select document type:</label>
                 <select
@@ -83,7 +83,7 @@ function App() {
                 {file && (
                     <div>
                         <p>{file.name}</p>
-                        <button type="button" onClick={() => setFile(null)}>Remove file</button>
+                        <button  type="button" onClick={() => setFile(null)}>Remove file</button>
                     </div>
                 )}
 

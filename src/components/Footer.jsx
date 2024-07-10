@@ -16,10 +16,7 @@ function Footer() {
               If we have not exceeded your expectations, we have not finished our job.
               </p>
               <div className="mt-4">
-                <a type="button" className="btn btn-floating btn-warning btn-lg"><i className="fab fa-facebook-f"></i></a>
-                <a type="button" className="btn btn-floating btn-warning btn-lg"><i className="fab fa-dribbble"></i></a>
-                <a type="button" className="btn btn-floating btn-warning btn-lg"><i className="fab fa-twitter"></i></a>
-                <a type="button" className="btn btn-floating btn-warning btn-lg"><i className="fab fa-google-plus-g"></i></a>
+               
               </div>
             </div>
             <div className="col-lg-4 col-md-6 mb-4 mb-md-0">

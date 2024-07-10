@@ -78,7 +78,7 @@ const Signup = ({ onRegister }) => {
 
       {!isRegistered ? (
         <>
-        <div className="container" >
+        <div className="containe" >
       <div className="card col-8 mx-auto" >
         <div className="card-body">
           <h5 className="card-title">PersonalASDFGHJK Details</h5>

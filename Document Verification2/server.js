@@ -4,7 +4,7 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 
-const Document = require('./models/Documents');
+const Document = require('./models/document');
 
 const app = express();
 const port = 5000;
@@ -63,7 +63,7 @@ app.post('/upload', (req, res) => {
         if (!req.file) {
             return res.status(400).send('No file uploaded.');
         }
-
+        
         const { documentType } = req.body;
 
         // Save document info to MongoDB
