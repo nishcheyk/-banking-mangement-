@@ -1,14 +1,19 @@
 import React from "react";
-
 import Homeadress from "../components/Homeadress";
-import address from "../components/details";
+
+import EmploymentForm from "../components/Employment";
+import SignUp from "../components/SignUp";
+
+
 function Registration() {
   return (
     <div>
-      <address/>
+
+      <SignUp/>
+      <EmploymentForm/>
       <Homeadress />
 
-    </div>
+          </div>
   );
 }
 
