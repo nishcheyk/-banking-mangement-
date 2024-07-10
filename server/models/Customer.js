@@ -9,31 +9,26 @@ const customerSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-     required: true,
+    required: true,
   },
   email: {
     type: String,
- required: true,
+    required: true,
     unique: true,
     match: [/^.+@.+\..+$/, 'Please enter a valid email address']
   },
   address: {
-   
     street: {
       type: String
-
     },
     city: {
       type: String
-
     },
     state: {
       type: String
-
     },
     postalCode: {
       type: String
-
     }
   },
   contactNumber: {
@@ -42,7 +37,7 @@ const customerSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-     required: true,
+    required: true,
   }
 });
 

@@ -11,6 +11,7 @@ router.post("/signup", async (req, res) => {
   try {
     const { username, password, email, mobileNumber, name, address, contactNumber, dateOfBirth } = req.body;
 
+    // Check if user already exists
     const existingUser = await User.findOne({
       $or: [{ username }, { email }, { mobileNumber }],
     });
@@ -24,8 +25,10 @@ router.post("/signup", async (req, res) => {
       return res.status(400).json({ message });
     }
 
+    // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create new user
     const newUser = new User({
       username,
       password: hashedPassword,
@@ -35,6 +38,7 @@ router.post("/signup", async (req, res) => {
 
     const savedUser = await newUser.save();
 
+    // Create new customer with the saved user ID
     const newCustomer = new Customer({
       userId: savedUser._id,
       name,
@@ -46,6 +50,7 @@ router.post("/signup", async (req, res) => {
 
     const savedCustomer = await newCustomer.save();
 
+    // Create a new account for the customer
     const newAccount = new Account({
       customerId: savedCustomer._id,
       balance: 0
@@ -53,10 +58,40 @@ router.post("/signup", async (req, res) => {
 
     await newAccount.save();
 
-    res.status(201).json({ message: "User registered successfully", user: savedUser, customer: savedCustomer, account: newAccount });
+    res.status(201).json({
+      message: "User registered successfully",
+      user: savedUser,
+      customer: savedCustomer,
+      account: newAccount
+    });
   } catch (error) {
     console.error("Error creating user:", error);
     res.status(500).json({ message: "Error creating user" });
+  }
+});
+
+// Update Address Route
+router.put("/update-address", async (req, res) => {
+  console.log("API Call: /api/auth/update-address");
+  try {
+    const { userId, address } = req.body;
+
+    const customer = await Customer.findOne({ userId });
+
+    if (!customer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    customer.address = address;
+    const updatedCustomer = await customer.save();
+
+    res.status(200).json({
+      message: "Address updated successfully",
+      customer: updatedCustomer
+    });
+  } catch (error) {
+    console.error("Error updating address:", error);
+    res.status(500).json({ message: "Error updating address" });
   }
 });
 

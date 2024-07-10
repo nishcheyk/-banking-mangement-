@@ -3,16 +3,15 @@ import Navbar from "../components/Navbar";
 import Banner from "../components/Banner";
 import AboutUs from "../components/AboutUsCard";
 import SomeText from "../components/SomeText";
-import ReadDocText from "../components/DocumentsToReview";
 import DocsToRead from "../components/DocsToRead";
 import Footer from "../components/Footer";
-import Form from "../components/Form";
 import Dashboard from "./Dashboard";
 import Loader from "../components/Loader";
 import History from "../components/History";
 import Support from "../components/Support";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+
 import "../css/startup.css";
 
 function HomePage() {
@@ -49,7 +48,7 @@ function HomePage() {
           <DocsToRead />
           <History/>
           <Support/>
-          <Form />
+
             <Footer/>
         </>
       )}
