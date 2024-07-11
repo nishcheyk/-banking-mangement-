@@ -108,7 +108,7 @@ const EmploymentForm = ({ onContinue }) => {
   const handleFinalContinueClick = () => {
     if (selectedCitizenship) {
       console.log("Form data:", { ...formData, selectedStatus, selectedSalary, selectedCitizenship });
-      alert("Form submitted successfully!");
+
       setIsFinalStep(true);
       onContinue(); // Call the onContinue prop when form is completed
     } else {
@@ -117,6 +117,8 @@ const EmploymentForm = ({ onContinue }) => {
   };
 
   return (
+    <div className="employment-container">
+    <div className="employment-border">
     <div className="employment-form">
       <h2>Employment details</h2>
       <div className="employment-buttons">
@@ -198,9 +200,14 @@ const EmploymentForm = ({ onContinue }) => {
               Continue
             </button>
           </div>
+
         )
       )}
+      </div>
+
     </div>
+    </div>
+
   );
 };
 

@@ -4,7 +4,7 @@ import DatePicker from "../components/DatePicker";
 import "../css/SignUp.css";
 
 const Signup = ({ onContinue }) => {
-  const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -18,11 +18,7 @@ const Signup = ({ onContinue }) => {
   const [message, setMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const validateUsername = (username) => {
-    const usernameLengthValid = username.length >= 8 && username.length <= 20;
-    const usernameCharsValid = /^[A-Za-z0-9]+$/.test(username);
-    setIsUsernameValid(usernameLengthValid && usernameCharsValid);
-  };
+
 
   const validatePassword = (password) => {
     const passwordLengthValid = password.length >= 8 && password.length <= 20;
@@ -66,7 +62,6 @@ const Signup = ({ onContinue }) => {
       try {
         console.log("API Call: /api/auth/signup");
         await axios.post("http://localhost:5050/api/auth/signup", {
-          username,
           name,
           password,
           email,
@@ -89,15 +84,14 @@ const Signup = ({ onContinue }) => {
 
   return (
     <div className="register-container">
-      {!isRegistered ? (
-        <>
+
           <form onSubmit={handleSubmit}>
           <div className="register-border">
             <div className="register-card-body">
               <h5 className="register-card-title">Personal Details</h5>
-              <h6 className="register-card-subtitle mb-2 text-body-secondary">
+              <p className="register-card-subtitle mb-2 text-body-secondary">
                 Tell us about yourself
-              </h6>
+              </p>
               <hr />
               <label className="register-form-label">First and last name</label>
               <div className="register-input-group mb-3">
@@ -117,22 +111,39 @@ const Signup = ({ onContinue }) => {
                 />
               </div>
               <DatePicker />
-              <div className="mb-3">
-                <label className="register-form-label">Username</label>
-                <input
-                  type="text"
-                  className={`register-form-control ${
-                    isUsernameValid ? "is-valid" : "is-invalid"
-                  }`}
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    validateUsername(e.target.value);
-                  }}
-                  required
-                />
+              <div className="mb-1">
+              <div className="mb-1">
+              <label className="register-form-label">Email</label>
+              <input
+                type="email"
+                className={`register-form-control ${
+                  isEmailValid ? "is-valid" : "is-invalid"
+                }`}
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  validateEmail(e.target.value);
+                }}
+                required
+              />
+            </div>
+            <div className="mb-1">
+              <label className="register-form-label">Mobile Number</label>
+              <input
+                type="text"
+                className={`register-form-control ${
+                  isMobileNumberValid ? "is-valid" : "is-invalid"
+                }`}
+                value={mobileNumber}
+                onChange={(e) => {
+                  setMobileNumber(e.target.value);
+                  validateMobileNumber(e.target.value);
+                }}
+                required
+              />
               </div>
-              <div className="mb-3">
+              </div>
+              <div className="mb-1">
                 <label className="register-form-label">Password</label>
                 <input
                   type="password"
@@ -147,7 +158,7 @@ const Signup = ({ onContinue }) => {
                   required
                 />
               </div>
-              <div className="mb-3">
+              <div className="mb-1">
                 <label className="register-form-label">Confirm Password</label>
                 <input
                   type="password"
@@ -159,37 +170,9 @@ const Signup = ({ onContinue }) => {
                   required
                 />
               </div>
-              <div className="mb-3">
-                <label className="register-form-label">Email</label>
-                <input
-                  type="email"
-                  className={`register-form-control ${
-                    isEmailValid ? "is-valid" : "is-invalid"
-                  }`}
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    validateEmail(e.target.value);
-                  }}
-                  required
-                />
+
               </div>
-              <div className="mb-3">
-                <label className="register-form-label">Mobile Number</label>
-                <input
-                  type="text"
-                  className={`register-form-control ${
-                    isMobileNumberValid ? "is-valid" : "is-invalid"
-                  }`}
-                  value={mobileNumber}
-                  onChange={(e) => {
-                    setMobileNumber(e.target.value);
-                    validateMobileNumber(e.target.value);
-                  }}
-                  required
-                />
-              </div>
-            </div>
+
 
             <button
               type="submit"
@@ -202,17 +185,19 @@ const Signup = ({ onContinue }) => {
                 !isMobileNumberValid
               }
             >
-              Continue
+            <span className="circle1"></span>
+    <span className="circle2"></span>
+    <span className="circle3"></span>
+    <span className="circle4"></span>
+    <span className="circle5"></span>
+    <span className="circle-text">  Continue </span>
+
             </button>
             </div>
           </form>
           {message && <p className="mt-3">{message}</p>}
-        </>
-      ) : (
-        <>
-          <p className="register-success-message mt-3">{message}</p>
-        </>
-      )}
+
+
     </div>
   );
 };

@@ -9,11 +9,11 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   console.log("API Call: /api/auth/signup");
   try {
-    const { username, password, email, mobileNumber, name, address, contactNumber, dateOfBirth } = req.body;
+    const { password, email, mobileNumber, name, address, contactNumber, dateOfBirth } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({
-      $or: [{ username }, { email }, { mobileNumber }],
+      $or: [{ email }, { mobileNumber }],
     });
 
     if (existingUser) {
@@ -30,7 +30,6 @@ router.post("/signup", async (req, res) => {
 
     // Create new user
     const newUser = new User({
-      username,
       password: hashedPassword,
       email,
       mobileNumber,
