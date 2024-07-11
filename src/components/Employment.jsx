@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Emp.css";
 
-const EmploymentForm = () => {
+const EmploymentForm = ({ onContinue }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [selectedSalary, setSelectedSalary] = useState("");
   const [showCitizenship, setShowCitizenship] = useState(false);
@@ -57,7 +57,7 @@ const EmploymentForm = () => {
     setSelectedStatus(status);
     setFormData({});
     setSelectedSalary("");
-    setShowCitizenship(false); // Reset citizenship section visibility
+    setShowCitizenship(false);
   };
 
   const handleInputChange = (event, question) => {
@@ -106,10 +106,10 @@ const EmploymentForm = () => {
 
   const handleFinalContinueClick = () => {
     if (selectedCitizenship) {
-      // Save form data
       console.log("Form data:", { ...formData, selectedStatus, selectedSalary, selectedCitizenship });
       alert("Form submitted successfully!");
       setIsFinalStep(true);
+      onContinue(); // Call the onContinue prop when form is completed
     } else {
       alert("Please select your citizenship.");
     }

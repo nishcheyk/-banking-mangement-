@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "../components/DatePicker";
-// Ensure you import DatePicker if you're using it
-// import DatePicker from 'path-to-date-picker';
+import "../css/SignUp.css"; // Import the CSS file here
 
-const Signup = ({ onRegister }) => {
+const Signup = ({ onContinue }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -52,16 +51,14 @@ const Signup = ({ onRegister }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log("here");
 
     const isConfirmPasswordValid = password === confirmPassword;
     setIsConfirmPasswordValid(isConfirmPasswordValid);
 
     if (
-      isUsernameValid &&
-      isPasswordValid &&
-      isConfirmPasswordValid &&
-      isEmailValid &&
-      isMobileNumberValid
+      isPasswordValid
+
     ) {
       try {
         console.log("API Call: /api/auth/signup");
@@ -74,6 +71,7 @@ const Signup = ({ onRegister }) => {
         });
         setMessage("User registered successfully!");
         setIsRegistered(true);
+        onContinue();
       } catch (error) {
         console.error("Error registering user:", error);
         setMessage(
@@ -87,24 +85,27 @@ const Signup = ({ onRegister }) => {
   };
 
   return (
-    <div className="container">
+    <div className="register-container">
       {!isRegistered ? (
         <>
           <h2>Create your login details</h2>
           <form onSubmit={handleSubmit}>
-            <div className="card mx-auto">
-              <div className="card-body">
-                <h5 className="card-title">Personal Details</h5>
-                <h6 className="card-subtitle mb-2 text-body-secondary">
+            <div className="register-card mx-auto">
+              <div className="register-card-body">
+                <h5 className="register-card-title">Personal Details</h5>
+                <h6 className="register-card-subtitle mb-2 text-body-secondary">
                   Tell us about yourself
                 </h6>
                 <hr />
-                <div className="input-group mb-3">
-                  <span className="input-group-text">First and last name</span>
-                  <input
+
+                <label className="register-form-label">First and last name</label>
+
+                <div className="register-input-group mb-3">
+                <input
+
                     type="text"
-                    aria-label="First name"
-                    className="form-control"
+                    aria-label="Firstname"
+                    className="register-form-control"
                     required
                     value={name}
                     onChange={(e) => {
@@ -112,19 +113,19 @@ const Signup = ({ onRegister }) => {
                     }}
                   />
                   <input
+
                     type="text"
                     aria-label="Last name"
-                    className="form-control"
+                    className="register-form-control"
                     required
                   />
                 </div>
-                {/* Assuming DatePicker is correctly imported and used */}
                 <DatePicker />
                 <div className="mb-3">
-                  <label className="form-label">Username</label>
+                  <label className="register-form-label">Username</label>
                   <input
                     type="text"
-                    className={`form-control ${
+                    className={`register-form-control ${
                       isUsernameValid ? "is-valid" : "is-invalid"
                     }`}
                     value={username}
@@ -136,10 +137,10 @@ const Signup = ({ onRegister }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Password</label>
+                  <label className="register-form-label">Password</label>
                   <input
                     type="password"
-                    className={`form-control ${
+                    className={`register-form-control ${
                       isPasswordValid ? "is-valid" : "is-invalid"
                     }`}
                     value={password}
@@ -151,10 +152,12 @@ const Signup = ({ onRegister }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Confirm Password</label>
+                  <label className="register-form-label">
+                    Confirm Password
+                  </label>
                   <input
                     type="password"
-                    className={`form-control ${
+                    className={`register-form-control ${
                       isConfirmPasswordValid ? "is-valid" : "is-invalid"
                     }`}
                     value={confirmPassword}
@@ -163,10 +166,10 @@ const Signup = ({ onRegister }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Email</label>
+                  <label className="register-form-label">Email</label>
                   <input
                     type="email"
-                    className={`form-control ${
+                    className={`register-form-control ${
                       isEmailValid ? "is-valid" : "is-invalid"
                     }`}
                     value={email}
@@ -178,10 +181,10 @@ const Signup = ({ onRegister }) => {
                   />
                 </div>
                 <div className="mb-3">
-                  <label className="form-label">Mobile Number</label>
+                  <label className="register-form-label">Mobile Number</label>
                   <input
                     type="text"
-                    className={`form-control ${
+                    className={`register-form-control ${
                       isMobileNumberValid ? "is-valid" : "is-invalid"
                     }`}
                     value={mobileNumber}
@@ -196,7 +199,7 @@ const Signup = ({ onRegister }) => {
             </div>
             <button
               type="submit"
-              className="btn btn-primary mt-3"
+              className="register-btn btn-primary mt-3"
               disabled={
                 !isUsernameValid ||
                 !isPasswordValid ||
@@ -212,7 +215,7 @@ const Signup = ({ onRegister }) => {
         </>
       ) : (
         <>
-          <p className="success-message mt-3">{message}</p>
+          <p className="register-success-message mt-3">{message}</p>
         </>
       )}
     </div>
