@@ -1,18 +1,29 @@
-import React from "react";
-import Homeadress from "../components/Homeadress";
+import React, { useState } from "react";
+import Homeaddress from "../components/Homeaddress";
 import EmploymentForm from "../components/Employment";
 import SignUp from "../components/SignUp";
-import Document_upload from "../components/Document_upload";
+import DocumentUpload from "../components/DocumentUpload";
+import { useNavigate } from 'react-router-dom';
 
 function Registration() {
-  return (
-    <div className=" bg-black">
-      <SignUp/>
-      <EmploymentForm/>
-      <Homeadress />
-      <Document_upload/>
+  const [currentForm, setCurrentForm] = useState(0);
+  const navigate = useNavigate();
 
-          </div>
+  const handleNext = () => {
+    setCurrentForm((prevForm) => prevForm + 1);
+  };
+
+  const handleDocumentUploadSuccess = () => {
+    navigate('/login');
+  };
+
+  return (
+    <div className="bg-black">
+      {currentForm === 0 && <SignUp onContinue={handleNext} />}
+      {currentForm === 1 && <EmploymentForm onContinue={handleNext} />}
+      {currentForm === 2 && <Homeaddress onContinue={handleNext} />}
+      {currentForm === 3 && <DocumentUpload onSuccess={handleDocumentUploadSuccess} />}
+    </div>
   );
 }
 
