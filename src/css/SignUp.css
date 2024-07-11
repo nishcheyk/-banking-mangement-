@@ -1,7 +1,7 @@
 .register-container {
   width: 100%;
   min-width: 650px;
-  height: 100%;
+  min-height:100vh;
   margin: 0 auto;
   padding: 15px;
   background:linear-gradient(744deg,  #5b42f3,#af40ff 80%,  #00ddeb);
@@ -74,7 +74,6 @@ top:6px;
   color: white;
   height: 60px;
   background-color: #171717;
-
   border-radius: 6rem;
   position: relative;
   cursor: pointer;

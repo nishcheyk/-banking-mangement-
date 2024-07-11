@@ -47,25 +47,27 @@ const Signup = ({ onContinue }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("here");
+
 
     const isConfirmPasswordValid = password === confirmPassword;
     setIsConfirmPasswordValid(isConfirmPasswordValid);
 
     if (
-      isUsernameValid &&
+     
       isPasswordValid &&
       isConfirmPasswordValid &&
       isEmailValid &&
       isMobileNumberValid
     ) {
       try {
+        console.log("here");
         console.log("API Call: /api/auth/signup");
         await axios.post("http://localhost:5050/api/auth/signup", {
           name,
           password,
           email,
           mobileNumber,
+
         });
         setMessage("User registered successfully!");
         setIsRegistered(true);
@@ -177,13 +179,7 @@ const Signup = ({ onContinue }) => {
             <button
               type="submit"
               className= "submittt"
-              disabled={
-                !isUsernameValid ||
-                !isPasswordValid ||
-                !isConfirmPasswordValid ||
-                !isEmailValid ||
-                !isMobileNumberValid
-              }
+
             >
             <span className="circle1"></span>
     <span className="circle2"></span>

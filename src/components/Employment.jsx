@@ -117,7 +117,7 @@ const EmploymentForm = ({ onContinue }) => {
   };
 
   return (
-    <div className="employment-container">
+    <div className="employment-container overflow-y-hidden overflow-x-hidden h-screen w-screen">
     <div className="employment-border">
     <div className="employment-form">
       <h2>Employment details</h2>
@@ -148,7 +148,7 @@ const EmploymentForm = ({ onContinue }) => {
             selectedStatus === "Part-time employed" ||
             selectedStatus === "Self-employed") && (
             <div className="employment-salary">
-              <label>What &apos s your annual income?</label>
+              <label>What is your annual income?</label>
               {salaryRanges.map((range, index) => (
                 <div key={index}>
                   <input

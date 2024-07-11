@@ -1,23 +1,83 @@
-.dcontainer {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    max-width: 500px;
-    margin: auto;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  select {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-  }
-  .dropzone {
-    border: 2px dashed #007bff;
-    padding: 20px;
-    background: #f9f9f9;
-    cursor: pointer;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+/* Document Upload Container Styles */
+.document-border {
+  width: 100%;
+  min-width: 650px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 15px;
+  background: linear-gradient(744deg, #5b42f3, #af40ff 80%, #00ddeb);
+  padding-bottom: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+.document-container{
+  width: 650px;
+  color: black;
+  padding: 35px;
+  margin-bottom: 25px;
+  background: whitesmoke;
+  border-radius: 40px;
+  border: 7px solid black;
+}
+
+.document-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.document-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.document-dropzone {
+  width: 100%;
+  padding: 20px;
+  border: 2px dashed #ddd;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.document-dropzone-text {
+  margin: 0;
+  color: #666;
+}
+
+.document-file-info {
+  margin-bottom: 20px;
+}
+
+.document-remove-file-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #f44336;
+  color: white;
+}
+
+.document-submit-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.document-message {
+  color: red;
+  font-size: 14px;
+}
