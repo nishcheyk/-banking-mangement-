@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import DatePicker from "../components/DatePicker";
-import "../css/SignUp.css"; // Import the CSS file here
+import "../css/SignUp.css";
 
 const Signup = ({ onContinue }) => {
   const [username, setUsername] = useState("");
@@ -57,8 +57,11 @@ const Signup = ({ onContinue }) => {
     setIsConfirmPasswordValid(isConfirmPasswordValid);
 
     if (
-      isPasswordValid
-
+      isUsernameValid &&
+      isPasswordValid &&
+      isConfirmPasswordValid &&
+      isEmailValid &&
+      isMobileNumberValid
     ) {
       try {
         console.log("API Call: /api/auth/signup");
@@ -88,118 +91,109 @@ const Signup = ({ onContinue }) => {
     <div className="register-container">
       {!isRegistered ? (
         <>
-          <h2>Create your login details</h2>
           <form onSubmit={handleSubmit}>
-            <div className="register-card mx-auto">
-              <div className="register-card-body">
-                <h5 className="register-card-title">Personal Details</h5>
-                <h6 className="register-card-subtitle mb-2 text-body-secondary">
-                  Tell us about yourself
-                </h6>
-                <hr />
-
-                <label className="register-form-label">First and last name</label>
-
-                <div className="register-input-group mb-3">
+          <div className="register-border">
+            <div className="register-card-body">
+              <h5 className="register-card-title">Personal Details</h5>
+              <h6 className="register-card-subtitle mb-2 text-body-secondary">
+                Tell us about yourself
+              </h6>
+              <hr />
+              <label className="register-form-label">First and last name</label>
+              <div className="register-input-group mb-3">
                 <input
-
-                    type="text"
-                    aria-label="Firstname"
-                    className="register-form-control"
-                    required
-                    value={name}
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
-                  <input
-
-                    type="text"
-                    aria-label="Last name"
-                    className="register-form-control"
-                    required
-                  />
-                </div>
-                <DatePicker />
-                <div className="mb-3">
-                  <label className="register-form-label">Username</label>
-                  <input
-                    type="text"
-                    className={`register-form-control ${
-                      isUsernameValid ? "is-valid" : "is-invalid"
-                    }`}
-                    value={username}
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                      validateUsername(e.target.value);
-                    }}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="register-form-label">Password</label>
-                  <input
-                    type="password"
-                    className={`register-form-control ${
-                      isPasswordValid ? "is-valid" : "is-invalid"
-                    }`}
-                    value={password}
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                      validatePassword(e.target.value);
-                    }}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="register-form-label">
-                    Confirm Password
-                  </label>
-                  <input
-                    type="password"
-                    className={`register-form-control ${
-                      isConfirmPasswordValid ? "is-valid" : "is-invalid"
-                    }`}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="register-form-label">Email</label>
-                  <input
-                    type="email"
-                    className={`register-form-control ${
-                      isEmailValid ? "is-valid" : "is-invalid"
-                    }`}
-                    value={email}
-                    onChange={(e) => {
-                      setEmail(e.target.value);
-                      validateEmail(e.target.value);
-                    }}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label className="register-form-label">Mobile Number</label>
-                  <input
-                    type="text"
-                    className={`register-form-control ${
-                      isMobileNumberValid ? "is-valid" : "is-invalid"
-                    }`}
-                    value={mobileNumber}
-                    onChange={(e) => {
-                      setMobileNumber(e.target.value);
-                      validateMobileNumber(e.target.value);
-                    }}
-                    required
-                  />
-                </div>
+                  type="text"
+                  aria-label="Firstname"
+                  className="register-form-control"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  aria-label="Last name"
+                  className="register-form-control"
+                  required
+                />
+              </div>
+              <DatePicker />
+              <div className="mb-3">
+                <label className="register-form-label">Username</label>
+                <input
+                  type="text"
+                  className={`register-form-control ${
+                    isUsernameValid ? "is-valid" : "is-invalid"
+                  }`}
+                  value={username}
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                    validateUsername(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="register-form-label">Password</label>
+                <input
+                  type="password"
+                  className={`register-form-control ${
+                    isPasswordValid ? "is-valid" : "is-invalid"
+                  }`}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    validatePassword(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="register-form-label">Confirm Password</label>
+                <input
+                  type="password"
+                  className={`register-form-control ${
+                    isConfirmPasswordValid ? "is-valid" : "is-invalid"
+                  }`}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="register-form-label">Email</label>
+                <input
+                  type="email"
+                  className={`register-form-control ${
+                    isEmailValid ? "is-valid" : "is-invalid"
+                  }`}
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    validateEmail(e.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label className="register-form-label">Mobile Number</label>
+                <input
+                  type="text"
+                  className={`register-form-control ${
+                    isMobileNumberValid ? "is-valid" : "is-invalid"
+                  }`}
+                  value={mobileNumber}
+                  onChange={(e) => {
+                    setMobileNumber(e.target.value);
+                    validateMobileNumber(e.target.value);
+                  }}
+                  required
+                />
               </div>
             </div>
+
             <button
               type="submit"
-              className="register-btn btn-primary mt-3"
+              className= "submittt"
               disabled={
                 !isUsernameValid ||
                 !isPasswordValid ||
@@ -210,6 +204,7 @@ const Signup = ({ onContinue }) => {
             >
               Continue
             </button>
+            </div>
           </form>
           {message && <p className="mt-3">{message}</p>}
         </>

@@ -3,6 +3,7 @@ import axios from "axios";
 import "../css/Dashboard.css"; // Make sure to import your CSS file for styling
 import TransactionHistory from "../components/Transactionhistory";
 import { useAuth } from "../contexts/AuthContext";
+import DepositForm from "../components/DepositForm";
 
 const Dashboard = () => {
   const { email, customerId } = useAuth();
@@ -164,6 +165,10 @@ const Dashboard = () => {
               {activeButton === "transaction" && (
                 <TransactionHistory transactions={transactions} />
               )}
+              {activeButton==="deposit" &&(
+                <DepositForm/>
+              )}
+
             </div>
           </div>
         </div>

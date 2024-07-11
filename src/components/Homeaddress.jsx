@@ -26,8 +26,7 @@ const Homeaddress = ({ onContinue }) => {
     event.preventDefault();
     if (selectedCountry && formData.addressLine1 && formData.city && formData.state && formData.postalCode) {
       console.log("Form data:", { selectedCountry, ...formData });
-      alert("Form submitted successfully!");
-      onContinue(); // Call the onContinue prop when form is completed
+      onContinue(); 
     } else {
       alert("Please fill out all required fields.");
     }

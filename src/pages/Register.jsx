@@ -20,7 +20,7 @@ function Registration() {
   return (
     <div className="bg-black">
       {currentForm === 0 && <SignUp onContinue={handleNext} />}
-      {currentForm === 1 && <EmploymentForm onContinue={handleNext} />}
+      {currentForm === 0 && <EmploymentForm onContinue={handleNext} />}
       {currentForm === 2 && <Homeaddress onContinue={handleNext} />}
       {currentForm === 3 && <DocumentUpload onSuccess={handleDocumentUploadSuccess} />}
     </div>
