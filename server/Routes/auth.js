@@ -8,15 +8,14 @@ const router = express.Router();
 router.post("/signup", async (req, res) => {
   console.log("API Call: /api/auth/signup");
   try {
-    const { password, email, mobileNumber, name, address, dateOfBirth } = req.body;
-    console.log("Signup Data Received:", { email, mobileNumber, name, address, dateOfBirth });
+    const { password, email, mobileNumber, username, address, dateOfBirth } = req.body;
+    console.log("Signup Data Received:", { email, mobileNumber, username, address, dateOfBirth });
 
     const existingUser = await User.findOne({
       $or: [{ email }, { mobileNumber }],
     });
 
     if (existingUser) {
-      let message = "Username";
       if (existingUser.email === email) message += " and email";
       if (existingUser.mobileNumber === mobileNumber) message += " and mobile number";
       message += " already exists";
@@ -30,6 +29,7 @@ router.post("/signup", async (req, res) => {
 
     // Create new user
     const newUser = new User({
+      username,
       password: hashedPassword,
       email,
       mobileNumber,
@@ -41,7 +41,7 @@ router.post("/signup", async (req, res) => {
     // Create new customer with the saved user ID
     const newCustomer = new Customer({
       userId: savedUser._id,
-      name,
+      username,
       email,
       address,
       mobileNumber,
@@ -62,7 +62,6 @@ router.post("/signup", async (req, res) => {
 
     res.status(201).json({
       message: "User registered successfully",
-      user: savedUser,
       customer: savedCustomer,
       account: newAccount,
     });
