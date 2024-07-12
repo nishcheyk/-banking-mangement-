@@ -1,10 +1,11 @@
 .appContainer{
     background-color: #0D0E0E;
     max-width: 100%;
-    overflow: 'hidden'
+    overflow: 'hidden';
+
 }
 .html{
-        overflow-x: 'hidden'
+        overflow-x: 'hidden';
 }
 .card{
     color: white;

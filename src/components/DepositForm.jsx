@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/DepositForm.css";
+import "../css/DepositForm.css"; // Ensure you create this CSS file
 import { useAuth } from "../contexts/AuthContext";
 import Loader from "../components/Loader_transaction.jsx"; // Import the Loader component
 
@@ -48,15 +48,14 @@ const DepositForm = () => {
 
   return (
     <>
-      <h2 className="head_text">Deposit Money</h2>
-      <div className="loadermain">
-        {loading && <div className="loader-container"><Loader /></div>}
+      <h2 className="tr-head-text">Deposit Money</h2>
+      <div className="tr-loadermain">
+        {loading && <div className="tr-loader-container"><Loader /></div>}
       </div>
-
-        {!loading && (
-          <div className="deposit-form">
+      {!loading && (
+        <div className="tr-deposit-form">
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className="tr-form-group">
               <label htmlFor="amount">Amount:</label>
               <input
                 type="number"
@@ -66,14 +65,13 @@ const DepositForm = () => {
                 required
               />
             </div>
-            <button type="submit" className="submit-btn" disabled={loading}>
+            <button type="submit" className="tr-submit-btn" disabled={loading}>
               Submit
             </button>
           </form>
-          {message && <p className="message">{message}</p>}
-          </div>
-        )}
-
+          {message && <p className="tr-message">{message}</p>}
+        </div>
+      )}
     </>
   );
 };

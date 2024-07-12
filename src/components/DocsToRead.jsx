@@ -28,7 +28,7 @@ function DocsToRead() {
 
   return (
     <div>
-      <div className="container">
+      <div className="pdf-container">
         <div className="card-group">
           <div className="card" style={{ height: "270px" }}>
             {" "}

@@ -1,29 +1,13 @@
-body {
-  background: black;
-  /* background: linear-gradient(to bottom right, #00c6ff, #0072ff); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  color: black;
-  font-size: 1.5rem;
-  font-family: Arial, sans-serif;
-  /* width: 800px; */
-}
+.edit-container {
 
-.container {
-
-  /* background: #000000; */
   background: linear-gradient(to bottom right, #00c6ff, #0072ff);
-
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 800px;
-  /* width: 100%; */
   width: 800px;
-
+  transform: scale(0.9); /* Scale down the entire container */
+  transform-origin: center;
 }
 
 h1 {
@@ -47,12 +31,14 @@ h1 {
   font-weight: bold;
 }
 
-
-form{
-  padding: 10px;
-  /* width: 800px;
-  margin: auto; */
+.detail-value {
+  margin-left: auto;
 }
+
+form {
+  padding: 10px;
+}
+
 .form-group {
   display: flex;
   align-items: center;
@@ -64,7 +50,6 @@ form{
   color: black;
   margin-right: auto;
   font-weight: bold;
-
 }
 
 .form-group input {
@@ -76,16 +61,17 @@ form{
   font-size: 1rem;
 }
 
-.inpEditProf{
+.inpEditProf {
   color: black;
 }
 
-.form-group input:focus, .form-group input:active {
+.form-group input:focus,
+.form-group input:active {
   background-color: #0d78ec;
   color: black;
 }
 
-.submit-btn{
+.submit-btn {
   padding: 15px;
   border-radius: 10px;
   background-color: #0d78ec;

@@ -18,6 +18,7 @@
   align-items: center;
   background-color: black; /* Main background color */
   z-index: 1000; /* Ensure loader is above other elements */
+  
 }
 
 .load {

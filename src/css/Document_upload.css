@@ -11,9 +11,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
 }
 .document-container{
+  transform: scale(0.9); /* Scale down the entire container */
+  transform-origin: center;
   width: 650px;
   color: black;
   padding: 35px;

@@ -2,8 +2,11 @@
   padding: 20px;
   background-color: transparent;
   font-family: Arial, sans-serif;
-  margin: 10%;
+  margin: 5%;
+
   text-align: center;
+  transform: scale(0.9); /* Scale down the entire container */
+  transform-origin: center;
 }
 
 .hist-section {
