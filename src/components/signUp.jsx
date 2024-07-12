@@ -36,8 +36,9 @@ const Signup = ({ onContinue }) => {
 
   const validateEmail = (email) => {
     const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if(setIsOtpVerified)
-{    setIsEmailValid(emailValid);}
+    if (setIsOtpVerified) {
+      setIsEmailValid(emailValid);
+    }
   };
 
   const validateMobileNumber = (mobileNumber) => {
@@ -91,7 +92,7 @@ const Signup = ({ onContinue }) => {
     ) {
       try {
         await axios.post("http://localhost:5050/api/auth/signup", {
-          name,
+          username: name,
           password,
           email,
           mobileNumber,
@@ -230,7 +231,6 @@ const Signup = ({ onContinue }) => {
           </button>
         </div>
       </form>
-
     </div>
   );
 };

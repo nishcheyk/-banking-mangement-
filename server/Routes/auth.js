@@ -1,15 +1,22 @@
-const express = require('express');
-const bcrypt = require('bcrypt');
-const User = require('../models/User');
-const Customer = require('../models/Customer');
-const Account = require('../models/Account');
+const express = require("express");
+const bcrypt = require("bcrypt");
+const User = require("../models/User");
+const Customer = require("../models/Customer");
+const Account = require("../models/Account");
 const router = express.Router();
 // Signup Route
 router.post("/signup", async (req, res) => {
   console.log("API Call: /api/auth/signup");
   try {
-    const { password, email, mobileNumber, username, address, dateOfBirth } = req.body;
-    console.log("Signup Data Received:", { email, mobileNumber, username, address, dateOfBirth });
+    const { password, email, mobileNumber, username, address, dateOfBirth } =
+      req.body;
+    console.log("Signup Data Received:", {
+      email,
+      mobileNumber,
+      username,
+      address,
+      dateOfBirth,
+    });
 
     const existingUser = await User.findOne({
       $or: [{ email }, { mobileNumber }],
@@ -17,7 +24,8 @@ router.post("/signup", async (req, res) => {
 
     if (existingUser) {
       if (existingUser.email === email) message += " and email";
-      if (existingUser.mobileNumber === mobileNumber) message += " and mobile number";
+      if (existingUser.mobileNumber === mobileNumber)
+        message += " and mobile number";
       message += " already exists";
       console.log("Error: Existing User Found -", message);
       return res.status(400).json({ message });
@@ -88,7 +96,7 @@ router.put("/update-address", async (req, res) => {
 
     res.status(200).json({
       message: "Address updated successfully",
-      customer: updatedCustomer
+      customer: updatedCustomer,
     });
   } catch (error) {
     console.error("Error updating address:", error);
@@ -121,8 +129,10 @@ router.post("/login", async (req, res) => {
       message: "Login successful",
       userId: user._id,
       customerId: customer._id,
-      email: user.email
+      email: user.email,
+      username: user.username,
     });
+    console.log(user.username);
   } catch (error) {
     console.error("Error logging in:", error);
     res.status(500).json({ message: "Error logging in" });

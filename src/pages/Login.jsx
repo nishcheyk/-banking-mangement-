@@ -40,11 +40,12 @@ const Login = () => {
           { email, password }
         );
         if (response.status === 200) {
-          const { userId, customerId, email } = response.data;
-          login(email, customerId, userId);
+          const { userId, customerId, email ,username } = response.data;
+          login(email, customerId, userId,username);
           localStorage.setItem("userEmail", email);
           localStorage.setItem("customerId", customerId);
           localStorage.setItem("userId", userId);
+          localStorage.setItem("username",username);
           navigate("/");
         } else {
           setErrorMessage("Login failed");

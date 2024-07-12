@@ -5,19 +5,22 @@ import { useAuth } from "../contexts/AuthContext";
 
 const DepositForm = () => {
   const [amount, setAmount] = useState("");
-  const [transactionType, setTransactionType] = useState("credit");
+  const [type, setTransactionType] = useState("credit");
   const [message, setMessage] = useState("");
   const data = useAuth();
-    const customerId = data.customerId;
+  const customerId = data.customerId;
   const handleSubmit = async (event) => {
     console.log("dtat", customerId);
     event.preventDefault();
     try {
-      const response = await axios.post("/api/transactions", {
-        customerId,
-        amount: parseFloat(amount),
-        type:" credit",
-      });
+      const response = await axios.post(
+        "http://localhost:5050/api/transactions/",
+        {
+          customerId,
+          amount: parseFloat(amount),
+          type,
+        }
+      );
       setMessage(
         `Transaction successful! New balance: ${response.data.account.balance}`
       );
@@ -40,29 +43,8 @@ const DepositForm = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label>Transaction Type:</label>
-          <div className="radio-group">
-            <input
-              type="radio"
-              id="credit"
-              name="transactionType"
-              value="credit"
-              checked={transactionType === "credit"}
-              onChange={(e) => setTransactionType(e.target.value)}
-            />
-            <label htmlFor="credit">Credit</label>
-            <input
-              type="radio"
-              id="debit"
-              name="transactionType"
-              value="debit"
-              checked={transactionType === "debit"}
-              onChange={(e) => setTransactionType(e.target.value)}
-            />
-            <label htmlFor="debit">Debit</label>
-          </div>
-        </div>
+  
+
         <button type="submit" className="submit-btn">
           Submit
         </button>
