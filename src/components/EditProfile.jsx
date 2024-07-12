@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 // import '../EditProfile.css'; // Create and import your CSS file
-import './EditProfile.css';
+import "..css/EditProfile";
 
 const EditProfile = () => {
   const [userData, setUserData] = useState({
-    name: '',
-    email: '',
-    dob: '',
-    username: '',
-    mobile: '',
+    name: "",
+    email: "",
+    dob: "",
+    username: "",
+    mobile: "",
   });
-  const [newEmail, setNewEmail] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [newEmail, setNewEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
 
   useEffect(() => {
     // Fetch the current user data from the backend
-    axios.get('/api/user/profile')
-      .then(response => {
+    axios
+      .get("/api/user/profile")
+      .then((response) => {
         setUserData(response.data);
       })
-      .catch(error => {
-        console.error('There was an error fetching the user data!', error);
+      .catch((error) => {
+        console.error("There was an error fetching the user data!", error);
       });
   }, []);
 
@@ -34,15 +35,16 @@ const EditProfile = () => {
       password: newPassword,
     };
 
-    axios.put('/api/user/profile', updatedData)
-      .then(response => {
-        alert('Profile updated successfully!');
+    axios
+      .put("/api/user/profile", updatedData)
+      .then((response) => {
+        alert("Profile updated successfully!");
         setUserData({ ...userData, email: updatedData.email });
-        setNewEmail('');
-        setNewPassword('');
+        setNewEmail("");
+        setNewPassword("");
       })
-      .catch(error => {
-        console.error('There was an error updating the profile!', error);
+      .catch((error) => {
+        console.error("There was an error updating the profile!", error);
       });
   };
 
@@ -74,7 +76,8 @@ const EditProfile = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>New Email:</label>
-          <input className='inpEditPorf'
+          <input
+            className="inpEditPorf"
             type="email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
@@ -88,7 +91,9 @@ const EditProfile = () => {
             onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
-        <button className="submit-btn" type="submit">Update Profile</button>
+        <button className="submit-btn" type="submit">
+          Update Profile
+        </button>
       </form>
     </div>
   );

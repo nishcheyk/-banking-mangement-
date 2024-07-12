@@ -4,16 +4,15 @@ const User = require('../models/User');
 const Customer = require('../models/Customer');
 const Account = require('../models/Account');
 const router = express.Router();
-
 // Signup Route
 router.post("/signup", async (req, res) => {
   console.log("API Call: /api/auth/signup");
   try {
-    const { username, password, email, mobileNumber, name, address, contactNumber, dateOfBirth } = req.body;
+    const { password, email, mobileNumber, name, address, dateOfBirth } = req.body;
+    console.log("Signup Data Received:", { email, mobileNumber, name, address, dateOfBirth });
 
-    // Check if user already exists
     const existingUser = await User.findOne({
-      $or: [{ username }, { email }, { mobileNumber }],
+      $or: [{ email }, { mobileNumber }],
     });
 
     if (existingUser) {
@@ -21,22 +20,23 @@ router.post("/signup", async (req, res) => {
       if (existingUser.email === email) message += " and email";
       if (existingUser.mobileNumber === mobileNumber) message += " and mobile number";
       message += " already exists";
-      console.log("Error: ", message);
+      console.log("Error: Existing User Found -", message);
       return res.status(400).json({ message });
     }
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Password hashed successfully");
 
     // Create new user
     const newUser = new User({
-      username,
       password: hashedPassword,
       email,
       mobileNumber,
     });
 
     const savedUser = await newUser.save();
+    console.log("New User Created:", savedUser._id);
 
     // Create new customer with the saved user ID
     const newCustomer = new Customer({
@@ -49,20 +49,22 @@ router.post("/signup", async (req, res) => {
     });
 
     const savedCustomer = await newCustomer.save();
+    console.log("New Customer Created:", savedCustomer._id);
 
     // Create a new account for the customer
     const newAccount = new Account({
       customerId: savedCustomer._id,
-      balance: 0
+      balance: 0,
     });
 
     await newAccount.save();
+    console.log("New Account Created:", newAccount._id);
 
     res.status(201).json({
       message: "User registered successfully",
       user: savedUser,
       customer: savedCustomer,
-      account: newAccount
+      account: newAccount,
     });
   } catch (error) {
     console.error("Error creating user:", error);

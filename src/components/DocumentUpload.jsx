@@ -1,4 +1,3 @@
-// src/components/DocumentUpload.js
 import React, { useState } from "react";
 import axios from "axios";
 import Dropzone from "react-dropzone";
@@ -61,14 +60,16 @@ const DocumentUpload = ({ onSuccess }) => {
   };
 
   return (
-    <div className="dcontainer">
+    <div className="document-border">
+    <div className="document-container">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="document-type">Select document type:</label>
+        <label htmlFor="document-type" className="document-label">Select document type:</label>
         <select
           id="document-type"
           value={documentType}
           onChange={(e) => setDocumentType(e.target.value)}
           required
+          className="document-select"
         >
           <option value="">Select a document type</option>
           <option value="ID">ID</option>
@@ -82,9 +83,9 @@ const DocumentUpload = ({ onSuccess }) => {
           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
         >
           {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps({ className: "dropzone" })}>
+            <div {...getRootProps({ className: "document-dropzone" })}>
               <input {...getInputProps()} />
-              <p>
+              <p className="document-dropzone-text">
                 <strong>Drag and drop documents here or click to upload</strong>
               </p>
             </div>
@@ -92,17 +93,18 @@ const DocumentUpload = ({ onSuccess }) => {
         </Dropzone>
 
         {file && (
-          <div>
+          <div className="document-file-info">
             <p>{file.name}</p>
-            <button type="button" onClick={() => setFile(null)}>
+            <button type="button" onClick={() => setFile(null)} className="document-remove-file-button">
               Remove file
             </button>
           </div>
         )}
 
-        <button type="submit">Submit</button>
-        {message && <div>{message}</div>}
+        <button type="submit" className="document-submit-button">Submit</button>
+        {message && <div className="document-message">{message}</div>}
       </form>
+    </div>
     </div>
   );
 };

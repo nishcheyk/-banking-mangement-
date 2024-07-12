@@ -3,7 +3,7 @@ import Homeaddress from "../components/Homeaddress";
 import EmploymentForm from "../components/Employment";
 import SignUp from "../components/SignUp";
 import DocumentUpload from "../components/DocumentUpload";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Registration() {
   const [currentForm, setCurrentForm] = useState(0);
@@ -14,7 +14,7 @@ function Registration() {
   };
 
   const handleDocumentUploadSuccess = () => {
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -22,7 +22,9 @@ function Registration() {
       {currentForm === 0 && <SignUp onContinue={handleNext} />}
       {currentForm === 1 && <EmploymentForm onContinue={handleNext} />}
       {currentForm === 2 && <Homeaddress onContinue={handleNext} />}
-      {currentForm === 3 && <DocumentUpload onSuccess={handleDocumentUploadSuccess} />}
+      {currentForm === 3 && (
+        <DocumentUpload onSuccess={handleDocumentUploadSuccess} />
+      )}
     </div>
   );
 }

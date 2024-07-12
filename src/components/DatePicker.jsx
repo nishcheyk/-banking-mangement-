@@ -32,11 +32,11 @@ function DatePicker() {
   var isEighteenOrOlder = selectedDate && calculateAge(selectedDate) >= 18;
 
   return (
-    <div className="container">
-      <div className="row mb-3 mx-auto">
-        <label htmlFor="dateOfBirth" className="col-sm-2 col-form-label">
-          Date of Birth
-        </label>
+    <div className="date-container">
+      <div className="row mb-3">
+      <label htmlFor="dateOfBirth" style={{ width: "50%", fontWeight: "bold" }} className="col-sm-2 col-form-label">
+      Date of Birth
+      </label>
         <div className="col-sm-6">
           <input
             type="date"
@@ -44,7 +44,7 @@ function DatePicker() {
             id="dateOfBirth"
             value={
               selectedDate ? moment(selectedDate).format("YYYY-MM-DD") : ""
-            } // Format using moment.js
+            }
             onChange={(event) => handleDateChange(new Date(event.target.value))}
             required
           />
@@ -55,7 +55,7 @@ function DatePicker() {
           )}
         </div>
       </div>
-   
+
     </div>
   );
 }

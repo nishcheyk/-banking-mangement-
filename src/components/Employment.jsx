@@ -1,5 +1,6 @@
+// src/components/EmploymentForm.js
 import React, { useState } from "react";
-import "../css/Emp.css";
+import "../css/EmploymentForm.css";
 
 const EmploymentForm = ({ onContinue }) => {
   const [selectedStatus, setSelectedStatus] = useState(null);
@@ -107,7 +108,7 @@ const EmploymentForm = ({ onContinue }) => {
   const handleFinalContinueClick = () => {
     if (selectedCitizenship) {
       console.log("Form data:", { ...formData, selectedStatus, selectedSalary, selectedCitizenship });
-      alert("Form submitted successfully!");
+
       setIsFinalStep(true);
       onContinue(); // Call the onContinue prop when form is completed
     } else {
@@ -116,23 +117,25 @@ const EmploymentForm = ({ onContinue }) => {
   };
 
   return (
+    <div className="employment-container overflow-y-hidden overflow-x-hidden h-screen w-screen">
+    <div className="employment-border">
     <div className="employment-form">
       <h2>Employment details</h2>
-      <div className="buttons">
+      <div className="employment-buttons">
         {employmentStatuses.map((status) => (
           <button
             key={status}
             onClick={() => handleStatusClick(status)}
-            className={selectedStatus === status ? "active" : ""}
+            className={selectedStatus === status ? "employment-button active" : "employment-button"}
           >
             {status}
           </button>
         ))}
       </div>
       {selectedStatus && (
-        <div className="questions">
+        <div className="employment-questions">
           {questions[selectedStatus].map((question, index) => (
-            <div key={index}>
+            <div key={index} className="employment-question">
               <label>{question}</label>
               <input
                 type="text"
@@ -144,8 +147,8 @@ const EmploymentForm = ({ onContinue }) => {
           {(selectedStatus === "Full-time employed" ||
             selectedStatus === "Part-time employed" ||
             selectedStatus === "Self-employed") && (
-            <div className="Inp">
-              <label>What&apos;s your annual income?</label>
+            <div className="employment-salary">
+              <label>What is your annual income?</label>
               {salaryRanges.map((range, index) => (
                 <div key={index}>
                   <input
@@ -164,12 +167,12 @@ const EmploymentForm = ({ onContinue }) => {
         </div>
       )}
       {!showCitizenship ? (
-        <button className="submit-btn" onClick={handleContinueClick}>
+        <button className="employment-submit-btn" onClick={handleContinueClick}>
           Continue
         </button>
       ) : (
         !isFinalStep && (
-          <div className="citizenship">
+          <div className="employment-citizenship">
             <label>Citizenship/Nationality:</label>
             <div>
               <input
@@ -193,13 +196,18 @@ const EmploymentForm = ({ onContinue }) => {
               />
               <label htmlFor="citizenship-others">Others</label>
             </div>
-            <button className="submit-btn" onClick={handleFinalContinueClick}>
+            <button className="employment-submit-btn" onClick={handleFinalContinueClick}>
               Continue
             </button>
           </div>
+
         )
       )}
+      </div>
+
     </div>
+    </div>
+
   );
 };
 

@@ -18,7 +18,7 @@
     flex: 1;
   }
 
-  .pdf button {
+  .btn btn-primary {
     background-color: #007bff;
     color: white;
     border: none;
@@ -27,11 +27,11 @@
     transition: background-color 0.3s ease;
   }
 
-  .pdf button:hover {
+  .pdf btn btn-primary:hover {
     background-color: #0056b3;
   }
 
-  .pdf button:disabled {
+  .pdf btn btn-primary:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
   }
