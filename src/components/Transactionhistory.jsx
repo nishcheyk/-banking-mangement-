@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../css/TransactionHistory.css";
-
+import Loader from "../components/Loader_transaction.jsx";
 const TransactionHistory = ({ transactions }) => {
-  const [loading, setLoading] = useState(true);
+const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => setLoading(false), 2000);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -46,12 +45,13 @@ const TransactionHistory = ({ transactions }) => {
 
   return (
     <div className="transaction-history">
-      <h2 className="head_text">Transaction History</h2>
+      <h5 className="head_text">Transaction History</h5>
       {loading ? (
         <div className="loadermain">
-          <div className="loade">
-            <div className="eye"></div>
-          </div>
+
+          <Loader/>
+
+
         </div>
       ) : (
         <>

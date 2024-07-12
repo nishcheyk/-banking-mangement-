@@ -107,12 +107,14 @@
 }
 
 .dashboard-container .customer-id,
-.dashboard-container .balance,
-.dashboard-container .time {
+.dashboard-container .balance{
   margin-top: 10px;
   font-size: 16px;
 }
-
+.dashboard-container .time {
+  margin-top: 10px;
+  font-size: 26px;
+}
 .dashboard-container .balance-label {
   font-weight: bold;
 }
@@ -256,8 +258,8 @@
   content: "";
   top: -8%;
   left: 50%;
-  width: 80%;
-  height: 80%;
+  width: 50%;
+  height: 50%;
   transform: translate(-50%);
   background: #e7ecff;
   z-index: -2;

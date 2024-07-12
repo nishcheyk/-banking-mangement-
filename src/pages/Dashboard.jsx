@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 import DepositForm from "../components/DepositForm";
 import Transfer from "../components/Transfer";
 
+
 const Dashboard = () => {
   const { email, customerId, username } = useAuth();
   const [userName, setUserName] = useState(username);
@@ -103,6 +104,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       {loading ? (
         <div className="loader">
+        
           <div>
             <ul>
               {[...Array(5)].map((_, index) => (
@@ -165,11 +167,8 @@ const Dashboard = () => {
                     Deposit fund
                   </button>
                   <button
-                    className={`side_button ${
-                      activeButton === "statement" ? "active" : ""
-                    }`}
+                    className="side_button"
                     onClick={() => {
-                      handleButtonClick("statement");
                       handleDownloadStatement();
                     }}
                   >
@@ -180,7 +179,7 @@ const Dashboard = () => {
             </div>
             <div className="main-content">
               {activeButton === "transaction" && (
-                <TransactionHistory transactions={transactions} />
+              <TransactionHistory transactions={transactions} />
               )}
               {activeButton === "deposit" && <DepositForm />}
               {activeButton === "transfer" && <Transfer />}

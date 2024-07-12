@@ -1,56 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/Transfer.css"; // Ensure you create this CSS file
 import { useAuth } from "../contexts/AuthContext";
+import Loader from "../components/Loader_transaction.jsx"; // Import the Loader component
+
 const Transfer = () => {
   const [senderId, setSenderId] = useState("");
   const [receiverId, setReceiverId] = useState("");
   const [amount, setAmount] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(true); // State to manage loading
   const data = useAuth();
   const customerId = data.customerId;
 
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => setLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+
   const handleTransfer = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:5050/api/transactions/transfer", {
-        receiverId,
-        senderId:customerId,
-        amount: parseFloat(amount),
-      });
-      setMessage("Transfer successful!");
-    } catch (error) {
-      setMessage("Error processing transfer: " + error.response?.data?.message || error.message);
-    }
+    setLoading(true); // Set loading to true when starting the transfer
+
+    // Simulate delay before API call
+    setTimeout(async () => {
+      try {
+        const response = await axios.post("http://localhost:5050/api/transactions/transfer", {
+          receiverId,
+          senderId: customerId,
+          amount: parseFloat(amount),
+        });
+        setMessage("Transfer successful!");
+      } catch (error) {
+        setMessage("Error processing transfer: " + (error.response?.data?.message || error.message));
+      } finally {
+        setLoading(false); // Set loading to false after API call completes
+      }
+    }, 1500); // Simulate delay of 1500 milliseconds (1.5 seconds)
   };
 
   return (
-    <div className="transfer-container">
-      <form onSubmit={handleTransfer}>
-        <h2>Transfer Money</h2>
+    <>
+      <h2 className="head_text">Transfer Money</h2>
+      <div className="loadermain">
+        {loading && <div className="loader-container"><Loader /></div>}
+        </div>
+        {!loading && (
+          <div className="transfer-container">
+          <form onSubmit={handleTransfer}>
+            <div className="form-group">
+              <label>Receiver ID</label>
+              <input
+                type="text"
+                value={receiverId}
+                onChange={(e) => setReceiverId(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Amount</label>
+              <input
+                type="number"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" disabled={loading}>Transfer</button>
+            {message && <p>{message}</p>}
+          </form>
+          </div>
+        )}
 
-        <div className="form-group">
-          <label>Receiver ID</label>
-          <input
-            type="text"
-            value={receiverId}
-            onChange={(e) => setReceiverId(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Amount</label>
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Transfer</button>
-      </form>
-      {message && <p>{message}</p>}
-    </div>
+
+    </>
   );
 };
 
