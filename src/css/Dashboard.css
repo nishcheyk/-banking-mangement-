@@ -1,8 +1,6 @@
 /* Base styles for the entire dashboard component */
 .dashboard-container {
   max-width: 1400px;
-  margin: auto;
-  padding: auto;
   padding-left: 100px;
   padding-right: 100px;
   font-family: Arial, sans-serif;
@@ -11,6 +9,8 @@
   align-items: center;
   height: 100%;
   background-color: #0d0e0e;
+  transform: scale(0.9); 
+  transform-origin: center;
 }
 
 .dashboard-container .left-content {
@@ -95,7 +95,6 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;

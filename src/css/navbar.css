@@ -1,7 +1,8 @@
 /* Navbar Styles */
 .navbar {
-    font-size: 1.1rem;
-    padding: 1rem 1rem;
+    font-size: 1.0rem;
+   padding-left: 10px;
+   padding-right: 10px;
   }
 
   .navbar .nav-link {
@@ -19,14 +20,13 @@
     --rotate: 80deg;
     --gap: 2em;
     --icon-change-color: #15A986;
-    --height: 40px;
+    --height: 15px;
     width: 250px;
     padding-inline-end: 1em;
     background: var(--input-bg);
     color: black;
     position: relative;
     border-radius: 29px;
-
   }
 .input search{
 color: #000;
@@ -34,12 +34,12 @@ color: #000;
   .form label {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 1900px;
     height: var(--height);
   }
   .logo {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     filter: invert();
   }
   .form input {
@@ -73,24 +73,7 @@ color: #000;
     visibility: hidden;
   }
 
-  .close-btn {
-    background: none;
-    border: none;
-    right: calc(var(--padding) - var(--gap));
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #111;
-    padding: 0.1em;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    transition: 0.3s;
-    opacity: 0;
-    transform: scale(0);
-    visibility: hidden;
-  }
+
 
   .form input:focus ~ .icon {
     transform: rotate(var(--rotate)) scale(1.3);

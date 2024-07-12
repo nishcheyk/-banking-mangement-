@@ -6,6 +6,8 @@
     position: relative;
     border-radius: 108px; /* Adjusted for new size */
     transition: 0.3s ease-in-out;
+    transform: scale(0.9); /* Scale down the entire container */
+    transform-origin: center;
 }
 
 .tranload-container .tranload-left-side {

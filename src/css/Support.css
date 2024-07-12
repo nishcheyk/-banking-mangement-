@@ -17,6 +17,8 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
     border-radius: 50px;
+    transform: scale(0.8); /* Scale down the entire container */
+    transform-origin: center;
   }
 
   .tooltip-container::before {
@@ -192,7 +194,7 @@
    height: 70px;
     position: fixed;
     bottom: 30px;
-    left: 30px;
+    right: 30px;
     text-align: center;
     justify-content: center;
   }

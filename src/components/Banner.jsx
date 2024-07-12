@@ -2,8 +2,8 @@ import React from 'react';
 
 const handleScrollClick = () => {
   window.scrollBy({
-    top: 1100,
-    behavior: "smooth",
+    top: 920,
+    behavior:"smooth",
   });
 };
 
@@ -17,15 +17,19 @@ const HeroBanner = () => {
         justifyContent: 'center',
         textAlign: 'left',
         color: '#ffffff',
-        height: '500px',
+        height: '300px',
+        width:'100%',
+        margin:' 20px',
+        marginTop :'6%',
+        transform: 'scale(0.9)', /* Scale down the entire container */
+        transformOrigin: 'center'
       }}
     >
-      <div className="container">
-        <div className="row align-items-center">
-
-          <div className="col-md-6">
+      <div className="banner-container" style={{ width: '100%', maxWidth: '1200px' }}>
+        <div className="row align-items-center" style={{ width: '100%', margin: '0 auto'}}>
+          <div className="col-md-6" style={{ padding: '0 15px' }}>
             <div className="hero-content text-center">
-              <div style={{ textAlign: 'center' }}> 
+              <div style={{ textAlign: 'center' }}>
                 <h1 style={{ paddingBottom: '20px' }}>Welcome to</h1>
                 <h1 style={{ paddingBottom: '20px' }}>JS BANKING SOLUTIONS</h1>
               </div>
@@ -41,12 +45,11 @@ const HeroBanner = () => {
               </button>
             </div>
           </div>
-
-          <div className="col-md-6 text-center">
+          <div className="col-md-6 text-center" style={{ padding: '0 15px' }}>
             <img
               src="/165654-banking-pic-digital-png-image-high-quality.png"
               alt="Banking Solutions"
-              style={{ width: '120%', height: '120%', maxWidth: '140%', maxHeight: '120%', verticalAlign: 'middle' }}
+              style={{ width: '100%', height: 'auto', maxWidth: '100%', verticalAlign: 'middle' }}
             />
           </div>
         </div>

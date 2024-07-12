@@ -6,6 +6,7 @@ import App from "./App";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
+import EditProfile from "./pages/EditProfile";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -18,6 +19,7 @@ root.render(
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Registeration" element={<Register />} />
+          <Route path="/EditProfile" element={<EditProfile />} />
         </Routes>
       </Router>
     </AuthProvider>

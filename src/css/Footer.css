@@ -3,18 +3,22 @@
 .footer-container {
     margin-top: 200px;
     width: 100%;
-  }
-  .body{
-    filter: blur(10px);
+
+    background-color: black;
   }
 .footer p{
    text-align: center;
+
+}
+.text-uppercase{
+
 }
   .footer {
-    background-color: black;
+    transform: scale(0.9); /* Scale down the entire container */
+    transform-origin: center;
     color: white;
     text-align: center;
-    font-size: 1.125rem; /* text-lg */
+    font-size: 1rem; /* text-lg */
     height: 400px; /* Adjust the height as needed */
   }
 
@@ -73,5 +77,4 @@
     display: inline-block;
     width: 120px;
     text-align: left;
-
   }

@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg bg-body-tertiary "
+      className="navbar navbar-expand-lg bg-body-tertiary mb-5"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
@@ -28,7 +28,6 @@ function Navbar() {
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-
             {!isLoggedIn ? (
               <li className="nav-item mx-4">
                 <a className="nav-link active" aria-current="page" href="/">

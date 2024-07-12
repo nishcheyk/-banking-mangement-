@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
   }
 
   .pdf-header {
@@ -12,6 +13,10 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+  }
+  .pdf-container{
+    transform: scale(0.859); /* Scale down the entire container */
+    transform-origin: center;
   }
 
   .button-item {

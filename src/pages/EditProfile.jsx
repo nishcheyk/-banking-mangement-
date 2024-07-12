@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import '../EditProfile.css'; // Create and import your CSS file
-import "..css/EditProfile";
-
+import "../css/EditProfile.css";
+import EditNavbar from "../components/EditNavbar";
 const EditProfile = () => {
   const [userData, setUserData] = useState({
     name: "",
@@ -49,12 +48,15 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="container">
+    <div >
+    <EditNavbar/>
+    <div className="edit-container">
+
       <h1>Edit Profile</h1>
       <div className="detail-group">
         <label>Name:</label>
         {/* {userData.name} render it in the next div */}
-        <div className="detail-value">Sample Name</div>
+        <div className="detail-value">{userData.name}</div>
       </div>
       <div className="detail-group">
         <label>Username:</label>
@@ -77,7 +79,7 @@ const EditProfile = () => {
         <div className="form-group">
           <label>New Email:</label>
           <input
-            className="inpEditPorf"
+            className="inpEditProf"
             type="email"
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
@@ -95,6 +97,7 @@ const EditProfile = () => {
           Update Profile
         </button>
       </form>
+    </div>
     </div>
   );
 };

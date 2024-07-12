@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 import "../css/startup.css";
 
+
 function HomePage() {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
@@ -41,7 +42,6 @@ function HomePage() {
         </>
       ) : (
         <>
-
           <Banner />
           <AboutUs />
           <SomeText />

@@ -5,6 +5,7 @@
   justify-content: center;
   width: 80%;
   margin: auto;
+  transform: scale(0.9); /* Scale down the entire container */
 
 }
 
