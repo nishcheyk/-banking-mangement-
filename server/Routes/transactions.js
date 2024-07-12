@@ -30,6 +30,45 @@ router.post("/", async (req, res) => {
     res.status(400).json({ message: "Error processing transaction" });
   }
 });
+router.post("/transfer", async (req, res) => {
+  const { senderId, receiverId, amount } = req.body;
+  console.log(senderId,receiverId, amount);
+  try {
+    let senderAccount = await Account.findOne({ customerId: senderId });
+    let receiverAccount = await Account.findOne({ customerId: receiverId });
+
+    if (!senderAccount) {
+      return res.status(400).json({ message: "Sender account not found" });
+    }
+
+    if (!receiverAccount) {
+      return res.status(400).json({ message: "Receiver account not found" });
+    }
+
+    if (senderAccount.balance < amount) {
+      return res.status(400).json({ message: "Insufficient balance" });
+    }
+
+    // Debit the sender's account
+    senderAccount.balance -= amount;
+    await senderAccount.save();
+
+    // Credit the receiver's account
+    receiverAccount.balance += amount;
+    await receiverAccount.save();
+
+    // Create transaction records for both accounts
+    const senderTransaction = new Transaction({ customerId: senderId, amount, type: "debit" });
+    const receiverTransaction = new Transaction({ customerId: receiverId, amount, type: "credit" });
+
+    await senderTransaction.save();
+    await receiverTransaction.save();
+
+    res.status(201).json({ senderTransaction, receiverTransaction, senderAccount, receiverAccount });
+  } catch (error) {
+    res.status(400).json({ message: "Error processing transfer" });
+  }
+});
 
 
 

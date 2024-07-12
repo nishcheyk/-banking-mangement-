@@ -7,7 +7,7 @@ const customerSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -37,7 +37,7 @@ const customerSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-  
+
   }
 });
 

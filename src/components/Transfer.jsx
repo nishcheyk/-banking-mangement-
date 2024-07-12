@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/DepositForm.css";
+import "../css/Transfer.css"; // Ensure you create this CSS file
 import { useAuth } from "../contexts/AuthContext";
 import Loader from "../components/Loader_transaction.jsx"; // Import the Loader component
 
-const DepositForm = () => {
+const Transfer = () => {
+  const [senderId, setSenderId] = useState("");
+  const [receiverId, setReceiverId] = useState("");
   const [amount, setAmount] = useState("");
-  const [type, setTransactionType] = useState("credit");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true); // State to manage loading
   const data = useAuth();
   const customerId = data.customerId;
+
 
   useEffect(() => {
     // Simulate loading time
@@ -18,28 +20,22 @@ const DepositForm = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = async (event) => {
+
+  const handleTransfer = async (event) => {
     event.preventDefault();
-    setLoading(true); // Set loading to true when starting the deposit
+    setLoading(true); // Set loading to true when starting the transfer
 
     // Simulate delay before API call
     setTimeout(async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:5050/api/transactions/",
-          {
-            customerId,
-            amount: parseFloat(amount),
-            type,
-          }
-        );
-        setMessage(
-          `Transaction successful! New balance: ${response.data.account.balance}`
-        );
+        const response = await axios.post("http://localhost:5050/api/transactions/transfer", {
+          receiverId,
+          senderId: customerId,
+          amount: parseFloat(amount),
+        });
+        setMessage("Transfer successful!");
       } catch (error) {
-        setMessage(
-          error.response?.data?.message || "Error processing transaction"
-        );
+        setMessage("Error processing transfer: " + (error.response?.data?.message || error.message));
       } finally {
         setLoading(false); // Set loading to false after API call completes
       }
@@ -48,34 +44,40 @@ const DepositForm = () => {
 
   return (
     <>
-      <h2 className="head_text">Deposit Money</h2>
+      <h2 className="head_text">Transfer Money</h2>
       <div className="loadermain">
         {loading && <div className="loader-container"><Loader /></div>}
-      </div>
-
+        </div>
         {!loading && (
-          <div className="deposit-form">
-          <form onSubmit={handleSubmit}>
+          <div className="transfer-container">
+          <form onSubmit={handleTransfer}>
             <div className="form-group">
-              <label htmlFor="amount">Amount:</label>
+              <label>Receiver ID</label>
+              <input
+                type="text"
+                value={receiverId}
+                onChange={(e) => setReceiverId(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Amount</label>
               <input
                 type="number"
-                id="amount"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
                 required
               />
             </div>
-            <button type="submit" className="submit-btn" disabled={loading}>
-              Submit
-            </button>
+            <button type="submit" disabled={loading}>Transfer</button>
+            {message && <p>{message}</p>}
           </form>
-          {message && <p className="message">{message}</p>}
           </div>
         )}
+
 
     </>
   );
 };
 
-export default DepositForm;
+export default Transfer;
