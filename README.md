@@ -1,70 +1,130 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# JS Banking Solutions
 
-## Available Scripts
+Welcome to the JS Banking Solutions repository! This project aims to develop a comprehensive banking management application with a focus on user-friendly interfaces and secure transaction handling.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies](#technologies)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [Scripts](#scripts)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Introduction
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+JS Banking Solutions is a web application designed to provide users with a seamless banking experience. It includes functionalities such as account management, transaction processing, and secure authentication. This project leverages modern web technologies to ensure security, responsiveness, and ease of use.
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Transaction Statements:** Download account statements in PDF format.
+- **Secure Authentication:** User authentication with OTP-based password reset.
+- **Account Management:** View account summary, transaction history, and manage account settings.
 
-### `npm run build`
+## Technologies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
+- React
+- Tailwind CSS
+- Axios
+- MUI (Material UI)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT (JSON Web Tokens)
+- Bcrypt
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Other Dependencies
+- dotenv
+- multer
+- nodemailer
+- pdfkit
 
-### `npm run eject`
+### Testing
+- @testing-library/react
+- @testing-library/jest-dom
+- @testing-library/user-event
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To set up the project locally, follow these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. **Clone the repository:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   ```bash
+   git clone https://github.com/SurbhiKhosla/Bank-Management2.git
+   cd banking
+   ```
 
-## Learn More
+2. **Install dependencies:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. **Start the development server:**
 
-### Analyzing the Bundle Size
+   ```bash
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Usage
 
-### Making a Progressive Web App
+Once the server is running, you can access the application at `http://localhost:4000`. Use the application to explore various banking functionalities such as account management, transactions, and more.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Components
 
-### Advanced Configuration
+The project consists of several key components:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **Account Summary:** Displays user's account balance and recent transactions.
+- **Transaction History:** Lists all transactions with details such as amount, date, time, and status.
+- **Money Transfer:** Facilitates transferring money between accounts with loading states for better UX.
+- **Login and Signup:** Handles user authentication, including OTP verification and password reset.
+- **Dashboard:** Provides an overview of all banking features and options.
 
-### Deployment
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `start`: Starts the development server.
+- `build`: Builds the app for production.
+- `test`: Runs the test suite.
+- `eject`: Ejects the Create React App configuration.
+- `lint`: Lints JavaScript and JSX files.
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+We welcome contributions from the community. To contribute, please follow these steps:
+
+1. **Fork the repository.**
+2. **Create a new branch:**
+
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make your changes and commit them:**
+
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+
+4. **Push to the branch:**
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. **Open a pull request.**
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
