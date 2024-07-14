@@ -179,7 +179,7 @@ function MainForm({ onContinue }) {
                 </div>
               ) : null}
             </div>
-          
+
             <button className="address-manual-button" onClick={() => setShowAddressForm(true)}>
               Prefer to enter address manually
             </button>
@@ -191,7 +191,7 @@ function MainForm({ onContinue }) {
 
         <div className="address-form-group">
           <p className="address-paragraph">
-            HOW LONG HAVE YOU LIVED AT THIS ADDRESS?
+           how long have you lived at address?
           </p>
           <p className="address-paragraph">
             If less than 6 months, well also need details of your previous address.

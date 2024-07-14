@@ -49,7 +49,7 @@ function DatePicker() {
             required
           />
           {isEighteenOrOlder ? null : (
-            <div className="invalid-feedback d-block">
+            <div className="invalid-feedback d-block " style={{color:"white"}}>
               You must be 18 years or older to proceed.
             </div>
           )}

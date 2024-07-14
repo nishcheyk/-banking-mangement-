@@ -1,10 +1,10 @@
 /* src/css/EmploymentForm.css */
 .employment-form {
     width: 650px;
-    color: black;
+    color: white;
     padding: 20px;
     margin-bottom: 25px;
-    background: whitesmoke;
+    background: linear-gradient(744deg, #5b42f3, #af40ff 80%, #00ddeb);
     border-radius: 40px;
     border: 7px solid black;
   }
@@ -23,7 +23,7 @@
     margin: 0 auto;
     padding: 20px;
     padding-top: 60px;
-    background: linear-gradient(744deg, #5b42f3, #af40ff 80%, #00ddeb);
+    background: black;
     padding-bottom: 150px;
     display: flex;
     flex-direction: column;
@@ -44,7 +44,7 @@
   .employment-button {
     padding: 10px 20px;
     margin: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #52004d;
     border-radius: 5px;
     background-color: #f8f8f8;
     cursor: pointer;
@@ -52,15 +52,24 @@
     cursor: pointer;
     width: 100%;
     padding: 12.5px 30px;
-    background-color: #af40ff;
+    color: #000;
     font-weight: bold;
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
   }
 
   .employment-button.active {
-    border-color: #007bff;
-    background-color: #e7f0ff;
+      background:black;
+      color: white;
+      border: #171717;
+
+  }
+  .employment-button:hover{
+
+      background:rgb(49, 41, 41);
+      color: white;
+      border: #171717;
+
   }
 
   .employment-questions {

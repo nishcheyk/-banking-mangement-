@@ -7,7 +7,7 @@
     min-height: 100vh;
     margin: 0 auto;
     padding: 15px;
-    background: linear-gradient(744deg, #5b42f3, #af40ff 80%, #00ddeb);
+    background: black;
     padding-bottom: 150px;
     display: flex;
     flex-direction: column;
@@ -25,13 +25,16 @@
     cursor: pointer;
     overflow: hidden;
   }
-
+.address-continue-button:hover{
+  background-color: rgb(67, 59, 59);
+  color: white;
+}
   .address-container {
     width: 650px;
     color: black;
     padding: 35px;
     margin-bottom: 25px;
-    background: whitesmoke;
+    background: linear-gradient(744deg, #5b42f3, #af40ff 80%, #00ddeb);
     border-radius: 40px;
     border: 7px solid black;
   }
@@ -39,13 +42,13 @@
   .address-heading {
     text-align: left;
     font-size: 24px;
-    color: #333;
+    color: white;
   }
 
   .address-paragraph {
     text-align: left;
-    font-size: 16px;
-    color: #666;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
   }
 
   .address-form-group {
@@ -55,7 +58,7 @@
   .address-label {
     display: block;
     margin-bottom: 5px;
-    color: #333;
+    color: rgb(255, 255, 255);
   }
 
   .address-input {
@@ -67,7 +70,7 @@
   }
 
   .address-error-message {
-    color: red;
+    color: black;
     font-size: 14px;
   }
 
@@ -78,9 +81,12 @@
     justify-content: center;
     width: 54%;
     margin-top: 10px;
-    background-color: rgb(175, 64, 255);
+    background-color: black;
     cursor: pointer;
   }
+.address-manual-button:hover{
+  background-color: rgb(46, 41, 41);
+}
 
   .address-duration-buttons {
     display: flex;
@@ -100,18 +106,28 @@
     cursor: pointer;
     text-align: center;
   }
-
   .address-duration-button.address-selected {
-    background-color: #007bff;
+    background-color: black;
     color: white;
+    border: #af40ff;
+  }
+  .address-duration-button:hover {
+    background-color: black;
+    color: white;
+    border: #af40ff;
   }
 
   .address-warning {
     font-size: 14px;
-    color: red;
+    color: rgb(255, 255, 255);
   }
 
-
+.suggestion{
+  background-color: #000000;
+  opacity: 90%;
+  color:white;
+  padding: 4px;
+}
 
   .address-overlay {
     position: fixed;
@@ -129,7 +145,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: #000000;
+    color:white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -144,27 +161,31 @@
 
   .address-close-button,
   .address-submit-button {
-    padding: 20px 20px;
+    padding: 10px 10px;
     border: none;
     margin-right: 20px;
     margin-left: 20px;
     border-radius: 15px;
     cursor: pointer;
   }
+  .address-close-button:hover,
+  .address-submit-button:hover{
+    background-color: #000;
+    color: #ffffff;
+  }
 
-  .address-close-button {
+  .address-close-button,.address-submit-button {
     background-color: #ccc;
+    color: #000;
+    filter: drop-shadow(30px,10px, 40px,#4444dd);
+
   }
 
-  .address-submit-button {
-    background-color: #007bff;
-    color: white;
-  }
 
   .address-suggestions-container {
     margin-top: 10px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 14px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
