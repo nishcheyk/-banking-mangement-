@@ -71,6 +71,7 @@ const Login = () => {
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp`, {
         email: resetEmail,
+
       });
       setShowOtpInput(true);
       setErrorMessage("");
