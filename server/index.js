@@ -5,13 +5,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const auth = require("./routes/auth");
-const transaction = require("./routes/transactions");
-const customer = require("./routes/customer");
-const account = require("./routes/accounts");
-const emailOtp = require("./routes/email-otp");
-const download = require("./routes/download-statement");
-const uploadRoutes = require("./routes/uploadRoutes");
+const auth = require("../server/routes/auth");
+const transaction = require("../server/routes/transactions");
+const customer = require("../server/routes/customer");
+const account = require("../server/routes/accounts");
+const emailOtp = require("../server/routes/email-otp");
+const download = require("../server/routes/download-statement");
+const uploadRoutes = require("../server/routes/uploadRoutes");
 
 const app = express();
 const PORT = 5050;
