@@ -1,42 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../css/HomeAddress.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../css/HomeAddress.css";
 
 function MainForm({ onContinue }) {
   const [showAddressForm, setShowAddressForm] = useState(false);
-  const [savedAddress, setSavedAddress] = useState('');
-  const [addressInput, setAddressInput] = useState('');
-  const [houseName, setHouseName] = useState('');
-  const [houseNumber, setHouseNumber] = useState('');
-  const [street, setStreet] = useState('');
-  const [townCity, setTownCity] = useState('');
-  const [postcode, setPostcode] = useState('');
-  const [duration, setDuration] = useState('');
+  const [savedAddress, setSavedAddress] = useState("");
+  const [addressInput, setAddressInput] = useState("");
+  const [houseName, setHouseName] = useState("");
+  const [houseNumber, setHouseNumber] = useState("");
+  const [street, setStreet] = useState("");
+  const [townCity, setTownCity] = useState("");
+  const [postcode, setPostcode] = useState("");
+  const [duration, setDuration] = useState("");
   const [errors, setErrors] = useState({});
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [data, setData] = useState(null);
 
   const clearError = (field) => {
-    setErrors((prevErrors) => ({ ...prevErrors, [field]: '' }));
+    setErrors((prevErrors) => ({ ...prevErrors, [field]: "" }));
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get('https://api.everythinglocation.com/address/complete', {
+      const response = await axios.get(
+        "https://api.everythinglocation.com/address/complete",
+        {
           params: {
-            lqtkey: 'HE59-YH98-MP91-ZJ44',
+            lqtkey: "HE59-YH98-MP91-ZJ44",
             query: query,
-            country: 'INDIA',
+            country: "INDIA",
           },
-        });
-        setData(response.data); // Set the fetched data into state
-      } catch (error) {
-    
-      }
+        }
+      );
+      setData(response.data); // Set the fetched data into state
     };
 
-    if (query.trim() !== '') {
+    if (query.trim() !== "") {
       fetchData();
     }
   }, [query]); // Fetch data whenever query state changes
@@ -60,27 +59,29 @@ function MainForm({ onContinue }) {
     const newErrors = {};
 
     if (!houseName || !alphaPattern.test(houseName)) {
-      newErrors.houseNameError = 'House name must be alphabetical only';
+      newErrors.houseNameError = "House name must be alphabetical only";
       isValid = false;
     }
 
     if (!houseNumber || !houseNumberPattern.test(houseNumber)) {
-      newErrors.houseNumberError = 'House number must be alphanumeric or special characters';
+      newErrors.houseNumberError =
+        "House number must be alphanumeric or special characters";
       isValid = false;
     }
 
     if (!street || !alphaNumericPattern.test(street)) {
-      newErrors.streetError = 'Street name must be alphanumeric';
+      newErrors.streetError = "Street name must be alphanumeric";
       isValid = false;
     }
 
     if (!townCity || !alphaPattern.test(townCity) || townCity.length < 3) {
-      newErrors.townCityError = 'Town or city must be alphabetical and at least 3 characters long';
+      newErrors.townCityError =
+        "Town or city must be alphabetical and at least 3 characters long";
       isValid = false;
     }
 
     if (!postcode || !numericPattern.test(postcode)) {
-      newErrors.postcodeError = 'Postcode must be exactly 6 digits';
+      newErrors.postcodeError = "Postcode must be exactly 6 digits";
       isValid = false;
     }
 
@@ -90,13 +91,13 @@ function MainForm({ onContinue }) {
       const address = `${houseName}, ${houseNumber}, ${street}, ${townCity}, ${postcode}`;
       setSavedAddress(address);
       setShowAddressForm(false);
-      setAddressInput('');
+      setAddressInput("");
       onContinue();
     }
   };
 
   const handleRemoveAddress = () => {
-    setSavedAddress('');
+    setSavedAddress("");
   };
 
   const handleEditAddress = () => {
@@ -105,7 +106,7 @@ function MainForm({ onContinue }) {
 
   const handleSelectDuration = (duration) => {
     setDuration(duration);
-    clearError('durationError');
+    clearError("durationError");
   };
 
   const handleValidateAndContinue = () => {
@@ -113,12 +114,12 @@ function MainForm({ onContinue }) {
     const newErrors = {};
 
     if (!duration) {
-      newErrors.durationError = 'Please select a duration';
+      newErrors.durationError = "Please select a duration";
       isValid = false;
     }
 
     if (!savedAddress && !addressInput) {
-      newErrors.addressError = 'Please enter or search for an address';
+      newErrors.addressError = "Please enter or search for an address";
       isValid = false;
     }
 
@@ -139,10 +140,16 @@ function MainForm({ onContinue }) {
         {savedAddress && (
           <div id="savedAddress" className="saved-address">
             <p className="address-paragraph">{savedAddress}</p>
-            <button className="address-manual-entry-link" onClick={handleRemoveAddress}>
+            <button
+              className="address-manual-entry-link"
+              onClick={handleRemoveAddress}
+            >
               Remove address
             </button>
-            <button className="address-manual-entry-link" onClick={handleEditAddress}>
+            <button
+              className="address-manual-entry-link"
+              onClick={handleEditAddress}
+            >
               Change address
             </button>
           </div>
@@ -180,7 +187,10 @@ function MainForm({ onContinue }) {
               ) : null}
             </div>
 
-            <button className="address-manual-button" onClick={() => setShowAddressForm(true)}>
+            <button
+              className="address-manual-button"
+              onClick={() => setShowAddressForm(true)}
+            >
               Prefer to enter address manually
             </button>
             <p className="address-error-message" id="addressError">
@@ -191,23 +201,26 @@ function MainForm({ onContinue }) {
 
         <div className="address-form-group">
           <p className="address-paragraph">
-           how long have you lived at address?
+            how long have you lived at address?
           </p>
           <p className="address-paragraph">
-            If less than 6 months, well also need details of your previous address.
+            If less than 6 months, well also need details of your previous
+            address.
           </p>
           <div className="address-duration-buttons">
             <button
-              className={`address-duration-button ${duration === '6 months or more' ? 'address-selected' : ''
-                }`}
-              onClick={() => handleSelectDuration('6 months or more')}
+              className={`address-duration-button ${
+                duration === "6 months or more" ? "address-selected" : ""
+              }`}
+              onClick={() => handleSelectDuration("6 months or more")}
             >
               6 months or more
             </button>
             <button
-              className={`address-duration-button ${duration === 'Less than 6 months' ? 'address-selected' : ''
-                }`}
-              onClick={() => handleSelectDuration('Less than 6 months')}
+              className={`address-duration-button ${
+                duration === "Less than 6 months" ? "address-selected" : ""
+              }`}
+              onClick={() => handleSelectDuration("Less than 6 months")}
             >
               Less than 6 months
             </button>
@@ -218,10 +231,14 @@ function MainForm({ onContinue }) {
         </div>
 
         <p className="address-warning">
-          Please check your details above. You wont be able to change them once you click continue.
+          Please check your details above. You wont be able to change them once
+          you click continue.
         </p>
 
-        <button className="address-continue-button" onClick={handleValidateAndContinue}>
+        <button
+          className="address-continue-button"
+          onClick={handleValidateAndContinue}
+        >
           Continue
         </button>
 
@@ -241,7 +258,7 @@ function MainForm({ onContinue }) {
                   value={houseName}
                   onChange={(e) => {
                     setHouseName(e.target.value);
-                    clearError('houseNameError');
+                    clearError("houseNameError");
                   }}
                 />
                 <p className="address-error-message" id="houseNameError">
@@ -259,7 +276,7 @@ function MainForm({ onContinue }) {
                   value={houseNumber}
                   onChange={(e) => {
                     setHouseNumber(e.target.value);
-                    clearError('houseNumberError');
+                    clearError("houseNumberError");
                   }}
                 />
                 <p className="address-error-message" id="houseNumberError">
@@ -277,7 +294,7 @@ function MainForm({ onContinue }) {
                   value={street}
                   onChange={(e) => {
                     setStreet(e.target.value);
-                    clearError('streetError');
+                    clearError("streetError");
                   }}
                 />
                 <p className="address-error-message" id="streetError">
@@ -295,7 +312,7 @@ function MainForm({ onContinue }) {
                   value={townCity}
                   onChange={(e) => {
                     setTownCity(e.target.value);
-                    clearError('townCityError');
+                    clearError("townCityError");
                   }}
                 />
                 <p className="address-error-message" id="townCityError">
@@ -313,7 +330,7 @@ function MainForm({ onContinue }) {
                   value={postcode}
                   onChange={(e) => {
                     setPostcode(e.target.value);
-                    clearError('postcodeError');
+                    clearError("postcodeError");
                   }}
                 />
                 <p className="address-error-message" id="postcodeError">
@@ -321,10 +338,16 @@ function MainForm({ onContinue }) {
                 </p>
               </div>
               <div className="address-button-group">
-                <button className="address-close-button" onClick={() => setShowAddressForm(false)}>
+                <button
+                  className="address-close-button"
+                  onClick={() => setShowAddressForm(false)}
+                >
                   Close
                 </button>
-                <button className="address-submit-button" onClick={handleSaveAddress}>
+                <button
+                  className="address-submit-button"
+                  onClick={handleSaveAddress}
+                >
                   Save Address
                 </button>
               </div>

@@ -6,7 +6,6 @@ import { useAuth } from "../contexts/AuthContext";
 import DepositForm from "../components/DepositForm";
 import Transfer from "../components/Transfer";
 
-
 const Dashboard = () => {
   const { email, customerId, username } = useAuth();
   const [userName] = useState(username);
@@ -36,18 +35,8 @@ const Dashboard = () => {
         );
         setTransactions(transactionResponse.data);
         setLoading(false);
-
       } catch (error) {
         setLoading(false);
-        if (error.response) {
-
-
-        } else if (error.request) {
-
-        } else {
-
-        }
-
       }
     };
 
@@ -57,14 +46,10 @@ const Dashboard = () => {
   // Add useEffect for periodically updating the balance
   useEffect(() => {
     const intervalId = setInterval(async () => {
-      try {
-        const balanceResponse = await axios.get(
-          `http://localhost:5050/api/accounts/${customerId}`
-        );
-        setBalance(balanceResponse.data.balance);
-      } catch (error) {
-
-      }
+      const balanceResponse = await axios.get(
+        `http://localhost:5050/api/accounts/${customerId}`
+      );
+      setBalance(balanceResponse.data.balance);
     }, 10000); // Update every 10 seconds
 
     return () => clearInterval(intervalId);
@@ -91,7 +76,6 @@ const Dashboard = () => {
       );
       alert(response.data.message);
     } catch (error) {
-      
       alert("Failed to download statement.");
     }
   };
@@ -104,7 +88,6 @@ const Dashboard = () => {
     <div className="dashboard-container">
       {loading ? (
         <div className="loader">
-
           <div>
             <ul>
               {[...Array(5)].map((_, index) => (
@@ -179,7 +162,7 @@ const Dashboard = () => {
             </div>
             <div className="main-content">
               {activeButton === "transaction" && (
-              <TransactionHistory transactions={transactions} />
+                <TransactionHistory transactions={transactions} />
               )}
               {activeButton === "deposit" && <DepositForm />}
               {activeButton === "transfer" && <Transfer />}
