@@ -107,8 +107,6 @@ const EmploymentForm = ({ onContinue }) => {
 
   const handleFinalContinueClick = () => {
     if (selectedCitizenship) {
-      console.log("Form data:", { ...formData, selectedStatus, selectedSalary, selectedCitizenship });
-
       setIsFinalStep(true);
       onContinue(); // Call the onContinue prop when form is completed
     } else {

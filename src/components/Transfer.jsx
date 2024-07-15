@@ -25,7 +25,7 @@ const Transfer = () => {
     // Simulate delay before API call
     setTimeout(async () => {
       try {
-        const response = await axios.post("http://localhost:5050/api/transactions/transfer", {
+         await axios.post("http://localhost:5050/api/transactions/transfer", {
           receiverId,
           senderId: customerId,
           amount: parseFloat(amount),

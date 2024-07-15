@@ -15,7 +15,7 @@ const Login = () => {
   const [resetEmail, setResetEmail] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
-  const [otp, setOtp] = useState("");
+  const [ setOtp] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
 
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post(
+       await axios.post(
         "http://localhost:5050/api/emailOtp/send-otp",
         { email: resetEmail }
       );
@@ -91,7 +91,7 @@ const Login = () => {
 
   const verifyOtp = async (otp) => {
     try {
-      const response = await axios.post(
+       await axios.post(
         "http://localhost:5050/api/emailOtp/verify-otp",
         {
           email: resetEmail,

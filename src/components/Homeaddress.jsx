@@ -32,7 +32,7 @@ function MainForm({ onContinue }) {
         });
         setData(response.data); // Set the fetched data into state
       } catch (error) {
-        console.error('Error fetching data:', error);
+    
       }
     };
 

@@ -21,7 +21,7 @@ const EditProfile = () => {
         setUserData(response.data);
       })
       .catch((error) => {
-        console.error("There was an error fetching the user data!", error);
+
       });
   }, []);
 
@@ -36,14 +36,14 @@ const EditProfile = () => {
 
     axios
       .put("/api/user/profile", updatedData)
-      .then((response) => {
+      .then(() => {
         alert("Profile updated successfully!");
         setUserData({ ...userData, email: updatedData.email });
         setNewEmail("");
         setNewPassword("");
       })
       .catch((error) => {
-        console.error("There was an error updating the profile!", error);
+
       });
   };
 

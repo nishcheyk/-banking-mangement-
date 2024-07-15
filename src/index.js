@@ -2,7 +2,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-import App from "./App";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";

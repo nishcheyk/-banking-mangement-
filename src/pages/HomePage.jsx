@@ -10,14 +10,12 @@ import Loader from "../components/Loader";
 import History from "../components/History";
 import Support from "../components/Support";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 import "../css/startup.css";
 
-
 function HomePage() {
   const { isLoggedIn } = useAuth();
-  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

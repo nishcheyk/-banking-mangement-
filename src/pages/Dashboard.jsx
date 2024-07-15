@@ -9,7 +9,7 @@ import Transfer from "../components/Transfer";
 
 const Dashboard = () => {
   const { email, customerId, username } = useAuth();
-  const [userName, setUserName] = useState(username);
+  const [userName] = useState(username);
   const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -36,18 +36,18 @@ const Dashboard = () => {
         );
         setTransactions(transactionResponse.data);
         setLoading(false);
-        console.log("Transactions:", transactionResponse.data);
+
       } catch (error) {
         setLoading(false);
         if (error.response) {
-          console.error("Error response:", error.response.data);
-          console.error("Status code:", error.response.status);
+
+
         } else if (error.request) {
-          console.error("No response received:", error.request);
+
         } else {
-          console.error("Error setting up the request:", error.message);
+
         }
-        console.error("Error fetching data:", error);
+
       }
     };
 
@@ -63,7 +63,7 @@ const Dashboard = () => {
         );
         setBalance(balanceResponse.data.balance);
       } catch (error) {
-        console.error("Error updating balance:", error);
+
       }
     }, 10000); // Update every 10 seconds
 
@@ -91,7 +91,7 @@ const Dashboard = () => {
       );
       alert(response.data.message);
     } catch (error) {
-      console.error("Error downloading statement:", error);
+      
       alert("Failed to download statement.");
     }
   };
@@ -104,7 +104,7 @@ const Dashboard = () => {
     <div className="dashboard-container">
       {loading ? (
         <div className="loader">
-        
+
           <div>
             <ul>
               {[...Array(5)].map((_, index) => (

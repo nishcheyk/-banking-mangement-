@@ -6,7 +6,7 @@ import Loader from "../components/Loader_transaction.jsx"; // Import the Loader 
 
 const DepositForm = () => {
   const [amount, setAmount] = useState("");
-  const [type, setTransactionType] = useState("credit");
+  const [type] = useState("credit");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true); // State to manage loading
   const data = useAuth();

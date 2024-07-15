@@ -55,7 +55,6 @@ const Signup = ({ onContinue }) => {
         setMessage("OTP sent to your email.");
         setIsOtpSent(true);
       } catch (error) {
-        console.error("Error sending OTP:", error);
         setMessage("Error  email already exist ");
       }
     } else {
@@ -72,7 +71,7 @@ const Signup = ({ onContinue }) => {
       setIsOtpVerified(true);
       setMessage("OTP verified successfully.");
     } catch (error) {
-      console.error("Error verifying OTP:", error);
+
       setMessage("Invalid OTP.");
     }
   };
@@ -100,7 +99,7 @@ const Signup = ({ onContinue }) => {
         setMessage("User registered successfully!");
         onContinue();
       } catch (error) {
-        console.error("Error registering user:", error);
+      
         setMessage(
           "Error registering user: " +
             (error.response?.data?.message || error.message)

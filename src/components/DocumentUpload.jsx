@@ -45,7 +45,7 @@ const DocumentUpload = ({ onSuccess }) => {
     formData.append("documentType", documentType);
 
     try {
-      const res = await axios.post("http://localhost:5000/upload", formData, {
+      await axios.post("http://localhost:5000/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
