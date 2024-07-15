@@ -1,4 +1,3 @@
-// server.js or app.js
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -13,9 +12,11 @@ const account = require("./Routes/Accounts");
 const emailOtp = require("./Routes/EmailOtp");
 const download = require("./Routes/DownloadStatement");
 const uploadRoutes = require("./Routes/UploadRoutes");
+require("dotenv").config(); // Load environment variables from .env file
 
 const app = express();
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
+ // Use environment variable for port or default to 5050
 
 // Middleware
 app.use(bodyParser.json());
@@ -23,10 +24,14 @@ app.use(cors());
 app.use(express.static("uploads"));
 
 // MongoDB Connection
+const MONGODB_URI = process.env.MONGODB_URI;
 mongoose
-  .connect("mongodb://localhost:27017/Bank-Management", {})
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -110,13 +115,13 @@ app.get("/documents", async (req, res) => {
 });
 
 // Routes
-app.use("/api/auth", auth);
-app.use("/api/customers", customer);
-app.use("/api/transactions", transaction);
-app.use("/api/accounts", account);
-app.use("/api/emailOtp", emailOtp);
+app.use("/auth", auth);
+app.use("/customers", customer);
+app.use("/transactions", transaction);
+app.use("/accounts", account);
+app.use("/emailOtp", emailOtp);
 app.use("/api", download);
-app.use("/api/uploads", uploadRoutes);
+app.use("/uploads", uploadRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is working!");

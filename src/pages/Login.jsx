@@ -1,3 +1,4 @@
+// Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +16,8 @@ const Login = () => {
   const [resetEmail, setResetEmail] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
-  const [ setOtp] = useState("");
+  const [otp, setOtp] = useState("");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
-
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -36,16 +36,16 @@ const Login = () => {
     if (isEmailValid && isPasswordValid) {
       try {
         const response = await axios.post(
-          "http://localhost:5050/api/auth/login",
+          `${process.env.REACT_APP_API_URL}/auth/login`,
           { email, password }
         );
         if (response.status === 200) {
-          const { userId, customerId, email ,username } = response.data;
-          login(email, customerId, userId,username);
+          const { userId, customerId, username } = response.data;
+          login(email, customerId, userId, username);
           localStorage.setItem("userEmail", email);
           localStorage.setItem("customerId", customerId);
           localStorage.setItem("userId", userId);
-          localStorage.setItem("username",username);
+          localStorage.setItem("username", username);
           navigate("/");
         } else {
           setErrorMessage("Login failed");
@@ -69,10 +69,9 @@ const Login = () => {
     event.preventDefault();
 
     try {
-       await axios.post(
-        "http://localhost:5050/api/emailOtp/send-otp",
-        { email: resetEmail }
-      );
+      await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp`, {
+        email: resetEmail,
+      });
       setShowOtpInput(true);
       setErrorMessage("");
     } catch (error) {
@@ -91,13 +90,10 @@ const Login = () => {
 
   const verifyOtp = async (otp) => {
     try {
-       await axios.post(
-        "http://localhost:5050/api/emailOtp/verify-otp",
-        {
-          email: resetEmail,
-          otp,
-        }
-      );
+      await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/verify-otp`, {
+        email: resetEmail,
+        otp,
+      });
       setIsOtpVerified(true);
       setErrorMessage("");
     } catch (error) {
@@ -113,14 +109,17 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      await axios.post("http://localhost:5050/api/emailOtp/reset-password", {
-        email: resetEmail,
-        newPassword,
-      });
+      await axios.post(
+        `${process.env.REACT_APP_API_URL}/emailOtp/reset-password`,
+        {
+          email: resetEmail,
+          newPassword,
+        }
+      );
 
       setIsOtpVerified(false);
       setErrorMessage("");
-      login();
+      login(); // Adjust this according to your login method in useAuth
       navigate("/");
     } catch (error) {
       setErrorMessage(
@@ -234,7 +233,7 @@ const Login = () => {
                     placeholder="New Password"
                   />
                 </div>
-                <button type="submit">Reset Password</button>
+                <button type="submit">Submit</button>
               </form>
             </div>
           )}

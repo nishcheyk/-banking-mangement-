@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "../css/TransactionHistory.css";
 import Loader from "../components/Loader_transaction.jsx";
+
 const TransactionHistory = ({ transactions }) => {
-const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
@@ -19,26 +20,26 @@ const [loading, setLoading] = useState(true);
 
   const formatDate = (dateString) => {
     const options = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
   const formatTime = (dateString) => {
     const options = {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
     };
     return new Date(dateString).toLocaleTimeString(undefined, options);
   };
 
   const formatAmount = (amount) => {
-    return Math.abs(amount).toLocaleString('en-IN', {
-      style: 'currency',
-      currency: 'INR',
+    return Math.abs(amount).toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
       minimumFractionDigits: 2,
     });
   };
@@ -48,10 +49,7 @@ const [loading, setLoading] = useState(true);
       <h5 className="head_text">Transaction History</h5>
       {loading ? (
         <div className="loadermain">
-
-          <Loader/>
-
-
+          <Loader />
         </div>
       ) : (
         <>
@@ -63,17 +61,19 @@ const [loading, setLoading] = useState(true);
             <span className="status">Status</span>
           </div>
           <ul>
-            {transactions.map((transaction, index) => (
-              <li key={transaction.id}>
-                <span className="serial-number">{index + 1}</span>
-                <span className={getAmountClass(transaction.amount, transaction.type)}>
-                  {formatAmount(transaction.amount)}
-                </span>
-                <span className="date">{formatDate(transaction.updatedAt)}</span>
-                <span className="time-tran">{formatTime(transaction.updatedAt)}</span>
-                <span className={getStatusClass(transaction.type)}>{transaction.type}</span>
-              </li>
-            ))}
+            {transactions
+              .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+              .map((transaction, index) => (
+                <li key={transaction.id}>
+                  <span className="serial-number">{index + 1}</span>
+                  <span className={getAmountClass(transaction.amount, transaction.type)}>
+                    {formatAmount(transaction.amount)}
+                  </span>
+                  <span className="date">{formatDate(transaction.updatedAt)}</span>
+                  <span className="time-tran">{formatTime(transaction.updatedAt)}</span>
+                  <span className={getStatusClass(transaction.type)}>{transaction.type}</span>
+                </li>
+              ))}
           </ul>
         </>
       )}

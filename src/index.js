@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
 
+require('dotenv').config();
 const container = document.getElementById("root");
 const root = createRoot(container);
 

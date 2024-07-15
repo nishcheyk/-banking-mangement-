@@ -8,42 +8,31 @@ const DepositForm = () => {
   const [amount, setAmount] = useState("");
   const [type] = useState("credit");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(true); // State to manage loading
-  const data = useAuth();
-  const customerId = data.customerId;
+  const [loading, setLoading] = useState(false); // Initialize loading state to false
+  const { customerId } = useAuth(); // Assuming useAuth returns an object with customerId
 
-  useEffect(() => {
-    // Simulate loading time
-    const timer = setTimeout(() => setLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true); // Set loading to true when starting the deposit
 
-    // Simulate delay before API call
-    setTimeout(async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:5050/api/transactions/",
-          {
-            customerId,
-            amount: parseFloat(amount),
-            type,
-          }
-        );
-        setMessage(
-          `Transaction successful! New balance: ${response.data.account.balance}`
-        );
-      } catch (error) {
-        setMessage(
-          error.response?.data?.message || "Error processing transaction"
-        );
-      } finally {
-        setLoading(false); // Set loading to false after API call completes
-      }
-    }, 1500); // Simulate delay of 1500 milliseconds (1.5 seconds)
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/transactions`, {
+        customerId,
+        amount: parseFloat(amount),
+        type,
+      });
+      setMessage(
+        `Transaction successful! New balance: ${response.data.account.balance}`
+      );
+    } catch (error) {
+      setMessage(
+        error.response?.data?.message || "Error processing transaction"
+      );
+    } finally {
+      setLoading(false); // Set loading to false after API call completes
+    }
   };
 
   return (

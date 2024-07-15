@@ -45,7 +45,7 @@ const DocumentUpload = ({ onSuccess }) => {
     formData.append("documentType", documentType);
 
     try {
-      await axios.post("http://localhost:5050/upload", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

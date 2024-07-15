@@ -15,8 +15,10 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
+    "buffer": "^6.0.3",
     "chart.js": "^4.4.3",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
@@ -30,10 +32,13 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
+    "os": "^0.1.2",
     "otp-generator": "^4.0.1",
     "path": "^0.12.7",
     "pdfkit": "^0.15.0",
+    "process": "^0.11.10",
     "react": "^18.3.1",
+    "react-app-rewired": "^2.2.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.2.3",
@@ -43,17 +48,19 @@
     "react-toastify": "^10.0.5",
     "regex": "^2.0.0",
     "regex-parser": "^2.3.0",
+    "stream-browserify": "^3.0.0",
     "styled-components": "^6.1.11",
     "tailwindcss": "^3.4.4",
     "web-vitals": "^2.1.4"
-
+  },
+  "browser": {
+    "crypto": false
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx}'"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -75,6 +82,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "nodemon": "^3.1.4"
+    "crypto-browserify": "^3.12.0",
+    "nodemon": "^3.1.4",
+    "os-browserify": "^0.3.0"
   }
 }
