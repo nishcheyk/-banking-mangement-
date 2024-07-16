@@ -9,7 +9,7 @@ import Dashboard from "./Dashboard";
 import Loader from "../components/Loader";
 import History from "../components/History";
 import Support from "../components/Support";
-import  useAuth  from "../contexts/AuthContext";
+import  {useAuth } from "../contexts/AuthContext";
 
 import "../css/startup.css";
 
