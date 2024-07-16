@@ -106,7 +106,7 @@
 }
 
 .dashboard-container .customer-id,
-.dashboard-container .balance{
+.dashboard-container .balance {
   margin-top: 10px;
   font-size: 16px;
 }
@@ -148,7 +148,6 @@
   flex-direction: column;
   width: 100%;
 }
-
 
 .dashboard-container .side_menu {
   display: flex;
@@ -233,7 +232,14 @@
   color: #ffffff;
   background-color: #010101;
   overflow: hidden;
-  background: linear-gradient(744deg, #5b42f3 30%, #c4a6da, #c4a6da, #00ddeb, #ba85df);
+  background: linear-gradient(
+    744deg,
+    #5b42f3 30%,
+    #c4a6da,
+    #c4a6da,
+    #00ddeb,
+    #ba85df
+  );
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -305,13 +311,12 @@
 }
 
 .dashboard-container .loader {
- margin-top: 140px;
+  margin-top: 140px;
   width: 200px;
   height: 190px;
-  position: absolute;
+  position: relative;
   margin: 0 auto;
 }
-
 
 .dashboard-container .loader:after {
   animation-delay: 1s;
@@ -326,15 +331,13 @@
   }
 }
 
-
-
 /* Loader animation */
 .loader {
+  margin: 0 auto;
   margin-top: 140px;
   width: 200px;
   height: 190px;
-  position: absolute;
-  margin: 0 auto;
+  position: relative;
 }
 
 .loader:before,
@@ -501,5 +504,3 @@
     transform: rotateY(0deg);
   }
 }
-
-
