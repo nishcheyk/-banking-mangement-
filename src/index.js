@@ -1,30 +1,39 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
+import reportWebVitals from './reportWebVitals';
+import dotenv from 'dotenv';
+
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
-import dotenv from 'dotenv';
 
 dotenv.config();
+
+const App = () => {
+  const { isLoggedIn } = useAuth();
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={isLoggedIn ? <HomePage /> : <Navigate to="/login" />} />
+        <Route path="/login" element={!isLoggedIn ? <Login /> : <Navigate to="/" />} />
+        <Route path="/register" element={!isLoggedIn ? <Register /> : <Navigate to="/" />} />
+        <Route path="/editProfile" element={isLoggedIn ? <EditProfile /> : <Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/editProfile" element={<EditProfile />} />
-        </Routes>
-      </BrowserRouter>
+      <App />
     </AuthProvider>
   </React.StrictMode>
 );
