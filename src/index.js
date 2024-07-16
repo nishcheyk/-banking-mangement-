@@ -14,8 +14,6 @@ import EditProfile from "./pages/EditProfile";
 dotenv.config();
 
 const App = () => {
-  const { isLoggedIn } = useAuth();
-
   return (
     <BrowserRouter>
       <Routes>
