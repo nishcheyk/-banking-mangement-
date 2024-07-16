@@ -10,7 +10,6 @@ import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
 require("dotenv").config();
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 root.render(
   <BrowserRouter>
     <AuthProvider>
