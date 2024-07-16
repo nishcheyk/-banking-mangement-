@@ -189,6 +189,7 @@ const Signup = ({ onContinue }) => {
                 }}
                 required
               />
+              <p style={{ color: "white",fontSize:14  }}>Must be 10 digits</p>
             </div>
             <div className="mb-1">
               <label className="register-form-label">Password</label>
@@ -204,16 +205,21 @@ const Signup = ({ onContinue }) => {
                 }}
                 required
               />
-              <ul>
-                <li>Must be between 8 and 20 characters in length.</li>
-                <li>Must contain at least one number or special character. </li>
-                <li>Must contain at least one uppercase letter.</li>
-                <li>
-                  Must not contain any sequence of three or more repeating
-                  characters (e.g., aaa) or any sequential numbers (e.g.,
-                  123, 234).
-                </li>
-              </ul>
+
+              <p style={{ color: "white",fontSize:14 }}>
+                Must be between 8 and 20 characters in length.
+              </p>
+              <p style={{ color: "white",fontSize:14  }}>
+                Must contain at least one number or special character.{" "}
+              </p>
+              <p style={{ color: "white",fontSize:14  }}>
+                Must contain at least one uppercase letter.
+              </p>
+              <p style={{ color: "white",fontSize:14  }}>
+                Must not contain any sequence of three or more repeating
+                characters (e.g., aaa) or any sequential numbers (e.g., 123,
+                234).
+              </p>
             </div>
             <div className="mb-1">
               <label className="register-form-label">Confirm Password</label>
