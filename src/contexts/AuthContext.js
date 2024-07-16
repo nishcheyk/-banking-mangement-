@@ -1,6 +1,4 @@
-// AuthContext.js
-import React, { createContext, useState, useContext } from 'react';
-
+import React, { createContext, useState, useContext } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -25,9 +23,11 @@ export const AuthProvider = ({ children }) => {
     setUserId(null);
     setUsername(null);
   };
- 
+
   return (
-    <AuthContext.Provider value={{ isLoggedIn, email, customerId, userId, username, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, email, customerId, userId, username, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
