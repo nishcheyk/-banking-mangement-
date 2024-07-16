@@ -1,29 +1,33 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter,Route,Routes,Router } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Changed import to BrowserRouter
 import { AuthProvider } from "./contexts/AuthContext";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import Register from "./pages/Register";
 import EditProfile from "./pages/EditProfile";
-require('dotenv').config();
+import dotenv from 'dotenv'; // Changed require to import
+
+dotenv.config(); // Load environment variables
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-
+  <React.StrictMode>
     <AuthProvider>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/Registeration" element={<Register />} />
-          <Route path="/EditProfile" element={<EditProfile />} />
+          <Route path="/register" element={<Register />} /> {/* Corrected path name */}
+          <Route path="/editProfile" element={<EditProfile />} /> {/* Corrected path name */}
         </Routes>
-      </Router>
+      </BrowserRouter>
     </AuthProvider>
-
+  </React.StrictMode>
 );
+
 reportWebVitals();
+

@@ -22,7 +22,7 @@ function DocsToRead() {
     if (!allPDFsOpened) {
       toast.error("Please open all PDFs before registering!");
     } else {
-      navigate("/Registeration");
+      navigate("/register");
     }
   };
 
