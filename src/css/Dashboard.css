@@ -106,7 +106,7 @@
 }
 
 .dashboard-container .customer-id,
-.dashboard-container .balance {
+.dashboard-container .balance{
   margin-top: 10px;
   font-size: 16px;
 }
@@ -148,6 +148,7 @@
   flex-direction: column;
   width: 100%;
 }
+
 
 .dashboard-container .side_menu {
   display: flex;
@@ -232,14 +233,7 @@
   color: #ffffff;
   background-color: #010101;
   overflow: hidden;
-  background: linear-gradient(
-    744deg,
-    #5b42f3 30%,
-    #c4a6da,
-    #c4a6da,
-    #00ddeb,
-    #ba85df
-  );
+  background: linear-gradient(744deg, #5b42f3 30%, #c4a6da, #c4a6da, #00ddeb, #ba85df);
   transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
@@ -311,13 +305,12 @@
 }
 
 .dashboard-container .loader {
-  width: 400px;
-  height: 240px;
+  top: 50;
+  left:50;
+  width: 200px;
+  height: 140px;
   position: relative;
   margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }
 
 .dashboard-container .loader:before,
@@ -328,7 +321,7 @@
   left: calc(50% - 30px);
   height: 60px;
   width: 60px;
-  border-radius: 4%;
+  border-radius: 50%;
   border: 6px solid #fff;
   animation: loader 2s ease-in-out infinite;
   transform-origin: center center;
@@ -346,6 +339,8 @@
     transform: translate(60px);
   }
 }
+
+
 
 /* Loader animation */
 .loader {
@@ -519,3 +514,5 @@
     transform: rotateY(0deg);
   }
 }
+
+
