@@ -79,8 +79,9 @@ const Dashboard = () => {
   return (
     <div className="dashboard-container">
       {loading ? (
+        <div className='l'>
         <div className="loader">
-          <div>
+
             <ul>
               {[...Array(5)].map((_, index) => (
                 <li key={index}>

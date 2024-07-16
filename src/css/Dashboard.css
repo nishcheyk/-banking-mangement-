@@ -339,7 +339,9 @@
   height: 190px;
   position: relative;
 }
-
+.l{
+  margin-top: 10%;
+}
 .loader:before,
 .loader:after {
   content: "";
