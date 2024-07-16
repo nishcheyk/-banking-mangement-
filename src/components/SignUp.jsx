@@ -47,9 +47,12 @@ const Signup = ({ onContinue }) => {
   const handleSendOtp = async () => {
     if (isEmailValid) {
       try {
-        await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp-signup`, {
-          email,
-        });
+        await axios.post(
+          `${process.env.REACT_APP_API_URL}/emailOtp/send-otp-signup`,
+          {
+            email,
+          }
+        );
         setMessage("OTP sent to your email.");
         setIsOtpSent(true);
       } catch (error) {
@@ -201,6 +204,16 @@ const Signup = ({ onContinue }) => {
                 }}
                 required
               />
+              <ul>
+                <li>Must be between 8 and 20 characters in length.</li>
+                <li>Must contain at least one number or special character. </li>
+                <li>Must contain at least one uppercase letter.</li>
+                <li>
+                  Must not contain any sequence of three or more repeating
+                  characters (e.g., "aaa") or any sequential numbers (e.g.,
+                  "123", "234").
+                </li>
+              </ul>
             </div>
             <div className="mb-1">
               <label className="register-form-label">Confirm Password</label>
