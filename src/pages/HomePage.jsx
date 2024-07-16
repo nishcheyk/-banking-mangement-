@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Banner from "../components/Banner";
-import AboutUs from "../components/AboutUsCard";
-import SomeText from "../components/SomeText";
-import DocsToRead from "../components/DocsToRead";
-import Footer from "../components/Footer";
-import Dashboard from "./Dashboard";
-import Loader from "../components/Loader";
-import History from "../components/History";
-import Support from "../components/Support";
-import  {useAuth} from "../contexts/AuthContext";
+// HomePage.js
+import React, { useState, useEffect } from 'react';
+import Navbar from '../components/Navbar';
+import Banner from '../components/Banner';
+import AboutUs from '../components/AboutUsCard';
+import SomeText from '../components/SomeText';
+import DocsToRead from '../components/DocsToRead';
+import Footer from '../components/Footer';
+import Dashboard from './Dashboard';
+import Loader from '../components/Loader';
+import History from '../components/History';
+import Support from '../components/Support';
+import { useAuth } from '../contexts/AuthContext';
 
-import "../css/startup.css";
+import '../css/startup.css';
 
 function HomePage() {
   const { isLoggedIn } = useAuth();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,10 +33,10 @@ function HomePage() {
       <Navbar />
       {isLoggedIn ? (
         <>
-        <Dashboard />
-        <Support/>
+          <Dashboard />
+          <Support />
           <br />
-          <Footer/>
+          <Footer />
         </>
       ) : (
         <>
@@ -44,10 +44,9 @@ function HomePage() {
           <AboutUs />
           <SomeText />
           <DocsToRead />
-          <History/>
-          <Support/>
-
-            <Footer/>
+          <History />
+          <Support />
+          <Footer />
         </>
       )}
     </div>

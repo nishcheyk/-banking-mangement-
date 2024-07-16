@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import "../css/DepositForm.css"; // Ensure you create this CSS file
 import { useAuth } from "../contexts/AuthContext";

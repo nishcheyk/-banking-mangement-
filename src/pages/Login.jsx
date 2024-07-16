@@ -1,4 +1,3 @@
-// Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +15,8 @@ const Login = () => {
   const [resetEmail, setResetEmail] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
-  const [otp, setOtp] = useState("1234");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
+
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -39,21 +38,17 @@ const Login = () => {
           `${process.env.REACT_APP_API_URL}/auth/login`,
           { email, password }
         );
+
         if (response.status === 200) {
           const { userId, customerId, username } = response.data;
           login(email, customerId, userId, username);
-          localStorage.setItem("userEmail", email);
-          localStorage.setItem("customerId", customerId);
-          localStorage.setItem("userId", userId);
-          localStorage.setItem("username", username);
           navigate("/");
         } else {
           setErrorMessage("Login failed");
         }
       } catch (error) {
         setErrorMessage(
-          "Error logging in: " +
-            (error.response?.data?.message || error.message)
+          "Error logging in: " + (error.response?.data?.message || error.message)
         );
       }
     } else {
@@ -72,6 +67,7 @@ const Login = () => {
       await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp`, {
         email: resetEmail,
       });
+
       setShowOtpInput(true);
       setErrorMessage("");
     } catch (error) {
@@ -81,27 +77,23 @@ const Login = () => {
     }
   };
 
-  const handleOtpChange = (otp) => {
+  const handleOtpChange = async (otp) => {
     if (otp.length === 4) {
-      verifyOtp(otp);
-    }
-    setOtp(otp);
-  };
+      try {
+        await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/verify-otp`, {
+          email: resetEmail,
+          otp,
+        });
 
-  const verifyOtp = async (otp) => {
-    try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/verify-otp`, {
-        email: resetEmail,
-        otp,
-      });
-      setIsOtpVerified(true);
-      setErrorMessage("");
-    } catch (error) {
-      setIsOtpVerified(false);
-      setErrorMessage(
-        "Error verifying OTP: " +
-          (error.response?.data?.message || error.message)
-      );
+        setIsOtpVerified(true);
+        setErrorMessage("");
+      } catch (error) {
+        setIsOtpVerified(false);
+        setErrorMessage(
+          "Error verifying OTP: " +
+            (error.response?.data?.message || error.message)
+        );
+      }
     }
   };
 
@@ -123,8 +115,7 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       setErrorMessage(
-        "Error resetting password: " +
-          (error.response?.data?.message || error.message)
+        "Error resetting password: " + (error.response?.data?.message || error.message)
       );
     }
   };
@@ -136,22 +127,10 @@ const Login = () => {
         <div className="wave"></div>
         <div className="wave"></div>
         <div className="infotop">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            className="icon"
-          ></svg>
           <div className={`loginContainer ${isOtpVerified ? "hide" : ""}`}>
             {forgotPassword ? (
               <>
-                <h2>
-                  {showOtpInput ? (
-                    <h2>Verify OTP</h2>
-                  ) : (
-                    <h2>Forgot Password</h2>
-                  )}
-                </h2>
+                <h2>{showOtpInput ? "Verify OTP" : "Forgot Password"}</h2>
                 {!showOtpInput ? (
                   <form onSubmit={handleResetPassword}>
                     <div className="group">
@@ -169,9 +148,7 @@ const Login = () => {
                     <button type="submit">Submit</button>
                   </form>
                 ) : (
-                  <>
-                    <OtpInput length={4} onOtpChange={handleOtpChange} />
-                  </>
+                  <OtpInput length={4} onOtpChange={handleOtpChange} />
                 )}
               </>
             ) : (
