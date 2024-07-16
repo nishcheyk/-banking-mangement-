@@ -1,3 +1,4 @@
+// config-overrides.js
 const webpack = require('webpack');
 
 module.exports = function override(config) {
@@ -6,6 +7,7 @@ module.exports = function override(config) {
     crypto: require.resolve('crypto-browserify'),
     buffer: require.resolve('buffer/'),
     process: require.resolve('process/browser'),
+    vm: require.resolve('vm-browserify'),
   };
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
