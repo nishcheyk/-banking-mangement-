@@ -16,7 +16,7 @@ const Login = () => {
   const [resetEmail, setResetEmail] = useState("");
   const [showOtpInput, setShowOtpInput] = useState(false);
   const [newPassword, setNewPassword] = useState("");
-  const [otp, setOtp] = useState("");
+  const [otp, setOtp] = useState("1234");
   const [isOtpVerified, setIsOtpVerified] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -71,7 +71,6 @@ const Login = () => {
     try {
       await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp`, {
         email: resetEmail,
-
       });
       setShowOtpInput(true);
       setErrorMessage("");
