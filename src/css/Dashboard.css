@@ -305,27 +305,14 @@
 }
 
 .dashboard-container .loader {
-  top: 50;
-  left:50;
+ margin-top: 140px;
   width: 200px;
   height: 140px;
   position: relative;
   margin: 0 auto;
 }
 
-.dashboard-container .loader:before,
-.dashboard-container .loader:after {
-  content: "";
-  position: absolute;
-  bottom: 10px;
-  left: calc(50% - 30px);
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  animation: loader 2s ease-in-out infinite;
-  transform-origin: center center;
-}
+
 
 .dashboard-container .loader:after {
   animation-delay: 1s;
