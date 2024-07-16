@@ -210,8 +210,8 @@ const Signup = ({ onContinue }) => {
                 <li>Must contain at least one uppercase letter.</li>
                 <li>
                   Must not contain any sequence of three or more repeating
-                  characters (e.g., "aaa") or any sequential numbers (e.g.,
-                  "123", "234").
+                  characters (e.g., aaa) or any sequential numbers (e.g.,
+                  123, 234).
                 </li>
               </ul>
             </div>
