@@ -18,11 +18,11 @@ function DocsToRead() {
 
   const allPDFsOpened = openedPDFs.size >= 3;
 
-  const handleRegister = (e) => {
+  const handleRegister = () => {
     if (!allPDFsOpened) {
       toast.error("Please open all PDFs before registering!");
     } else {
-      navigate("/Registeration");
+      navigate("/register");
     }
   };
 

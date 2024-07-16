@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/Dashboard.css"; // Make sure to import your CSS file for styling
+import "../css/Dashboard.css";
 import TransactionHistory from "../components/Transactionhistory";
 import { useAuth } from "../contexts/AuthContext";
 import DepositForm from "../components/DepositForm";
 import Transfer from "../components/Transfer";
 
-
 const Dashboard = () => {
   const { email, customerId, username } = useAuth();
-  const [userName, setUserName] = useState(username);
   const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -28,44 +26,23 @@ const Dashboard = () => {
     const fetchData = async () => {
       try {
         const balanceResponse = await axios.get(
-          `http://localhost:5050/api/accounts/${customerId}`
+          `${process.env.REACT_APP_API_URL}/accounts/${customerId}`
         );
         setBalance(balanceResponse.data.balance);
         const transactionResponse = await axios.get(
-          `http://localhost:5050/api/transactions/${customerId}`
+          `${process.env.REACT_APP_API_URL}/transactions/${customerId}`
         );
         setTransactions(transactionResponse.data);
         setLoading(false);
-        console.log("Transactions:", transactionResponse.data);
       } catch (error) {
         setLoading(false);
-        if (error.response) {
-          console.error("Error response:", error.response.data);
-          console.error("Status code:", error.response.status);
-        } else if (error.request) {
-          console.error("No response received:", error.request);
-        } else {
-          console.error("Error setting up the request:", error.message);
-        }
-        console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [customerId]);
 
-  // Add useEffect for periodically updating the balance
-  useEffect(() => {
-    const intervalId = setInterval(async () => {
-      try {
-        const balanceResponse = await axios.get(
-          `http://localhost:5050/api/accounts/${customerId}`
-        );
-        setBalance(balanceResponse.data.balance);
-      } catch (error) {
-        console.error("Error updating balance:", error);
-      }
-    }, 10000); // Update every 10 seconds
+    // Update balance and transactions every 5 seconds
+    const intervalId = setInterval(fetchData, 5000);
 
     return () => clearInterval(intervalId);
   }, [customerId]);
@@ -83,7 +60,7 @@ const Dashboard = () => {
   const handleDownloadStatement = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5050/api/download-statement",
+        `${process.env.REACT_APP_API_URL}/api/download-statement`,
         {
           customerId,
           email,
@@ -91,7 +68,6 @@ const Dashboard = () => {
       );
       alert(response.data.message);
     } catch (error) {
-      console.error("Error downloading statement:", error);
       alert("Failed to download statement.");
     }
   };
@@ -104,7 +80,6 @@ const Dashboard = () => {
     <div className="dashboard-container">
       {loading ? (
         <div className="loader">
-        
           <div>
             <ul>
               {[...Array(5)].map((_, index) => (
@@ -124,7 +99,7 @@ const Dashboard = () => {
             <div className="account-summary">
               <div className="dashboard-card">
                 <div className="content">
-                  <div className="username">Welcome {userName}</div>
+                  <div className="username">Welcome {username}</div>
                   <div className="customer-id">
                     <span className="label">Customer ID:</span> {customerId}
                   </div>
@@ -179,7 +154,7 @@ const Dashboard = () => {
             </div>
             <div className="main-content">
               {activeButton === "transaction" && (
-              <TransactionHistory transactions={transactions} />
+                <TransactionHistory transactions={transactions} />
               )}
               {activeButton === "deposit" && <DepositForm />}
               {activeButton === "transfer" && <Transfer />}

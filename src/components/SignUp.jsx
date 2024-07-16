@@ -36,9 +36,7 @@ const Signup = ({ onContinue }) => {
 
   const validateEmail = (email) => {
     const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (setIsOtpVerified) {
-      setIsEmailValid(emailValid);
-    }
+    setIsEmailValid(emailValid);
   };
 
   const validateMobileNumber = (mobileNumber) => {
@@ -49,14 +47,13 @@ const Signup = ({ onContinue }) => {
   const handleSendOtp = async () => {
     if (isEmailValid) {
       try {
-        await axios.post("http://localhost:5050/api/emailOtp/send-otp-signup", {
+        await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/send-otp-signup`, {
           email,
         });
         setMessage("OTP sent to your email.");
         setIsOtpSent(true);
       } catch (error) {
-        console.error("Error sending OTP:", error);
-        setMessage("Error  email already exist ");
+        setMessage("Error: " + error.message);
       }
     } else {
       setMessage("Please enter a valid email.");
@@ -65,14 +62,13 @@ const Signup = ({ onContinue }) => {
 
   const handleVerifyOtp = async () => {
     try {
-      await axios.post("http://localhost:5050/api/emailOtp/verify-otp", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/emailOtp/verify-otp`, {
         email,
         otp,
       });
       setIsOtpVerified(true);
       setMessage("OTP verified successfully.");
     } catch (error) {
-      console.error("Error verifying OTP:", error);
       setMessage("Invalid OTP.");
     }
   };
@@ -91,7 +87,7 @@ const Signup = ({ onContinue }) => {
       isOtpVerified
     ) {
       try {
-        await axios.post("http://localhost:5050/api/auth/signup", {
+        await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, {
           username: name,
           password,
           email,
@@ -100,7 +96,6 @@ const Signup = ({ onContinue }) => {
         setMessage("User registered successfully!");
         onContinue();
       } catch (error) {
-        console.error("Error registering user:", error);
         setMessage(
           "Error registering user: " +
             (error.response?.data?.message || error.message)

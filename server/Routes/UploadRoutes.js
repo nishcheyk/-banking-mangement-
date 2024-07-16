@@ -2,7 +2,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const Document = require('../models/Documents');
+const Document = require('../models/DocumentUpload');
 
 const router = express.Router();
 

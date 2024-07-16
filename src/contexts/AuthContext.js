@@ -1,3 +1,4 @@
+// AuthContext.js
 import React, { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
@@ -7,14 +8,14 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState(null);
   const [customerId, setCustomerId] = useState(null);
   const [userId, setUserId] = useState(null);
-  const [username,setUserName]= useState("tester");
+  const [username, setUsername] = useState(null); // Ensure username state is initialized properly
 
-  const login = (email, customerId, userId,username) => {
+  const login = (email, customerId, userId, username) => {
     setIsLoggedIn(true);
     setEmail(email);
     setCustomerId(customerId);
     setUserId(userId);
-    setUserName(username);
+    setUsername(username);
   };
 
   const logout = () => {
@@ -22,11 +23,11 @@ export const AuthProvider = ({ children }) => {
     setEmail(null);
     setCustomerId(null);
     setUserId(null);
-    setUserName("TESTER");
+    setUsername(null);
   };
-
+ 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, email, customerId, userId,username, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, email, customerId, userId, username, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

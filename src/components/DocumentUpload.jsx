@@ -45,7 +45,7 @@ const DocumentUpload = ({ onSuccess }) => {
     formData.append("documentType", documentType);
 
     try {
-      const res = await axios.post("http://localhost:5000/upload", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -61,50 +61,60 @@ const DocumentUpload = ({ onSuccess }) => {
 
   return (
     <div className="document-border">
-    <div className="document-container">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="document-type" className="document-label">Select document type:</label>
-        <select
-          id="document-type"
-          value={documentType}
-          onChange={(e) => setDocumentType(e.target.value)}
-          required
-          className="document-select"
-        >
-          <option value="">Select a document type</option>
-          <option value="ID">ID</option>
-          <option value="Passport">Passport</option>
-          <option value="Driver's License">Driver License</option>
-        </select>
+      <div className="document-container">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="document-type" className="document-label">
+            Select document type:
+          </label>
+          <select
+            id="document-type"
+            value={documentType}
+            onChange={(e) => setDocumentType(e.target.value)}
+            required
+            className="document-select"
+          >
+            <option value="">Select a document type</option>
+            <option value="ID">ID</option>
+            <option value="Passport">Passport</option>
+            <option value="Driver's License">Driver License</option>
+          </select>
 
-        <Dropzone
-          onDrop={onDrop}
-          maxSize={2 * 1024 * 1024}
-          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-        >
-          {({ getRootProps, getInputProps }) => (
-            <div {...getRootProps({ className: "document-dropzone" })}>
-              <input {...getInputProps()} />
-              <p className="document-dropzone-text">
-                <strong>Drag and drop documents here or click to upload</strong>
-              </p>
+          <Dropzone
+            onDrop={onDrop}
+            maxSize={2 * 1024 * 1024}
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps({ className: "document-dropzone" })}>
+                <input {...getInputProps()} />
+                <p className="document-dropzone-text">
+                  <strong>
+                    Drag and drop documents here or click to upload
+                  </strong>
+                </p>
+              </div>
+            )}
+          </Dropzone>
+
+          {file && (
+            <div className="document-file-info">
+              <p>{file.name}</p>
+              <button
+                type="button"
+                onClick={() => setFile(null)}
+                className="document-remove-file-button"
+              >
+                Remove file
+              </button>
             </div>
           )}
-        </Dropzone>
 
-        {file && (
-          <div className="document-file-info">
-            <p>{file.name}</p>
-            <button type="button" onClick={() => setFile(null)} className="document-remove-file-button">
-              Remove file
-            </button>
-          </div>
-        )}
-
-        <button type="submit" className="document-submit-button">Submit</button>
-        {message && <div className="document-message">{message}</div>}
-      </form>
-    </div>
+          <button type="submit" className="document-submit-button">
+            Submit
+          </button>
+          {message && <div className="document-message">{message}</div>}
+        </form>
+      </div>
     </div>
   );
 };
