@@ -8,7 +8,6 @@ import Transfer from "../components/Transfer";
 
 const Dashboard = () => {
   const { email, customerId, username } = useAuth();
-  const [userName] = useState(username);
   const [transactions, setTransactions] = useState([]);
   const [balance, setBalance] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -100,7 +99,7 @@ const Dashboard = () => {
             <div className="account-summary">
               <div className="dashboard-card">
                 <div className="content">
-                  <div className="username">Welcome {userName}</div>
+                  <div className="username">Welcome {username}</div>
                   <div className="customer-id">
                     <span className="label">Customer ID:</span> {customerId}
                   </div>
