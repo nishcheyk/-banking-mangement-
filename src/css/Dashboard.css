@@ -307,11 +307,10 @@
 .dashboard-container .loader {
  margin-top: 140px;
   width: 200px;
-  height: 140px;
-  position: relative;
+  height: 190px;
+  position: absolute;
   margin: 0 auto;
 }
-
 
 
 .dashboard-container .loader:after {
@@ -331,9 +330,10 @@
 
 /* Loader animation */
 .loader {
+  margin-top: 140px;
   width: 200px;
-  height: 140px;
-  position: relative;
+  height: 190px;
+  position: absolute;
   margin: 0 auto;
 }
 
